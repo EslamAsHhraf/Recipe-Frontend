@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { AuthenticationService } from 'src/app/services/Authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-components-registration',
@@ -15,10 +17,18 @@ export class RegistrationComponent {
     password: '',
   };
   confirmPassword: string = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private alertify: AlertifyService,
+    private router: Router
+  ) { }
+
   ngOnInit() {
     this.createRegisterationForm();
   }
-  constructor(private fb: FormBuilder, private alertify: AlertifyService) {}
+
   createRegisterationForm() {
     this.registrationForm = this.fb.group(
       {
@@ -35,13 +45,24 @@ export class RegistrationComponent {
       : { notmatched: true };
   }
   onSubmit() {
+    console.log(this.registrationForm);
     if (this.registrationForm.valid) {
-      console.log('Registration form submitted.');
-      console.log('Username:', this.user.username);
-      console.log('Email:', this.user.password);
-      console.log('Confirm Password:', this.confirmPassword);
+      this.authenticationService.registerUser(this.user).subscribe({
+        next: (res) => {
+          // this.router.navigate(['/login']);
+          this.alertify.success('Congrats, you are successfully registered');
+        },
+        error: (err) => {
+          // put error message
+          this.alertify.error(err?.title);
+        },
+      });
     } else {
-      this.alertify.error('Kindly provide the required fields');
+      if (this.registrationForm.errors?.['notmatched']) {
+        this.alertify.error(`Confirm Password isn't equal Password`);
+      } else {
+        this.alertify.error('Kindly provide the required fields');
+      }
     }
   }
 }
