@@ -5,7 +5,6 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './components/registration/registration.component';
 import { PanelModule } from 'primeng/panel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DividerModule} from 'primeng/divider';
@@ -13,6 +12,7 @@ import {DividerModule} from 'primeng/divider';
 import { Register } from './Pages/register/register.component';
 import { LogIn } from './Pages/logIn/logIn.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 const appRoutes: Routes = [
   { path: '', component: AppComponent },
   { path: 'register', component: Register },
@@ -23,6 +23,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     RegistrationComponent,
+    Register,
     LogIn,
     LoginComponent],
   imports: [
