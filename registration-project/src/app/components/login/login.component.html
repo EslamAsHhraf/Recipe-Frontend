@@ -1,14 +1,14 @@
-<div class=" ">
+<div class=" " *ngIf="user">
     <div class="hero grid flex align-items-center justify-content-center ">
         <div class="col-5 flex align-items-center justify-content-center">
             <div class="p-fluid">
                 <div class="flex flex-column gap-2 mb-3">
                     <label htmlFor="username">Username</label>
-                    <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="username" />
+                    <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="user.UserName" />
                 </div>
                   <div class="flex flex-column gap-2 mb-3">
                     <label htmlFor="password">Password</label>
-                    <input pInputText id="password" type="password" [(ngModel)]="password" />
+                    <input pInputText id="password" type="password" [(ngModel)]="user.Password" />
                 </div>
                 <p-button label="Login"></p-button>
               <p-divider  layout="horizontal">

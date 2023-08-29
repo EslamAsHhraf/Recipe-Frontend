@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { PanelModule } from 'primeng/panel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DividerModule} from 'primeng/divider';
+import {HttpClientModule} from '@angular/common/http'
 
 import { Register } from './Pages/register/register.component';
 import { LogIn } from './Pages/logIn/logIn.component';
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     FormsModule,
     PanelModule,
     ButtonModule,
+    HttpClientModule,
     DividerModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
