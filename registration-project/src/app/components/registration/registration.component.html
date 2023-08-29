@@ -1,29 +1,19 @@
-<p-panel header="Registration Form">
-    <form (ngSubmit)="onSubmit()" class="p-grid p-fluid">
-      <div class="p-col-12">
-        <label for="username">Username</label>
-        <input id="username" type="text" pInputText [(ngModel)]="username" name="username" />
-      </div>
-      <div class="p-col-12">
-        <label for="email">Email</label>
-        <input id="email" type="email" pInputText [(ngModel)]="email" name="email" />
-      </div>
-      <div class="p-col-12">
-        <label for="password">Password</label>
-        <input id="password" type="password" pPassword [(ngModel)]="password" name="password" />
-      </div>
-      <div class="p-col-12">
-        <label for="confirmPassword">Confirm Password</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          pPassword
-          [(ngModel)]="confirmPassword"
-          name="confirmPassword"
-        />
-      </div>
-      <div class="p-col-12">
-        <button type="submit" pButton label="Register"> SUBMIT </button>
+<div class="hero grid flex align-items-center justify-content-center ">
+    <form  [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="flex align-items-center justify-content-center">
+      <div class="p-fluid">
+                <div class="flex flex-column gap-2 mb-3">
+                    <label htmlFor="username">Username</label>
+                    <input formControlName="userName" pInputText id="username" aria-describedby="username-help" [(ngModel)]="user.username"/>
+                </div>
+                <div class="flex flex-column gap-2 mb-3">
+                    <label htmlFor="password">Password</label>
+                    <input formControlName="password" pInputText id="password" type="password" [(ngModel)]="user.password"/>
+                </div>
+                <div class="flex flex-column gap-2 mb-3">
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input  formControlName="confirmPassword" pInputText id="confirmPassword" type="password" [(ngModel)]="confirmPassword" />
+                </div>
+              <p-button label="Submit"  type="Submit" styleClass="p-button-success"> </p-button>
       </div>
     </form>
-  </p-panel>
+  </div>

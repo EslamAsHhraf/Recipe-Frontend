@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PanelModule } from 'primeng/panel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DividerModule} from 'primeng/divider';
+import { DividerModule } from 'primeng/divider';
 
+import { AlertifyService } from './services/alertify.service';
 import { Register } from './Pages/register/register.component';
 import { LogIn } from './Pages/logIn/logIn.component';
 import { LoginComponent } from './components/login/login.component';
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     RegistrationComponent,
     Register,
     LogIn,
-    LoginComponent],
+    LoginComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,9 +36,11 @@ const appRoutes: Routes = [
     ButtonModule,
     DividerModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AlertifyService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

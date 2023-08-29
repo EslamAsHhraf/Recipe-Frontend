@@ -1,41 +1,31 @@
 /* registration.component.css */
 
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-  }
-  
-  button[type="submit"] {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #176448;
-  }
+.hero{
+  height: 100vh;
+  margin: 0px;
+  background: linear-gradient(rgba(15,23,43,.9),rgba(15,23,43,.9)),url(../../../assets/images/bg-hero.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+input{
+   padding: 8px;
+   font-weight: bold;
+   width: 300px;
+   height: 36px;
+   border-radius: 12px;
+   -webkit-border-radius: 12px;
+   -moz-border-radius: 12px;
+   -ms-border-radius: 12px;
+   -o-border-radius: 12px;
+}
+input:hover{
+  outline: none;
+}
+label{
+  font-weight: bold;
+}
+.ng-invalid.ng-touched {
+  border-color: red;
+}
