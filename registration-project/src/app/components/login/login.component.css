@@ -1,0 +1,38 @@
+.hero{
+  height: 100vh;
+  margin: 0px;
+  background: linear-gradient(rgba(15,23,43,.9),rgba(15,23,43,.9)),url(../../../assets/images/bg-hero.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.divider{
+ display: block;
+ height: 100px;
+
+}
+input{
+  width: 300px;
+  height: 36px;
+}
+input:hover{
+  outline: none;
+}
+label{
+  font-weight: bold;
+}
+img{
+  max-width: 100%;
+  height: auto;
+  -webkit-animation:spin 50s linear infinite;
+  -moz-animation:spin 50s linear infinite;
+  animation:spin 50s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
