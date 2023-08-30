@@ -45,16 +45,16 @@ export class RegistrationComponent {
       : { notmatched: true };
   }
   onSubmit() {
-    console.log(this.registrationForm);
     if (this.registrationForm.valid) {
       this.authenticationService.registerUser(this.user).subscribe({
         next: (res) => {
-          // this.router.navigate(['/login']);
+          this.router.navigate(['/login']);
           this.alertify.success('Congrats, you are successfully registered');
         },
         error: (err) => {
           // put error message
-          this.alertify.error(err?.title);
+          this.alertify.error(err?.error?.Title[0]);
+          console.log(err);
         },
       });
     } else {
