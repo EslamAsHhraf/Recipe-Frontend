@@ -1,20 +1,22 @@
 <div class="hero grid flex align-items-center justify-content-center ">
+    <form  [formGroup]="loginForm" >
         <div class="col-5 flex align-items-center justify-content-center">
             <div class="p-fluid">
                 <div class="flex flex-column gap-2 mb-3">
                     <label htmlFor="username">Username</label>
-                    <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="username" />
+                    <input pInputText id="username" aria-describedby="username-help"  formControlName="userName" [(ngModel)]="user.username"/>
                 </div>
                   <div class="flex flex-column gap-2 mb-3">
                     <label htmlFor="password">Password</label>
-                    <input pInputText id="password" type="password" [(ngModel)]="password" />
+                    <input pInputText id="password" type="password" formControlName="password" [(ngModel)]="user.password"/>
                 </div>
-                <p-button label="Login"></p-button>
+                <p-button label="Login" (onClick)="onSubmit()" ></p-button>
               <p-divider  layout="horizontal">
             </p-divider>
-            <p-button label="Sign Up" icon="pi pi-user-plus" styleClass="p-button-success"></p-button>
+            <p-button label="Sign Up" icon="pi pi-user-plus" routerLink="/register" styleClass="p-button-success"></p-button>
             </div>
         </div>
+    </form>
         <div class="col-2 small-screen">
             <p-divider class="divider" layout="vertical">
             </p-divider>
@@ -22,5 +24,6 @@
         <div class="col-5 text-center small-screen">
             <img src="../../../assets/images/hero.png" alt="hero img"/>
         </div>
+    
 </div>
 

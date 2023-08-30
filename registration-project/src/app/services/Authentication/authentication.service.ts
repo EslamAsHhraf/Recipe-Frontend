@@ -14,4 +14,8 @@ export class AuthenticationService {
   registerUser(user: User) {
     return this.http.post(this.baseUrl + '/Auth/register', user);
   }
+  loginUser(user: User) {
+    return this.http.post(this.baseUrl + '/Auth/login', user);
+  }
+
 }
