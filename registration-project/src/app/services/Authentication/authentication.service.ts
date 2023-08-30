@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/model/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,4 +19,7 @@ export class AuthenticationService {
     return this.http.post(this.baseUrl + '/Auth/login', user);
   }
 
+  getMe(){
+    return this.http.get(this.baseUrl + '/Auth');
+  }
 }

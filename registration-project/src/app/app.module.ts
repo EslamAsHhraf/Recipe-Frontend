@@ -16,8 +16,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { AuthenticationService } from './services/Authentication/authentication.service';
 import {  HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './Pages/home/home.component';
 const appRoutes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: HomeComponent },
   { path: 'register', component: Register },
   { path: 'login', component: LogIn },
 ];
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
     Register,
     LogIn,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,9 +43,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [AlertifyService,AuthenticationService],
+  providers: [AlertifyService, AuthenticationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
