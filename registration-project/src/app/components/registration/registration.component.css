@@ -1,6 +1,7 @@
 /* registration.component.css */
 
 .hero{
+  overflow: hidden;
   height: 100vh;
   margin: 0px;
   background: linear-gradient(rgba(15,23,43,.9),rgba(15,23,43,.9)),url(../../../assets/images/bg-hero.jpg);
@@ -8,7 +9,11 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.divider{
+  display: block;
+  height: 100px;
 
+}
 input{
   padding: 8px;
   font-weight: bold;
@@ -28,4 +33,20 @@ label{
 }
 .ng-invalid.ng-touched {
   border-color: red;
+}
+img{
+  height: 100vh;
+}
+.image{
+  height: 100vh;
+  background: linear-gradient(rgba(15,23,43,.3),rgba(15,23,43,.3)),url(../../../assets/images/hero-register.jpeg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media (max-width: 768px) {
+  .small-screen {
+    display: none;
+  }
+
 }
