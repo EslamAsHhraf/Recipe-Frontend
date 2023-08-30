@@ -37,20 +37,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("test")
-    console.log(this.loginForm)
     if (this.loginForm.valid) {
-      console.log("test2")
       this.authenticationService.loginUser(this.user).subscribe({
-        next: (res) => {
-          console.log("success")
+        next: () => {
           this.router.navigate(['/']);
           this.alertify.success('Congrats, you are successfully logined');
         },
         error: (err) => {
           // put error message
-          // this.alertify.error(err?.error?.Title[0]);
           console.log(err);
+          this.alertify.error(err?.error?.Title[0]);
         },
       });
     } else {

@@ -36,13 +36,10 @@ img{
   -moz-animation:spin 50s linear infinite;
   animation:spin 50s linear infinite;
 }
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
+
+
+.ng-invalid.ng-touched {
+  border-color: red;
 }
 @media (max-width: 768px) {
   .small-screen {
