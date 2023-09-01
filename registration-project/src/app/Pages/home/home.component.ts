@@ -13,14 +13,24 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.authenticationService.getMe().subscribe({
       next: (res: any) => {
+        console.log("res");
         console.log(res);
-        // console.log(res);
-        //   this.username = res?.name?.value;
+          this.username = res?.name?.value;
       },
       error: (err) => {
         // put error message
         console.log(err);
       },
     });
+
+    //  this.authenticationService.getMe().then((res: any) => {
+    //      console.log('res');
+    //      console.log(res);
+    //      this.username = res?.name?.value;
+    //    }).catch((err) => {
+    //      // put error message
+    //      console.log(err);
+    //    })
+
   }
 }

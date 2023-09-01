@@ -13,16 +13,12 @@ export class AuthenticationService {
   token: any;
   private httpOptions = {
     headers: new HttpHeaders()
-      .set('Content-Type', 'multipart/form-data'),
-      withCredentials: true,
-
+      .set('Accept', '*/*'),
+    withCredentials: true,
   };
   constructor(private http: HttpClient, private cookieService: CookieService) {}
   registerUser(user: User) {
-    return this.http.post(
-      this.baseUrl + '/Auth/register',
-      user,
-    );
+    return this.http.post(this.baseUrl + '/Auth/register', user);
   }
   koko() {
     return this.http.get(this.baseUrl + '/Auth/koko', {
@@ -30,15 +26,21 @@ export class AuthenticationService {
     });
   }
   loginUser(user: User) {
-
-    return this.http.post(this.baseUrl + '/Auth/login', user
-    );
+    return this.http.post(this.baseUrl + '/Auth/login', user);
   }
 
   getMe() {
-    const header = new HttpHeaders().set('Content-type', 'application/json');
-    return this.http.get(this.baseUrl + '/Auth', {
-      withCredentials: true,
-    });
+    //  axios.defaults.headers.common['Cookie'] =
+    //    'token=' + this.cookieService.get('token');
+    //  axios.defaults.headers.common['Content-type'] =
+    //    'application/x-www-form-urlencoded';
+
+    //  const header = new HttpHeaders().set(
+    //    'Cookie',
+    //    'token=' + this.cookieService.get('token')
+    //  );
+    //  return axios.create({ withCredentials: true }).get(this.baseUrl + '/Auth');
+    const header = new HttpHeaders().set('-type', 'token=');
+    return this.http.get(this.baseUrl + '/Auth', { withCredentials:true });
   }
 }
