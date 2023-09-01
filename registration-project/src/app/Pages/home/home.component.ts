@@ -13,9 +13,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.authenticationService.getMe().subscribe({
       next: (res: any) => {
-        console.log("res");
         console.log(res);
-          this.username = res?.name;
+        // console.log(res);
+        //   this.username = res?.name?.value;
       },
       error: (err) => {
         // put error message

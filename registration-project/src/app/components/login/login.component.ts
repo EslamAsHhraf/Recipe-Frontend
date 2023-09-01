@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthenticationService } from 'src/app/services/Authentication/authentication.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-components-login',
@@ -17,29 +19,39 @@ export class LoginComponent implements OnInit {
     username: '',
     password: '',
   };
+  token: any;
+
   constructor(
     private fb: FormBuilder,
     private authenticationService: AuthenticationService,
     private alertify: AlertifyService,
-    private router: Router
-    ) {}
+    private router: Router,
+    private cookieService: CookieService,
+  ) {}
 
   ngOnInit() {
     this.createloginForm();
   }
   createloginForm() {
-    this.loginForm = this.fb.group(
-      {
-        userName: [null, Validators.required],
-        password: [null, [Validators.required]],
-      },
-    );
+    this.loginForm = this.fb.group({
+      userName: [null, Validators.required],
+      password: [null, [Validators.required]],
+    });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
       this.authenticationService.loginUser(this.user).subscribe({
-        next: () => {
+        next: (res: any) => {
+          console.log(this.cookieService.get('token'));
+          const helper = new JwtHelperService();
+          console.log(
+            helper.decodeToken(res?.token)[
+              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
+            ]
+          );
+          // this.cookieService.set('token', res.token);
+
           this.router.navigate(['/']);
           this.alertify.success('Congrats, you are successfully logined');
         },
@@ -52,5 +64,13 @@ export class LoginComponent implements OnInit {
     } else {
       this.alertify.error('Kindly provide the required fields');
     }
+    this.authenticationService.koko().subscribe({
+      next: () => {
+
+      },
+      error: () => {
+
+      },
+    });
   }
 }

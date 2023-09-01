@@ -17,6 +17,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { AuthenticationService } from './services/Authentication/authentication.service';
 import {  HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './Pages/home/home.component';
+import { JwtModule } from '@auth0/angular-jwt';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: Register },
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    JwtModule,
   ],
   providers: [AlertifyService, AuthenticationService],
   bootstrap: [AppComponent],
