@@ -22,11 +22,11 @@
                     <label for="password2" class="block text-900 font-medium text-xl mb-2">Confirm Password</label>
                     <p-password id="password2" [feedback]="false" [(ngModel)]="confirmPassword" placeholder="Confirm Password" [toggleMask]="true" styleClass="mb-3" inputStyleClass="w-full p-3 md:w-30rem" [ngClass]="{'ng-invalid ng-dirty': error[2]}"></p-password>
                     <p *ngIf="error[2]" class="error">Password is not the same </p>
-                    <div class="card flex justify-content-center">
                     <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                            <div class="error">{{errorMessage}}</div>
                     </div>
+
                     <button pButton pRipple label="Submit" class="w-full mb-3 text-xl" (click)="onSubmit()" ></button>
-                </div>
             </div>
         </div>
     </div>

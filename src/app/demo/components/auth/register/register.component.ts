@@ -48,7 +48,12 @@ export class RegisterComponent {
             label: 'Special Character',
             status: false,
         },
+        {
+            label: 'Digit',
+            status: false,
+        },
     ];
+    errorMessage:string='';
     constructor(
         private authenticationService: AuthenticationService,
         private router: Router,
@@ -61,16 +66,22 @@ export class RegisterComponent {
         this.error[2] =
             this.user.password != this.confirmPassword ? true : false;
         if (this.feedbackArr.some((item) => item.status === false)) {
-              this.error[1] = true;
+            this.error[1] = true;
         }
         if (!this.error.some((item) => item === true)) {
-            this.authenticationService.loginUser(this.user).subscribe({
+            this.authenticationService.registerUser(this.user).subscribe({
                 next: () => {
-                    this.router.navigate(['/']);
+                    this.errorMessage='';
+                    this.router.navigate(['./auth/login']);
                 },
                 error: (err) => {
                     // put error message
                     console.log(err);
+                    console.log('Title' in err.error);
+                    this.errorMessage =
+                        'Title' in err.error
+                            ? err?.error?.Title[0]
+                            : 'Error, Can you try again after 5 Minutes';
                 },
             });
         }
@@ -86,6 +97,11 @@ export class RegisterComponent {
             ? true
             : false;
         this.feedbackArr[3].status = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(
+            this.user.password
+        )
+            ? true
+            : false;
+        this.feedbackArr[4].status = /\d/.test(
             this.user.password
         )
             ? true

@@ -23,6 +23,7 @@
                         </div>
                         <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color) " routerLink="/auth/register" >Don't have account?</a>
                     </div>
+                    <p class="error">{{errorMessage}}</p>
                     <button pButton pRipple label="Sign In" class="w-full mb-3 text-xl" (click)="onSubmit()" ></button>
                 </div>
             </div>

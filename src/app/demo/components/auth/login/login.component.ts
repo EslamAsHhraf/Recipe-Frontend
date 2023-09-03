@@ -28,6 +28,7 @@ export class LoginComponent {
         username: '',
         password: '',
     };
+    errorMessage: string = '';
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -42,10 +43,13 @@ export class LoginComponent {
             this.authenticationService.loginUser(this.user).subscribe({
                 next: () => {
                     this.router.navigate(['/']);
+                    this.errorMessage = '';
                 },
                 error: (err) => {
                     // put error message
                     console.log(err);
+                    console.log('Title' in err.error);
+                    this.errorMessage = ('Title' in err.error) ? err?.error?.Title[0] : 'Error, Can you try again after 5 Minutes';
                 },
             });
         }
