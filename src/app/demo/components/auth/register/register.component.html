@@ -1,0 +1,33 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="w-full surface-card py-5 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-5">
+                    <div class="text-900 text-3xl font-medium mb-3">Welcome</div>
+                    <span class="text-600 font-medium">Register to join our community</span>
+                </div>
+
+                <div>
+                    <label for="username" class="block text-900 text-xl font-medium mb-2">Username</label>
+                    <input id="username"  type="text" [(ngModel)]="user.username" placeholder="Username" pInputText class="w-full md:w-30rem mb-3" [ngClass]="{'ng-invalid ng-dirty': error[0]}" style="padding:1rem">
+                    <p  *ngIf="error[0]" class="error">Username is required</p>
+                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
+                    <p-overlayPanel #op>
+                        <div class=" mb-2 " *ngFor="let item of feedbackArr">
+                        <i class="fa" [ngClass]="item.status?'pi pi-check-circle success' : 'pi pi-times error'"></i> {{item.label}}
+                        </div>
+                    </p-overlayPanel>
+                    <p-password id="password1" (onFocus)="op.toggle($event)" [feedback]="false" [(ngModel)]="user.password" placeholder="Password" [toggleMask]="true" styleClass="mb-3" inputStyleClass="w-full p-3 md:w-30rem" [ngClass]="{'ng-invalid ng-dirty': error[1]}" (input)="checkPasswordStrength()"></p-password>
+                    <p *ngIf="error[1]" class="error">Password is invalid</p>
+                    <label for="password2" class="block text-900 font-medium text-xl mb-2">Confirm Password</label>
+                    <p-password id="password2" [feedback]="false" [(ngModel)]="confirmPassword" placeholder="Confirm Password" [toggleMask]="true" styleClass="mb-3" inputStyleClass="w-full p-3 md:w-30rem" [ngClass]="{'ng-invalid ng-dirty': error[2]}"></p-password>
+                    <p *ngIf="error[2]" class="error">Password is not the same </p>
+                    <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                            <div class="error">{{errorMessage}}</div>
+                    </div>
+
+                    <button pButton pRipple label="Submit" class="w-full mb-3 text-xl" (click)="onSubmit()" ></button>
+            </div>
+        </div>
+    </div>
+</div>
