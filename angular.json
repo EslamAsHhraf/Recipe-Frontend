@@ -27,11 +27,10 @@
                         "inlineStyleLanguage": "scss",
                         "aot": true,
                         "assets": [
-                            "src/favicon.ico",
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss"
+                            "src/assets/styles.scss"
                         ],
                         "scripts": [
                             "node_modules/prismjs/prism.js",
@@ -104,11 +103,10 @@
                         "karmaConfig": "karma.conf.js",
                         "inlineStyleLanguage": "scss",
                         "styles": [
-                            "src/styles.scss"
+                            "src/assets/styles.scss"
                         ],
                         "scripts": [],
                         "assets": [
-                            "src/favicon.ico",
                             "src/upload.php",
                             "src/assets"
                         ]
