@@ -1,15 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { Recipe } from 'src/app/model/recipe';
+import { RecipeService } from '../../service/recipe.service';
+import { Router } from '@angular/router';
+
+/*import { MenuItem } from 'primeng/api';
 import { Product } from '../../api/product';
 import { ProductService } from '../../service/product.service';
 import { Subscription } from 'rxjs';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { LayoutService } from 'src/app/layout/service/app.layout.service';*/
 
 @Component({
     templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
 
+    recipes :Recipe[]=[];
+  /*  
     items!: MenuItem[];
 
     products!: Product[];
@@ -19,23 +25,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
     chartOptions: any;
 
     subscription!: Subscription;
-
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$.subscribe(() => {
-            this.initChart();
-        });
-    }
+*/
+    constructor(private recipeService: RecipeService, private router: Router) {}
 
     ngOnInit() {
-        this.initChart();
-        this.productService.getProductsSmall().then(data => this.products = data);
-
-        this.items = [
-            { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-            { label: 'Remove', icon: 'pi pi-fw pi-minus' }
-        ];
+        this.recipeService.getRecipes()
+        .subscribe((result:Recipe[]) => this.recipes = result);
     }
 
+    viewdetails(recipe:Recipe){
+        this.router.navigate(['pages/recipe/',{ recipeId: recipe.id }]);
+    }
+/*
     initChart() {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
@@ -100,4 +101,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.subscription.unsubscribe();
         }
     }
+    */
 }
