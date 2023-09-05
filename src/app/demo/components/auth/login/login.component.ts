@@ -48,8 +48,10 @@ export class LoginComponent {
                 error: (err) => {
                     // put error message
                     console.log(err);
-                    console.log('Title' in err.error);
-                    this.errorMessage = ('Title' in err.error) ? err?.error?.Title[0] : 'Error, Can you try again after 5 Minutes';
+                    this.errorMessage =
+                        'title' in err.error.data
+                            ? err?.error.data?.title
+                            : 'Error, Can you try again after 5 Minutes';
                 },
             });
         }

@@ -77,17 +77,15 @@ export class RegisterComponent {
                 error: (err) => {
                     // put error message
                     console.log(err);
-                    console.log('Title' in err.error);
-                    this.errorMessage =
-                        'Title' in err.error
-                            ? err?.error?.Title[0]
-                            : 'Error, Can you try again after 5 Minutes';
+                     this.errorMessage =
+                         'title' in err.error.data
+                             ? err?.error.data?.title
+                             : 'Error, Can you try again after 5 Minutes';
                 },
             });
         }
     }
     checkPasswordStrength() {
-        console.log(':cs');
         this.feedbackArr[0].status =
             this.user.password.length >= 8 ? true : false;
         this.feedbackArr[1].status = /[A-Z]/.test(this.user.password)
