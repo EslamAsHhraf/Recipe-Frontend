@@ -3,6 +3,7 @@ import { AuthenticationService } from 'src/app/demo/service/authentication.servi
 import { User } from 'src/app/model/user';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import {PasswordStrict} from 'src/app/demo/service/passwordStrict.service'
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
@@ -31,35 +32,17 @@ export class RegisterComponent {
         password: '',
     };
     confirmPassword: string = '';
-    feedbackArr = [
-        {
-            label: 'Minium 8 Character',
-            status: false,
-        },
-        {
-            label: 'Uppercase Character',
-            status: false,
-        },
-        {
-            label: 'Lowercase Character',
-            status: false,
-        },
-        {
-            label: 'Special Character',
-            status: false,
-        },
-        {
-            label: 'Digit',
-            status: false,
-        },
-    ];
+    feedbackArr;
     errorMessage:string='';
     constructor(
         private authenticationService: AuthenticationService,
         private router: Router,
-        public layoutService: LayoutService
+        public layoutService: LayoutService,
+        private passwordStrict:PasswordStrict
     ) {}
-
+    ngOnInit() {
+        this.feedbackArr = this.passwordStrict.data();
+  }
     onSubmit() {
         this.error[0] = this.user.username == '' ? true : false;
         this.error[1] = this.user.password == '' ? true : false;

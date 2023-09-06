@@ -26,4 +26,12 @@ export class ProfileService {
             withCredentials: true,
         });
     }
+    changePassword(oldPassword, newPassword) {
+        return this.http.put(
+            this.baseUrl +
+            '/Auth/ChangePassword?oldPassword=' +
+            oldPassword + '&newPassword=' + newPassword,null,{
+                withCredentials: true,
+            });
+    }
 }

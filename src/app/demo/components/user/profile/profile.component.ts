@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
                 this.profile.imageFile =
                     'src/assets/fonts/' + res?.data?.userData?.imageFile;
             },
-            error: (err) => {
+            error: () => {
                 this.router.navigate(['./auth/login']);
             },
         });
