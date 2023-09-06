@@ -15,7 +15,7 @@
                     <app-changePassword></app-changePassword>
                 </p-tabPanel>
                 <p-tabPanel header="Add Recipe" class="line-height-3 m-0">
-                    <app-add-recipe></app-add-recipe>
+                    <app-add-recipe [userId]="profile.id"></app-add-recipe>
                 </p-tabPanel>
             </p-tabView>
 	</div>

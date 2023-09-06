@@ -5,4 +5,5 @@ export interface Recipe {
     category: number;
     createdBy: number;
     totalRating: number;
+    imageFile:string;
 }

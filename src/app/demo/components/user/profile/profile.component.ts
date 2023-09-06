@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
                     'src/assets/fonts/' + res?.data?.userData?.imageFile;
             },
             error: () => {
-                this.router.navigate(['./auth/login']);
+                // this.router.navigate(['./auth/login']);
             },
         });
     }

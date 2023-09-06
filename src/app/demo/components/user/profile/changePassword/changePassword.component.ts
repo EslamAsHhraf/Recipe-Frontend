@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
 import { PasswordStrict } from 'src/app/demo/service/passwordStrict.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-changePassword',
@@ -23,6 +24,7 @@ import { Router } from '@angular/router';
             }
         `,
     ],
+    providers: [MessageService],
 })
 export class ChangePasswordComponent implements OnInit {
     error: boolean[] = [false, false, false, false];
@@ -34,7 +36,8 @@ export class ChangePasswordComponent implements OnInit {
     constructor(
         private profileService: ProfileService,
         private passwordStrict: PasswordStrict,
-        private router: Router
+        private router: Router,
+        private messageService: MessageService,
     ) {}
 
     ngOnInit() {
@@ -54,13 +57,21 @@ export class ChangePasswordComponent implements OnInit {
                 .subscribe({
                     next: () => {
                         this.errorMessage = '';
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: 'Change Password Successfully',
+                            life: 3000,
+                        });
+                        setTimeout(() => {
+                            this.router.navigate(['/']);
+                        }, 3000); // 3000 milliseconds (3 seconds)
                     },
                     error: (err) => {
                         // put error message
                         if (err.status == 401) {
                             this.router.navigate(['./auth/login']);
-                        }
-                        else {
+                        } else {
                             console.log(err);
                             this.errorMessage =
                                 'title' in err.error.data
