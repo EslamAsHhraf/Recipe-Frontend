@@ -1,0 +1,12 @@
+<div class="grid"  *ngFor="let ingredient of ingredients">
+    <div class="col-12 xl:col-6">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="text-900 font-medium text-xl">{{ ingredient.title }}</span>
+                    <div class="block text-500 font-medium mb-3">{{ ingredient.description }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
