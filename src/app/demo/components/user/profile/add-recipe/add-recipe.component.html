@@ -1,0 +1,23 @@
+ <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" pInputText id="name" required autofocus/>
+                </div>
+                <div class="field">
+                    <label for="description">Description</label>
+                    <textarea id="description" pInputTextarea required rows="3" cols="20"></textarea>
+                </div>
+                <div class="field">
+                    <label for="status">Inventory Status</label>
+                    <p-dropdown  inputId="inventoryStatus" optionValue="label" [options]="statuses" placeholder="Select">
+                        <ng-template pTemplate="selectedItem">
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+</ng-template>
+<ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"></button>
+</ng-template>
