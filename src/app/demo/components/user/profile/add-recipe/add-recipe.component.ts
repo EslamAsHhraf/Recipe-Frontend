@@ -6,6 +6,8 @@ import { CategoryService } from 'src/app/demo/service/category.service';
 import { RecipeService } from 'src/app/demo/service/recipe.service';
 import { AlertifyService } from 'src/app/demo/service/alertify.service';
 import { MessageService } from 'primeng/api';
+import { IngredientService } from 'src/app/demo/service/ingredient.service';
+import { Ingredient } from 'src/app/model/Ingredients';
 
 @Component({
     selector: 'app-add-recipe',
@@ -33,6 +35,7 @@ export class AddRecipeComponent implements OnInit {
     @Input() userId!: number;
     error: boolean[] = [false, false, false, false];
     category: Category[];
+    ingredient:Ingredient[];
     recipe: Recipe = {
         title: '',
         description: '',
@@ -48,13 +51,24 @@ export class AddRecipeComponent implements OnInit {
         private recipeService: RecipeService,
         private router: Router,
         private categoryService: CategoryService,
-        private messageService: MessageService
+        private messageService: MessageService,
+        private ingredientService: IngredientService
     ) {}
 
     ngOnInit() {
         this.categoryService.getall().subscribe((res: any) => {
             this.category = res.data;
             console.log(res.data);
+        });
+        this.ingredientService.gwtIngredients().subscribe((res: any) => {
+            this.ingredient = res;
+          this.ingredient = this.ingredient.map((obj) => ({
+              ...obj,
+              check: false,
+              quantity:null
+          }));
+
+            console.log(this.ingredient);
         });
     }
     onSubmit() {
