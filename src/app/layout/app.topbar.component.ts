@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
-import { Recipe } from '../model/recipe';
+import { Recipe } from '../model/Recipe';
 import { Router } from '@angular/router';
 
 @Component({
