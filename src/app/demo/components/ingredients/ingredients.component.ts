@@ -17,6 +17,6 @@ export class ingredientsComponent implements OnInit {
         console.log(this.ingredients);
     }
 
-    
+
 
 }

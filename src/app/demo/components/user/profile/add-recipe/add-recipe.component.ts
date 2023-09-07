@@ -61,7 +61,7 @@ export class AddRecipeComponent implements OnInit {
             this.category = res.data;
             console.log(res.data);
         });
-        this.ingredientService.gwtIngredients().subscribe((res: any) => {
+        this.ingredientService.getIngredients().subscribe((res: any) => {
             this.ingredient = res;
             this.ingredient = this.ingredient.map((obj) => ({
                 ...obj,

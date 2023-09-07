@@ -13,7 +13,7 @@ export class IngredientService {
 
     constructor(private http: HttpClient) {}
 
-    gwtIngredients() {
+    getIngredients() {
         return this.http.get(this.baseUrl + '/ingredients');
     }
 }
