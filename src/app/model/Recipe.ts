@@ -4,7 +4,7 @@ export interface Recipe {
     title: '';
     description: '';
     Steps: '';
-    Category: '';
-    TotalRating: Float32Array;
+    category: '';
+    totalRating: Float32Array;
     image: string;
 }

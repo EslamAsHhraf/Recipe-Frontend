@@ -4,10 +4,10 @@ import { Recipe } from '../../model/Recipe';
 import { Category } from 'src/app/model/Category';
 import { CategoryService } from 'src/app/demo/service/category.service';
 import { RecipeService } from 'src/app/demo/service/recipe.service';
-import { AlertifyService } from 'src/app/demo/service/alertify.service';
 import { MessageService } from 'primeng/api';
 import { IngredientService } from 'src/app/demo/service/ingredient.service';
 import { Ingredient } from 'src/app/model/Ingredients';
+import { RecipeIngredientsServices } from 'src/app/demo/service/recipeIngredients.services';
 
 @Component({
     selector: 'app-add-recipe',
@@ -35,7 +35,7 @@ export class AddRecipeComponent implements OnInit {
     @Input() userId!: number;
     error: boolean[] = [false, false, false, false];
     category: Category[];
-    ingredient:Ingredient[];
+    ingredient: Ingredient[];
     recipe: Recipe = {
         title: '',
         description: '',
@@ -52,7 +52,8 @@ export class AddRecipeComponent implements OnInit {
         private router: Router,
         private categoryService: CategoryService,
         private messageService: MessageService,
-        private ingredientService: IngredientService
+        private ingredientService: IngredientService,
+        private recipeIngredientsServices: RecipeIngredientsServices
     ) {}
 
     ngOnInit() {
@@ -62,11 +63,11 @@ export class AddRecipeComponent implements OnInit {
         });
         this.ingredientService.gwtIngredients().subscribe((res: any) => {
             this.ingredient = res;
-          this.ingredient = this.ingredient.map((obj) => ({
-              ...obj,
-              check: false,
-              quantity:null
-          }));
+            this.ingredient = this.ingredient.map((obj) => ({
+                ...obj,
+                check: false,
+                quantity: null,
+            }));
 
             console.log(this.ingredient);
         });
@@ -82,7 +83,19 @@ export class AddRecipeComponent implements OnInit {
 
         if (!this.error.some((item) => item === true)) {
             this.recipeService.addRecipe(this.recipe).subscribe({
-                next: (res:any) => {
+                next: (res: any) => {
+                     console.log(res.data.data);
+                    for (let i in this.ingredient) {
+                        if (this.ingredient[i].check) {
+                            this.recipeIngredientsServices.addRecipeIngredients(
+                                {
+                                    recipeId: res.data.data.result.id,
+                                    ingredientId: this.ingredient[i].id,
+                                    quantity: this.ingredient[i].quantity,
+                                }
+                            ).subscribe({});
+                        }
+                    }
                     this.errorMessage = '';
                     this.messageService.add({
                         severity: 'success',
@@ -90,7 +103,7 @@ export class AddRecipeComponent implements OnInit {
                         detail: 'Add New Recipe',
                         life: 3000,
                     });
-                    console.log(res.data.result.id);
+                    console.log(res.data);
                     setTimeout(() => {
                         this.router.navigate(['./']);
                     }, 3000); // 3000 milliseconds (3 seconds)
