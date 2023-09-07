@@ -72,6 +72,7 @@ export class AddRecipeComponent implements OnInit {
         });
     }
     onSubmit() {
+        console.log(this.ingredient);
         this.recipe.category = this.selectedCategory.id;
         this.recipe.createdBy = this.userId;
         this.errorMessage = '';
@@ -81,7 +82,7 @@ export class AddRecipeComponent implements OnInit {
 
         if (!this.error.some((item) => item === true)) {
             this.recipeService.addRecipe(this.recipe).subscribe({
-                next: () => {
+                next: (res:any) => {
                     this.errorMessage = '';
                     this.messageService.add({
                         severity: 'success',
@@ -89,6 +90,7 @@ export class AddRecipeComponent implements OnInit {
                         detail: 'Add New Recipe',
                         life: 3000,
                     });
+                    console.log(res.data.result.id);
                     setTimeout(() => {
                         this.router.navigate(['./']);
                     }, 3000); // 3000 milliseconds (3 seconds)

@@ -30,10 +30,10 @@ export class ProfileComponent implements OnInit {
                 this.profile.id = res?.data?.userData?.id;
                 this.profile.name = res?.data?.userData?.name;
                 this.profile.imageFile =
-                    'src/assets/fonts/' + res?.data?.userData?.imageFile;
+                    'src/assets/api/' + res?.data?.userData?.imageFile;
             },
             error: () => {
-                // this.router.navigate(['./auth/login']);
+                this.router.navigate(['./auth/login']);
             },
         });
     }

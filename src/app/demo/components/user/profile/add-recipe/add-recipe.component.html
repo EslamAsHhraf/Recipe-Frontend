@@ -12,14 +12,17 @@
             <textarea rows="5" cols="30" pInputTextarea  [(ngModel)]="recipe.steps" class="w-full md:w-30rem mb-3"  [ngClass]="{'ng-invalid ng-dirty': error[2]}"></textarea>
                     <p *ngIf="error[2]" class="error">Steps is required </p>
                     <label for="category" class="block text-900 font-medium text-xl mb-2">Category</label>
-            <p-dropdown [options]="category" [(ngModel)]="selectedCategory" optionLabel="name" class="w-full md:w-30rem mb-4"></p-dropdown>
-            <label  class="block text-900 font-medium text-xl my-4">Ingredient</label>
-            <div class="flex flex-wrap gap-2" *ngFor="let item of ingredient">
+            <p-dropdown [options]="category" [(ngModel)]="selectedCategory" optionLabel="title" class="w-full md:w-30rem mb-4"></p-dropdown>
+            <label  class="block text-900 font-medium text-xl my-4">Ingredients</label>
+            <div style="height: 300px; overflow-y: scroll;" class="p-3">
+            <div  class="flex flex-wrap gap-2 he" *ngFor="let item of ingredient">
                 <div class="grid align-items-center mb-2">
+                    <strong>{{item.id}}. </strong>
                     <p-checkbox class="col-1" [(ngModel)]="item.check" [binary]="true" inputId="binary"></p-checkbox>
                     <span class="col-3 mr-2">{{item.title}}</span>
                     <input class="col-6" type="text" [(ngModel)]="item.quantity" placeholder="Quantity" pInputText class="20rem p-0"  style="height:28px;padding:1rem" >
 
+                </div>
                 </div>
             </div>
             <div class="flex align-items-center justify-content-between mb-5 gap-5">
