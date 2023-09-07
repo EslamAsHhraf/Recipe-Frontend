@@ -1,0 +1,34 @@
+<div class="p-5 flex flex-column align-items-center justify-content-center">
+    <p-toast position="top-right"></p-toast>
+    <h5>Add Recipe</h5>
+        <div>
+             <label for="title" class="block text-900 text-xl font-medium mb-2">Title</label>
+                    <input id="title"  type="text" [(ngModel)]="recipe.title" placeholder="Title" pInputText class="w-full md:w-30rem mb-3" [ngClass]="{'ng-invalid ng-dirty': error[0]}" style="padding:1rem">
+                    <p  *ngIf="error[0]" class="error">Title is required</p>
+                    <label for="description" class="block text-900 font-medium text-xl mb-2">Description</label>
+            <textarea id="description"  rows="5" cols="30" pInputTextarea  [(ngModel)]="recipe.description" class="w-full md:w-30rem mb-3"  [ngClass]="{'ng-invalid ng-dirty': error[1]}"></textarea>
+                    <p *ngIf="error[1]" class="error">Description is required</p>
+                    <label for="steps" class="block text-900 font-medium text-xl mb-2">Steps</label>
+            <textarea rows="5" cols="30" pInputTextarea  [(ngModel)]="recipe.steps" class="w-full md:w-30rem mb-3"  [ngClass]="{'ng-invalid ng-dirty': error[2]}"></textarea>
+                    <p *ngIf="error[2]" class="error">Steps is required </p>
+                    <label for="category" class="block text-900 font-medium text-xl mb-2">Category</label>
+            <p-dropdown [options]="category" [(ngModel)]="selectedCategory" optionLabel="title" class="w-full md:w-30rem mb-4"></p-dropdown>
+            <label  class="block text-900 font-medium text-xl my-4">Ingredients</label>
+            <div style="height: 300px; overflow-y: scroll;" class="p-3">
+            <div  class="flex flex-wrap gap-2 he" *ngFor="let item of ingredient">
+                <div class="grid align-items-center mb-2">
+                    <strong>{{item.id}}. </strong>
+                    <p-checkbox class="col-1" [(ngModel)]="item.check" [binary]="true" inputId="binary"></p-checkbox>
+                    <span class="col-3 mr-2">{{item.title}}</span>
+                    <input class="col-6" type="text" [(ngModel)]="item.quantity" placeholder="Quantity" pInputText class="20rem p-0"  style="height:28px;padding:1rem" >
+
+                </div>
+                </div>
+            </div>
+            <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                            <div class="error">{{errorMessage}}</div>
+                    </div>
+
+            <button pButton label="Submit" (click)="onSubmit()" ></button>
+        </div>
+</div>

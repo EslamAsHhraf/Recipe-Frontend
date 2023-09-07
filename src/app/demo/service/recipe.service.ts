@@ -12,7 +12,9 @@ export class RecipeService {
     constructor(http: HttpClient) {
         this.http = http;
     }
-
+     addRecipe(recipe) {
+        return this.http.post(this.baseUrl + '/recipe', recipe);
+    }
     getRecipes() {
         return this.http.get(this.baseUrl +'/recipe');
     }
