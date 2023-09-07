@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Recipe } from 'src/app/model/Recipe';
+import { Recipe } from '../../model/Recipe';
 import { Category } from 'src/app/model/Category';
 import { CategoryService } from 'src/app/demo/service/category.service';
 import { RecipeService } from 'src/app/demo/service/recipe.service';

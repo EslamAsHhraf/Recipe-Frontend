@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class RecipeService {
     baseUrl = environment.baseUrl;
@@ -12,19 +12,17 @@ export class RecipeService {
     constructor(http: HttpClient) {
         this.http = http;
     }
-     addRecipe(recipe) {
+    addRecipe(recipe) {
         return this.http.post(this.baseUrl + '/recipe', recipe);
     }
     getRecipes() {
-        return this.http.get(this.baseUrl +'/recipe');
+        return this.http.get(this.baseUrl + '/recipe');
     }
 
-    getRecipebyid(recipeid:number) {
-        return this.http.get(this.baseUrl +'/recipe/' + recipeid);
+    getRecipebyid(recipeid: number) {
+        return this.http.get(this.baseUrl + '/recipe/' + recipeid);
     }
-
-    searchRecipe(name:string){
-        return this.http.get(this.baseUrl +'recipe/search/' + name);
+    searchRecipe(name: string) {
+        return this.http.get(this.baseUrl + 'recipe/search/' + name);
     }
-
 }

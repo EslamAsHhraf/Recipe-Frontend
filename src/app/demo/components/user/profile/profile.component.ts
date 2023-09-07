@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/model/Category';
 import { Profile } from 'src/app/model/Profile';
-import { Recipe } from 'src/app/model/Recipe';
+import { Recipe } from '../model/Recipe';
 import { ProfileService } from '../services/profile.service';
 import { Router } from '@angular/router';
 
