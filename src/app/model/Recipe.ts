@@ -1,10 +1,9 @@
 export interface Recipe {
-    getRecipebyid(id: number): unknown;
-    id?: number;
-    title: '';
-    description: '';
-    Steps: '';
-    category: '';
-    totalRating: Float32Array;
-    image: string;
+    id?:number;
+    title : string;
+    description : string;
+    steps :string ;
+    category : string;
+    totalRating : Float32Array;
+    image : string ;
 }
