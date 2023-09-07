@@ -1,41 +1,49 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Recipe } from 'src/app/model/recipe';
 import { RecipeService } from '../../service/recipe.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /*import { MenuItem } from 'primeng/api';
 import { Product } from '../../api/product';
 import { ProductService } from '../../service/product.service';
 import { Subscription } from 'rxjs';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';*/
-
+import { LayoutService } from 'src/app/layout/service/app.layout.service';
+*/
 @Component({
     templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
 
+    recipeID?:number;
     recipes :Recipe[]=[];
   /*
     items!: MenuItem[];
-
     products!: Product[];
-
     chartData: any;
-
     chartOptions: any;
-
     subscription!: Subscription;
 */
-    constructor(private recipeService: RecipeService, private router: Router) {}
+    constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute ) {}
 
     ngOnInit() {
-        this.recipeService.getRecipes()
-        .subscribe((result:Recipe[]) => this.recipes = result);
+        this.route.params.subscribe((params) => {
+            if (params['searchTerm']){
+              this.recipeService.searchRecipe(params['searchTerm'])
+              .subscribe((result: Recipe[]) => this.recipes = result);
+               console.log(this.recipes);}
+            else {
+                this.recipeService.getRecipes()
+                .subscribe((result:Recipe[]) => this.recipes = result);
+            }
+          });
+
     }
 
     viewdetails(recipe:Recipe){
-        this.router.navigate(['pages/recipe/',{ recipeId: recipe.id }]);
+        this.recipeID = recipe.id;
+        this.router.navigate(['recipe/',{ recipeId: this.recipeID }]);
     }
+}
 /*
     initChart() {
         const documentStyle = getComputedStyle(document.documentElement);
@@ -102,4 +110,5 @@ export class DashboardComponent implements OnInit {
         }
     }
     */
-}
+//}
+

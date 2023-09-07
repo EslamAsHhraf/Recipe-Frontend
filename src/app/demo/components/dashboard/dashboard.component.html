@@ -1,4 +1,5 @@
-    <div class="grid"  *ngFor="let recipe of recipes">
+
+  <div class="grid"  *ngFor="let recipe of recipes">
         <div class="col-12 xl:col-6">
             <div class="card mb-0">
                 <div class="flex justify-content-between mb-3">
@@ -9,10 +10,10 @@
                     </div>
 
                 </div>
-                <span class="text-500"><button (click)="viewdetails(recipe)" pButton pRipple>See more</button></span>
+                <span class="text-500"><button (click)="viewdetails(recipe)"  pButton pRipple>See more</button></span>
             </div>
         </div>
-        <app-recipe [recipeId]=recipe.id></app-recipe>
+    </div>
 
         <!--
         <div class="col-12 lg:col-6 xl:col-3">
@@ -241,5 +242,4 @@
 
     </div>
     -->
-</div>
 

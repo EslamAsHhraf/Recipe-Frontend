@@ -1,8 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
-import { RecipeService } from '../demo/service/recipe.service';
 import { Recipe } from '../model/recipe';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-topbar',
@@ -12,18 +12,20 @@ export class AppTopBarComponent {
 
     items!: MenuItem[];
     recipes :Recipe[]=[];
-    
+
     @ViewChild('menubutton') menuButton!: ElementRef;
 
     @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService,public recipeService:RecipeService) { }
+    constructor(public layoutService: LayoutService,private router: Router,) { }
 
-    searchRecipes(name:string){
-        this.recipeService.searchRecipe(name)
-        .subscribe((result:Recipe[]) => this.recipes = result);
+    searchRecipes(name: string) {
+        this.router.navigate(['search',{ searchTerm : name }]);
     }
-    
+    IngredientsSearch(){
+        this.router.navigate(['ingredients/']);
+    }
+
 }
