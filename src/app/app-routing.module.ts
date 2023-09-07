@@ -21,6 +21,13 @@ import { recipeComponent } from './demo/components/recipe/recipe.component';
                                 ).then((m) => m.DashboardModule),
                         },
                         {
+                            path: 'search',
+                            loadChildren: () =>
+                                import(
+                                    './demo/components/dashboard/dashboard.module'
+                                ).then((m) => m.DashboardModule),
+                        },
+                        {
                             path: 'uikit',
                             loadChildren: () =>
                                 import(
@@ -61,6 +68,20 @@ import { recipeComponent } from './demo/components/recipe/recipe.component';
                                 import(
                                     './demo/components/user/user.module'
                                 ).then((m) => m.UserModule),
+                        },
+                        {
+                            path: 'recipe',
+                            loadChildren: () =>
+                                import(
+                                    './demo/components/recipe/recipe.module'
+                                ).then((m) => m.recipeModule),
+                        },
+                        {
+                            path: 'ingredients',
+                            loadChildren: () =>
+                                import(
+                                    './demo/components/ingredients/ingredients.module'
+                                ).then((m) => m.ingredientsModule),
                         },
                     ],
                 },

@@ -24,6 +24,6 @@ export class RecipeService {
         return this.http.get(this.baseUrl + '/recipe/' + recipeid);
     }
     searchRecipe(name: string) {
-        return this.http.get(this.baseUrl + 'recipe/search/' + name);
+        return this.http.get(this.baseUrl + '/recipe/search?searchTerm=' + name);
     }
 }
