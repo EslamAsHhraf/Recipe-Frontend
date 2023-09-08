@@ -54,6 +54,13 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                                 ).then((m) => m.recipeModule),
                         },
                         {
+                            path: 'myRecipe',
+                            loadChildren: () =>
+                                import(
+                                    './demo/components/myRecipe/myRecipe.module'
+                                ).then((m) => m.MyRecipeModule),
+                        },
+                        {
                             path: 'ingredients',
                             loadChildren: () =>
                                 import(
