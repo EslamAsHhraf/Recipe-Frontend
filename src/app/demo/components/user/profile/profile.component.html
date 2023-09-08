@@ -25,7 +25,7 @@
             <p-card header={{profile.name}} subheader="User">
 
             <ng-template pTemplate="header">
-                <img [style]="{ 'height': '250px' }" alt="Profile-image" [src]="profile.imageFile" />
+                <img [style]="{ 'height': '250px','width':'250px' }" alt="Profile Image" [src]="'data:image/jpeg;base64,'+userImage" />
             </ng-template>
              <ng-template pTemplate="right">
                     <p-fileUpload mode="basic"   (onSelect)="onFileSelect($event)"

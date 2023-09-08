@@ -4,6 +4,7 @@ import { Profile } from 'src/app/model/Profile';
 import { Recipe } from '../model/Recipe';
 import { ProfileService } from '../services/profile.service';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-profile',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
     productDialog: boolean = false;
     ingredient!: string;
+    userImage: any;
     recipe: Recipe[] = [];
     category: Category[] = [];
     profile: Profile = {
@@ -19,24 +21,27 @@ export class ProfileComponent implements OnInit {
         name: '',
         imageFile: '',
     };
+
     constructor(
         private profileService: ProfileService,
-        private router: Router
+        private router: Router,
+        private sanitizer: DomSanitizer
     ) {}
 
     ngOnInit() {
         this.profileService.getMe().subscribe({
             next: (res: any) => {
-                this.profile.id = res?.data?.userData?.id;
-                this.profile.name = res?.data?.userData?.name;
-                this.profile.imageFile =
-                    'src/assets/api/' + res?.data?.userData?.imageFile;
+                this.profile.id = res?.data?.user?.id;
+                this.profile.name = res?.data?.user?.name;
+                this.userImage = res?.data?.image?.fileContents;
+
             },
             error: () => {
                 this.router.navigate(['./auth/login']);
             },
         });
     }
+
     openNew() {
         this.productDialog = true;
     }
