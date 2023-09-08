@@ -27,12 +27,7 @@
                         "inlineStyleLanguage": "scss",
                         "aot": true,
                         "assets": [
-                            "src/assets",
-                             {
-                                "glob": "**/*",
-                                "input": "../../../team/Authorization/Images",
-                                "output": "src/assets/api/"
-                             }
+                            "src/assets"
                         ],
                         "styles": [
                             "src/assets/styles.scss"
@@ -113,12 +108,7 @@
                         "scripts": [],
                         "assets": [
                             "src/upload.php",
-                            "src/assets",
-                            {
-                                "glob": "**/*",
-                                "input": "../../../team/Authorization/Images",
-                                "output": "src/assets/api/"
-                            }
+                            "src/assets"
                         ]
                     }
                 },
