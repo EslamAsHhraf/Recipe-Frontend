@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/model/Category';
 import { Profile } from 'src/app/model/Profile';
 import { Recipe } from '../model/Recipe';
-import { ProfileService } from '../services/profile.service';
+import { ProfileService } from '../../../service/profile.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 

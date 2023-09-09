@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
+import { ProfileService } from '../../../../service/profile.service';
 import { PasswordStrict } from 'src/app/demo/service/passwordStrict.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';

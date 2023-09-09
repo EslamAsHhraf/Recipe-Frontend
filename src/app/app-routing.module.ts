@@ -26,6 +26,13 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                                 ).then((m) => m.DashboardModule),
                         },
                         {
+                            path: 'addRecipe',
+                            loadChildren: () =>
+                                import(
+                                    './demo/components/addRecipe/addRecipe.module'
+                                ).then((m) => m.AddRecipeModule),
+                        },
+                        {
                             path: 'utilities',
                             loadChildren: () =>
                                 import(
