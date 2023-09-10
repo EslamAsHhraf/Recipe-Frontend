@@ -15,7 +15,7 @@
                 <p *ngIf="error[1]" class="error">Description is required</p>
                 <label for="steps" class="block text-900 font-medium text-xl mb-2">Steps</label>
                 <ol >
-                    <li class="fs-4 fw-bold" *ngFor="let step  of steps; let i = index">{{step }}
+                    <li class="fs-4 fw-bold mb-2" *ngFor="let step  of steps; let i = index">{{step }}
                         <button pButton pRipple (click)="deleteStep(i)" type="button" icon="pi pi-times" class="p-button-rounded p-button-danger custom-icon-class"></button>
                     </li>
                 </ol>

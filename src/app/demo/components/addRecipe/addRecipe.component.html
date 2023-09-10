@@ -15,7 +15,7 @@
                 <p *ngIf="error[1]" class="error">Description is required</p>
                 <label for="steps" class="block text-900 font-medium text-xl mb-2">Steps</label>
                 <ol >
-                    <li class="fs-4 fw-bold" *ngFor="let step  of steps; let i = index">{{step }}
+                    <li class="fs-4 fw-bold mb-2" *ngFor="let step  of steps; let i = index">{{step }}
                         <button pButton pRipple (click)="deleteStep(i)" type="button" icon="pi pi-times" class="p-button-rounded p-button-danger custom-icon-class"></button>
                     </li>
                 </ol>
@@ -47,7 +47,7 @@
             <p-card>
                 <ng-template pTemplate="header">
                     <img [style]="{ height: '250px', width: '250px' }" alt="Recipe Image"
-                        src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y" />
+                        src="src/assets/Images/licensed-image.jpg" />
                 </ng-template>
                 <ng-template pTemplate="right">
                     <p-fileUpload mode="basic" (onSelect)="onFileSelect($event)" accept="image/png,image/jpeg"

@@ -36,7 +36,7 @@
                 <div class="block text-500 font-medium mb-3">
                     {{recipe["item3"]["item1"]}}
                 </div>
-                <img src='{{recipe["item1"].image}}' alt="Chicken Curry" class="card-img-top">
+                <img [style]="{ 'height': '250px','width':'250px' }" [src]="'data:image/jpeg;base64,'+recipe.item5" alt="recipe image" class="card-img-top">
             </div>
 
         </div>
