@@ -20,11 +20,13 @@ export class RecipeService {
     getRecipebyid(recipeid:number) {
         return this.http.get(this.baseUrl +'/recipe/' + recipeid);
     }
-
-    searchRecipe(searchTerm:string){
-        return this.http.get(this.baseUrl +'/recipe/search?searchTerm=' + searchTerm);
+    searchMoreRecipe(name: string[]) {
+        return this.http.get(this.baseUrl + '/recipe/search?searchTerm=' + name.join('&searchTerm='));
     }
-
-    
-
+    searchRecipe(name: string) {
+        return this.http.get(this.baseUrl + '/recipe/search?searchTerm=' + name);
+    }
+    getIngredients() {
+        return this.http.get(this.baseUrl + '/recipeingredients');
+    }
 }
