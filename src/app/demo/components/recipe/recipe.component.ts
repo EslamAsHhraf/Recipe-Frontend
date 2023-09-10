@@ -24,30 +24,34 @@ export class recipeComponent implements OnInit {
         this.router.navigate(['./editRecipe;recipeId=' + this.recipeId]);
     };
     ngOnInit() {
+                this.recipeId = parseInt(
+                    this.route.snapshot.params['recipeId']
+                );
+
         this.profileService.getMe().subscribe({
             next: (res: any) => {
                 this.userId = res?.data?.user?.id;
-                console.log(this.recipeId);
+
+            this.recipeService
+                .getRecipebyid(this.recipeId)
+                .subscribe((result: Recipe) => {
+                    this.recipe = result;
+                    let stepsist = this.recipe['item1'].steps.split('*');
+                    this.stepsList = stepsist;
+                    console.log(this.userId);
+                    console.log(this.recipe['item3']['item2']);
+                    if (this.userId === this.recipe['item3']['item2']) {
+                        this.auth = true;
+                    } else {
+                        this.auth = false;
+                    }
+                });
             },
             error: () => {
                 this.router.navigate(['./auth/login']);
             },
         });
 
-        this.recipeId = parseInt(this.route.snapshot.params['recipeId']);
 
-        this.recipeService
-            .getRecipebyid(this.recipeId)
-            .subscribe((result: Recipe) => {
-                this.recipe = result;
-                let stepsist = this.recipe['item1'].steps.split('\n');
-                this.stepsList = stepsist;
-                console.log(this.recipe);
-                if (this.userId === this.recipe['item3']['item2']) {
-                    this.auth = true;
-                } else {
-                    this.auth = false;
-                }
-            });
     }
 }
