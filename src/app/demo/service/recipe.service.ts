@@ -13,8 +13,22 @@ export class RecipeService {
         this.http = http;
     }
 
-    addRecipe(recipe) {
-        return this.http.post(this.baseUrl + '/recipe', recipe);
+    addRecipe(recipe, imageFile) {
+        return this.http.post(
+            this.baseUrl +
+                '/recipe?Title=' +
+                recipe.title +
+                '&Description=' +
+                recipe.description +
+                '&Steps=' +
+                recipe.steps +
+                '&Category=' + recipe.createdBy +
+                '&CreatedBy=' +recipe.createdBy,
+            imageFile,
+            {
+                withCredentials: true,
+            }
+        );
     }
     getRecipes() {
         return this.http.get(this.baseUrl + '/recipe');
@@ -24,6 +38,8 @@ export class RecipeService {
         return this.http.get(this.baseUrl + '/recipe/' + recipeid);
     }
     searchRecipe(name: string) {
-        return this.http.get(this.baseUrl + '/recipe/search?searchTerm=' + name);
+        return this.http.get(
+            this.baseUrl + '/recipe/search?searchTerm=' + name
+        );
     }
 }

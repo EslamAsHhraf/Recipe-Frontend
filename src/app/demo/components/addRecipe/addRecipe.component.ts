@@ -26,6 +26,16 @@ import { ProfileService } from 'src/app/demo/service/profile.service';
                 color: green;
                 font-weight: bold;
             }
+            :host ::ng-deep .pi-times {
+                font-size: 12px !important; /* Change the size as needed */
+            }
+            .custom-icon-class {
+                height: 2rem !important;
+                width: 2rem;
+            }
+            li {
+                font-size: 16px;
+            }
         `,
     ],
     providers: [MessageService],
@@ -35,8 +45,8 @@ export class AddRecipeComponent implements OnInit {
     error: boolean[] = [false, false, false, false, false];
     category: Category[];
     ingredients: string[] | undefined;
-    selectedFile: FormData|undefined;
-    steps: string[];
+    selectedFile: FormData | undefined = new FormData();
+    steps: string[] = [];
     oneStep: string;
     recipe: Recipe = {
         title: '',
@@ -70,65 +80,79 @@ export class AddRecipeComponent implements OnInit {
         });
         this.categoryService.getall().subscribe((res: any) => {
             this.category = res.data;
-            console.log(res.data);
         });
     }
     onFileSelect(event: any) {
         console.log(event.currentFiles);
-        const formData = new FormData();
         // Handle the selected file here
         if (event.currentFiles.length > 0) {
-            const selectedFile = event.currentFiles[0];
-             formData.append('ImageFile', selectedFile);
+            this.selectedFile.append('imageFile', event.currentFiles[0]);
+            console.log(this.selectedFile);
         }
         // You can perform further actions, such as file validation or upload, here
+    }
+    AddStep() {
+        console.log(this.oneStep.trim());
+        if (this.oneStep.includes('*') || this.oneStep.trim() == '') {
+            this.error[2] = true;
+        } else {
+            this.error[2] = false;
+            this.steps.push(this.oneStep.trim());
+            this.oneStep = '';
+        }
+    }
+    // Function to delete an item from the array by index
+    deleteStep(index: number) {
+        this.steps.splice(index, 1);
     }
     onSubmit() {
         this.recipe.category = this.selectedCategory.id;
         this.recipe.createdBy = this.userId;
         this.errorMessage = '';
-        this.error[0] = this.recipe.title == '' ? true : false;
-        this.error[1] = this.recipe.description == '' ? true : false;
-        this.error[2] = this.recipe.steps == '' ? true : false;
-        this.error[4] = this.selectedFile == undefined? true : false;
-
+        this.error[0] = this.recipe.title.trim() == '' ? true : false;
+        this.error[1] = this.recipe.description.trim() == '' ? true : false;
+        this.error[2] = this.steps.length == 0 ? true : false;
+        // this.error[3] = this.selectedFile == undefined ? true : false;
+        this.recipe.steps = this.steps.join('*');
         if (!this.error.some((item) => item === true)) {
-            this.recipeService.addRecipe(this.recipe).subscribe({
-                next: (res: any) => {
-                    console.log(res.data.data);
-                    for (let i in this.ingredients) {
-                        this.recipeIngredientsServices
-                            .addRecipeIngredients({
-                                recipeId: res.data.data.result.id,
-                                title: this.ingredients[i],
-                                quantity: 'string',
-                            })
-                            .subscribe({});
-                    }
-                    this.errorMessage = '';
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Success',
-                        detail: 'Add New Recipe',
-                        life: 3000,
-                    });
-                    console.log(res.data);
-                    setTimeout(() => {
-                        this.router.navigate(['./']);
-                    }, 3000); // 3000 milliseconds (3 seconds)
-                },
-                error: (err) => {
-                    // put error message
-                    if (err.status == 401) {
-                    } else {
-                        console.log(err);
-                        this.errorMessage =
-                            'title' in err.error.data
-                                ? err?.error.data?.title
-                                : 'Error, Can you try again after 5 Minutes';
-                    }
-                },
-            });
+            this.recipeService
+                .addRecipe(this.recipe, this.selectedFile)
+                .subscribe({
+                    next: (res: any) => {
+                        console.log(res.data.data);
+                        for (let i in this.ingredients) {
+                            this.recipeIngredientsServices
+                                .addRecipeIngredients({
+                                    recipeId: res.data.data.result.id,
+                                    title: this.ingredients[i],
+                                    quantity: 'string',
+                                })
+                                .subscribe({});
+                        }
+                        this.errorMessage = '';
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: 'Add New Recipe',
+                            life: 3000,
+                        });
+                        console.log(res.data);
+                        setTimeout(() => {
+                            this.router.navigate(['./']);
+                        }, 3000); // 3000 milliseconds (3 seconds)
+                    },
+                    error: (err) => {
+                        // put error message
+                        if (err.status == 401) {
+                        } else {
+                            console.log(err);
+                            this.errorMessage =
+                                'title' in err.error.data
+                                    ? err?.error.data?.title
+                                    : 'Error, Can you try again after 5 Minutes';
+                        }
+                    },
+                });
         }
     }
 }

@@ -22,7 +22,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { TabViewModule } from 'primeng/tabview';
-import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 @NgModule({
@@ -50,6 +49,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
         TabViewModule,
         OverlayPanelModule
     ],
-    declarations: [ProfileComponent,AddRecipeComponent,ChangePasswordComponent],
+    declarations: [ProfileComponent,ChangePasswordComponent],
 })
 export class ProfileModule {}
