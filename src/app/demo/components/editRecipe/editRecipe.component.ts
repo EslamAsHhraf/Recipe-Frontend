@@ -62,7 +62,7 @@ export class EditRecipeComponent implements OnInit {
     };
     ngOnInit() {
         this.recipeId = parseInt(this.route.snapshot.params['recipeId']);
-        this.recipeService.getRecipebyid(8).subscribe({
+        this.recipeService.getRecipebyid(this.recipeId).subscribe({
             next: (res: any) => {
                 this.recipe.title = res?.item1?.title;
                 this.recipe.description = res?.item1?.description;
