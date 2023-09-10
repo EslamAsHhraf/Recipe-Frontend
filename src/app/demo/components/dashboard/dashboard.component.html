@@ -7,7 +7,7 @@
                         <div>
                             <span class="text-900 font-medium text-xl">{{ recipe.title }}</span>
                             <img src="{{recipe.image}}" class="shadow-4" width="50">
-                            <div class="block text-500 font-medium mb-3">{{ recipe.description }}</div>
+                            <div class="block text-500 font-medium mb-3">{{ recipe.description.slice(0,150) }}</div>
                         </div>
                     </div>
                     <p-rating [ngModel]="recipe.totalRating" [readonly]="true" [cancel]="false"
@@ -17,17 +17,17 @@
             </div>
         </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div style="height:fit-content"class="col-12 md:col-4  card">
         <div class="p-inputgroup">
             <input type="text" pinputtext="" placeholder="Find Your Ingredient" class="p-inputtext p-component p-element"
                 (keyup.enter)="addSearchTerm($event.target.value)">
         </div>
         <label class="block text-900 font-medium text-xl my-4">Suggested Ingredients</label>
-        <div style="height: 300px; overflow-y: scroll;" class="p-3">
-            <div class="flex flex-wrap gap-2 he" *ngFor="let item of filteredIngredient">
+        <div style="min-height: 300px; overflow-y: auto;" class="p-3">
+            <div class="flex flex-wrap gap-2 " *ngFor="let item of filteredIngredient">
                 <div class="grid align-items-center mb-2">
                     <p-checkbox class="col-1" [(ngModel)]="item.check" [binary]="true" inputId="binary"></p-checkbox>
-                    <span class="col-3 mr-2">{{item.title}}</span>
+                    <span class="col-8">{{item.title}}</span>
                 </div>
             </div>
             <button type="button" pbutton="" pripple="" label="Search" class="p-element p-button p-component"
