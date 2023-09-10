@@ -6,5 +6,6 @@ import { RegisterComponent } from './register.component';
         RouterModule.forChild([{ path: '', component: RegisterComponent }]),
     ],
     exports: [RouterModule],
+
 })
 export class RegisterRoutingModule {}

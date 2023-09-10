@@ -1,0 +1,30 @@
+<div class="grid">
+	<div class="col-12 md:col-8">
+		<p-tabView orientation="left">
+                <p-tabPanel header="Change Password" class="line-height-3 m-0">
+                    <app-changePassword></app-changePassword>
+                </p-tabPanel>
+
+            </p-tabView>
+	</div>
+
+        <div class="col-12 md:col-4">
+            <div class="card flex justify-content-center">
+            <p-card header={{profile.name}} subheader="User">
+
+            <ng-template pTemplate="header">
+                <img [style]="{ 'height': '250px','width':'250px' }" alt="Profile Image" [src]="'data:image/jpeg;base64,'+userImage" />
+            </ng-template>
+             <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic"   (onSelect)="onFileSelect($event)"
+  accept="image/png,image/jpeg" [maxFileSize]="1000000" label="import" chooseLabel="Change Profile Picture" class="mr-2 inline-block"></p-fileUpload>
+                </ng-template>
+            <ng-template pTemplate="footer">
+                <p-button label="New Recipe" icon="pi pi-plus-circle" (click)="openNew()" [style]="{ 'margin-bottom': '4px' }"></p-button>
+                <p-button label="Logout" icon="pi pi-user" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em','margin-bottom': '4px' }" (click)="logout()"> </p-button>
+            </ng-template>
+        </p-card>
+    </div>
+	</div>
+
+</div>

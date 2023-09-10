@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AppTopBarComponent {
 
     items!: MenuItem[];
+    recipes :Recipe[]=[];
 
     @ViewChild('menubutton') menuButton!: ElementRef;
 
@@ -22,9 +23,9 @@ export class AppTopBarComponent {
 
     searchRecipes(name: string) {
         this.router.navigate(['search',{ searchTerm : name }]);
-    }      
-    IngredientsSearch(){
-        this.router.navigate(['ingredients/']);
     }
-    
+    myRecipes(){
+        this.router.navigate(['./myRecipe']);
+    }
+
 }

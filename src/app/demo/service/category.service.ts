@@ -8,12 +8,14 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
-export class IngredientService {
+export class CategoryService {
     baseUrl = environment.baseUrl;
 
     constructor(private http: HttpClient) {}
 
-    getIngredients() {
-        return this.http.get(this.baseUrl + '/ingredients');
+    getall() {
+        return this.http.get(this.baseUrl + '/category');
     }
+
+
 }

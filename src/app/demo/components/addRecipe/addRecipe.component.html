@@ -1,0 +1,60 @@
+<div class="grid">
+    <div class="card col-12 md:col-7">
+        <div class="p-5 flex flex-column align-items-center justify-content-center">
+            <p-toast position="top-right"></p-toast>
+            <h2>Add Recipe</h2>
+            <div>
+                <label for="title" class="block text-900 text-xl font-medium mb-2">Title</label>
+                <input id="title" type="text" [(ngModel)]="recipe.title" placeholder="Title" pInputText
+                    class="w-full md:w-30rem mb-3" [ngClass]="{ 'ng-invalid ng-dirty': error[0] }"
+                    style="padding: 1rem" />
+                <p *ngIf="error[0]" class="error">Title is required</p>
+                <label for="description" class="block text-900 font-medium text-xl mb-2">Description</label>
+                <textarea id="description" rows="5" cols="30" pInputTextarea [(ngModel)]="recipe.description"
+                    class="w-full md:w-30rem mb-3" [ngClass]="{ 'ng-invalid ng-dirty': error[1] }"></textarea>
+                <p *ngIf="error[1]" class="error">Description is required</p>
+                <label for="steps" class="block text-900 font-medium text-xl mb-2">Steps</label>
+                <ol >
+                    <li class="fs-4 fw-bold" *ngFor="let step  of steps; let i = index">{{step }}
+                        <button pButton pRipple (click)="deleteStep(i)" type="button" icon="pi pi-times" class="p-button-rounded p-button-danger custom-icon-class"></button>
+                    </li>
+                </ol>
+                <diV class="felx align-items-center justify-content-center mb-3">
+                    <input id="title" type="text" [(ngModel)]="oneStep" placeholder="Enter Step" pInputText
+                        class="w-full md:w-30rem mr-2 mb-2" [ngClass]="{ 'ng-invalid ng-dirty': error[2] }"
+                        style="padding: 1rem" />
+                    <button pButton pRipple label="Add" icon="pi pi-plus" class="p-button-success mr-2 mb-2"
+                        (click)="AddStep()"></button>
+                </diV>
+                <p *ngIf="error[2]" class="error">Steps is required and don't input " * "</p>
+                <label for="category" class="block text-900 font-medium text-xl mb-2">Category</label>
+                <p-dropdown [options]="category" [(ngModel)]="selectedCategory" optionLabel="title"
+                    class="w-full md:w-30rem mb-4"></p-dropdown>
+                <label class="block text-900 font-medium text-xl my-4">Ingredients</label>
+                <div class="w-full md:w-30rem mb-3 card p-fluid">
+                    <p-chips [(ngModel)]="ingredients" separator="," placeholder="Hint: a, b, c"></p-chips>
+                </div>
+                <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                    <div class="error">{{ errorMessage }}</div>
+                </div>
+
+                <button pButton label="Submit" (click)="onSubmit()"></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 md:col-5">
+        <div class="card flex justify-content-center">
+            <p-card>
+                <ng-template pTemplate="header">
+                    <img [style]="{ height: '250px', width: '250px' }" alt="Recipe Image"
+                        src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y" />
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" (onSelect)="onFileSelect($event)" accept="image/png,image/jpeg"
+                        [maxFileSize]="1000000" label="import" chooseLabel="Change Recipe Picture"
+                        class="mr-2 inline-block"></p-fileUpload>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+</div>
