@@ -1,18 +1,44 @@
-<div>
+<div *ngIf="recipe">
     <div class="grid">
         <div class="col-12">
             <div class="card">
-                <h4>{{recipe?.title}}</h4>
-                <p>{{recipe?.description}}</p>
-                <p>Steps:</p>
-                <ul>
-                    {{recipe?.steps}}
-                </ul>
-                <p>Category: {{recipe?.category}}</p>
-                <p>Total rating: {{recipe?.totalRating}}</p>
-                <img src="{{recipe?.imageFile}}" alt="Chicken Curry">
+                <div *ngIf="auth">
+                    <div class="my-2" style="float: right;">
+                        <button pButton pRipple label="Edit" icon="pi pi-plus" class="p-button-success mr-2" routerLink="/" ></button>
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"  ></button>
+                    </div>
                 </div>
+                <span class="text-900 text-xl font-semibold">{{recipe["item1"].title}}</span>
+                <div class="block text-500 font-medium mb-3">{{recipe["item1"].description}}</div>
+
+                <span class="text-900 font-medium text-xl">Steps:</span>
+                <div class="block text-500 font-medium mb-3">
+                    <div *ngFor="let step of stepsList">
+                        <div class="list-unstyled">
+                            {{step}}
+                        </div>
+                    </div>
+                </div>
+                <span class="text-900 font-medium text-xl">Ingredients:</span>
+                <ul class="list-unstyled">
+                    <div class="block text-500 font-medium mb-3">
+
+                        <li *ngFor='let ingredient of recipe["item2"]'>
+                            <span class="mr-2">{{ingredient.quantity}}</span> {{ingredient.title}}
+                        </li>
+                    </div>
+                </ul>
+                <div class="list-unstyled"><span class="text-900 font-medium text-xl">Category: </span>
+                    <div class="block text-500 font-medium mb-3">
+                        {{recipe["item4"].title}}</div>
+                </div>
+                <span class="text-900 font-medium text-xl">Created by: </span>
+                <div class="block text-500 font-medium mb-3">
+                    {{recipe["item3"]["item1"]}}
+                </div>
+                <img src='{{recipe["item1"].image}}' alt="Chicken Curry" class="card-img-top">
+            </div>
+
         </div>
     </div>
 </div>
-

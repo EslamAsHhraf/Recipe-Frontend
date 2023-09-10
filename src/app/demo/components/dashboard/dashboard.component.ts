@@ -1,14 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Recipe } from 'src/app/model/Recipe';
+import { Component, OnInit } from '@angular/core';
+import { Recipe } from 'src/app/model/recipe';
 import { RecipeService } from '../../service/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Ingredient } from 'src/app/model/Ingredients';
 
-/*import { MenuItem } from 'primeng/api';
-import { Product } from '../../api/product';
-import { ProductService } from '../../service/product.service';
-import { Subscription } from 'rxjs';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
-*/
 @Component({
     templateUrl: './dashboard.component.html',
 })
@@ -16,99 +11,68 @@ export class DashboardComponent implements OnInit {
 
     recipeID?:number;
     recipes :Recipe[]=[];
-  /*
-    items!: MenuItem[];
-    products!: Product[];
-    chartData: any;
-    chartOptions: any;
-    subscription!: Subscription;
-*/
+    searchTerms: string[] = [];
+    filteredIngredient:Ingredient[]=[];
+
     constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute ) {}
+
 
     ngOnInit() {
         this.route.params.subscribe((params) => {
             if (params['searchTerm']){
               this.recipeService.searchRecipe(params['searchTerm'])
               .subscribe((result: Recipe[]) => this.recipes = result);
-               console.log(this.recipes);}
+            }
             else {
                 this.recipeService.getRecipes()
                 .subscribe((result:Recipe[]) => this.recipes = result);
             }
           });
-
+        this.recipeService.getIngredients().subscribe((result:Ingredient[]) => this.filteredIngredient = result);
+        console.log(this.filteredIngredient)
     }
+    addSearchTerm(searchTerm: string) {
+        if (searchTerm !== '') {
+          // Check if the string is already in the list.
+          if (!this.searchTerms.includes(searchTerm)) {
+            this.searchTerms.push(searchTerm);
+            this.recipeService.searchMoreRecipe(this.searchTerms)
+              .subscribe((result: Recipe[]) => this.recipes = result);
+          }
+        } else if (this.searchTerms.length === 0) {
+          this.recipeService.getRecipes()
+            .subscribe((result: Recipe[]) => this.recipes = result);
+        }
+      }
 
+    deleteSearchTerm(searchTerm: string) {
+        if(searchTerm!=""){
+        const index = this.searchTerms.indexOf(searchTerm);
+        if (index !== -1) {
+          this.searchTerms.splice(index, 1);
+        }
+        if(this.searchTerms.length!=0){
+        this.recipeService.searchMoreRecipe(this.searchTerms)
+              .subscribe((result: Recipe[]) => this.recipes = result);
+        }else{
+            this.recipeService.getRecipes()
+                .subscribe((result:Recipe[]) => this.recipes = result);
+        }
+        }
+    }
     viewdetails(recipe:Recipe){
         this.recipeID = recipe.id;
         this.router.navigate(['recipe/',{ recipeId: this.recipeID }]);
     }
-}
-/*
-    initChart() {
-        const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-        this.chartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--bluegray-700'),
-                    borderColor: documentStyle.getPropertyValue('--bluegray-700'),
-                    tension: .4
-                },
-                {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--green-600'),
-                    borderColor: documentStyle.getPropertyValue('--green-600'),
-                    tension: .4
-                }
-            ]
-        };
-
-        this.chartOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: textColor
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                }
+    addCheckbox(){
+        for(var ingre of this.filteredIngredient)
+        {
+            if(ingre.check==true)
+            {
+                this.addSearchTerm(ingre.title);
             }
-        };
-    }
-
-    ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
         }
     }
-    */
-//}
+}
+
 
