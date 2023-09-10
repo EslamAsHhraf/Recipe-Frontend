@@ -30,11 +30,11 @@ import { ProfileService } from 'src/app/demo/service/profile.service';
                 font-size: 12px !important; /* Change the size as needed */
             }
             .custom-icon-class {
-                height: 2rem !important;
-                width: 2rem;
+                height: 1.5rem !important;
+                width: 1.5rem;
             }
             li {
-                font-size: 16px;
+                font-size: 18px;
             }
         `,
     ],
@@ -57,7 +57,6 @@ export class AddRecipeComponent implements OnInit {
         totalRating: 0,
         imageFile: '',
     };
-    separatorExp: RegExp = /,| /;
     selectedCategory: Category;
     errorMessage: string = '';
     constructor(

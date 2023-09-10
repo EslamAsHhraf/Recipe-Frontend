@@ -12,7 +12,9 @@ export class RecipeService {
     constructor(http: HttpClient) {
         this.http = http;
     }
-
+    editRecipe(recipe, id) {
+        return this.http.put(this.baseUrl + '/recipe/' + id, recipe);
+    }
     addRecipe(recipe, imageFile) {
         return this.http.post(
             this.baseUrl +
@@ -22,8 +24,10 @@ export class RecipeService {
                 recipe.description +
                 '&Steps=' +
                 recipe.steps +
-                '&Category=' + recipe.createdBy +
-                '&CreatedBy=' +recipe.createdBy,
+                '&Category=' +
+                recipe.createdBy +
+                '&CreatedBy=' +
+                recipe.createdBy,
             imageFile,
             {
                 withCredentials: true,
