@@ -41,9 +41,6 @@ export class ProfileComponent implements OnInit {
         });
     }
 
-    openNew() {
-        this.productDialog = true;
-    }
     logout() {
         this.profileService.logout().subscribe({
             next: () => {

@@ -67,6 +67,11 @@ export class EditRecipeComponent implements OnInit {
                 this.recipe.title = res?.item1?.title;
                 this.recipe.description = res?.item1?.description;
                 this.steps = res?.item1?.steps.split('*');
+                this.recipe.createdBy = res?.item1?.createdBy;
+                this.recipe.category = res?.item1?.category;
+                this.recipe.totalRating = res?.item1?.totalRating;
+                this.recipe.imageFile = res?.item1?.imageFile;
+
             },
             error: () => {
                 this.router.navigate(['./login']);
@@ -95,7 +100,7 @@ export class EditRecipeComponent implements OnInit {
         this.recipe.steps = this.steps.join('*');
 
         this.recipeService.editRecipe(this.recipe, this.recipeId).subscribe({
-            next: (res: any) => {
+            next: () => {
                 this.errorMessage = '';
                 this.messageService.add({
                     severity: 'success',

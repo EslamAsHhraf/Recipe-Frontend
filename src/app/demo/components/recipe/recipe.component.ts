@@ -21,7 +21,7 @@ export class recipeComponent implements OnInit {
         private router: Router
     ) {}
     gotoEdit() {
-        this.router.navigate(['./editRecipe;recipeId=' + this.recipeId]);
+        this.router.navigate(['editRecipe/',{ recipeId: this.recipeId }]);
     };
     ngOnInit() {
                 this.recipeId = parseInt(

@@ -20,7 +20,7 @@
   accept="image/png,image/jpeg" [maxFileSize]="1000000" label="import" chooseLabel="Change Profile Picture" class="mr-2 inline-block"></p-fileUpload>
                 </ng-template>
             <ng-template pTemplate="footer">
-                <p-button label="New Recipe" icon="pi pi-plus-circle" (click)="openNew()" [style]="{ 'margin-bottom': '4px' }"></p-button>
+                <p-button label="New Recipe" icon="pi pi-plus-circle"  routerLink="/addRecipe" [style]="{ 'margin-bottom': '4px' }"></p-button>
                 <p-button label="Logout" icon="pi pi-user" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em','margin-bottom': '4px' }" (click)="logout()"> </p-button>
             </ng-template>
         </p-card>

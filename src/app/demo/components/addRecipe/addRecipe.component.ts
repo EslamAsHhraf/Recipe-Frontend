@@ -118,13 +118,12 @@ export class AddRecipeComponent implements OnInit {
                 .addRecipe(this.recipe, this.selectedFile)
                 .subscribe({
                     next: (res: any) => {
-                        console.log(res.data.data);
                         for (let i in this.ingredients) {
                             this.recipeIngredientsServices
                                 .addRecipeIngredients({
                                     recipeId: res.data.data.result.id,
                                     title: this.ingredients[i],
-                                    quantity: 'string',
+                                    quantity: ' ',
                                 })
                                 .subscribe({});
                         }
