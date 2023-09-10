@@ -32,10 +32,12 @@ import { ProfileService } from 'src/app/demo/service/profile.service';
 })
 export class AddRecipeComponent implements OnInit {
     userId!: number;
-    error: boolean[] = [false, false, false, false];
+    error: boolean[] = [false, false, false, false, false];
     category: Category[];
     ingredients: string[] | undefined;
-
+    selectedFile: FormData|undefined;
+    steps: string[];
+    oneStep: string;
     recipe: Recipe = {
         title: '',
         description: '',
@@ -71,14 +73,24 @@ export class AddRecipeComponent implements OnInit {
             console.log(res.data);
         });
     }
+    onFileSelect(event: any) {
+        console.log(event.currentFiles);
+        const formData = new FormData();
+        // Handle the selected file here
+        if (event.currentFiles.length > 0) {
+            const selectedFile = event.currentFiles[0];
+             formData.append('ImageFile', selectedFile);
+        }
+        // You can perform further actions, such as file validation or upload, here
+    }
     onSubmit() {
-
         this.recipe.category = this.selectedCategory.id;
         this.recipe.createdBy = this.userId;
         this.errorMessage = '';
         this.error[0] = this.recipe.title == '' ? true : false;
         this.error[1] = this.recipe.description == '' ? true : false;
         this.error[2] = this.recipe.steps == '' ? true : false;
+        this.error[4] = this.selectedFile == undefined? true : false;
 
         if (!this.error.some((item) => item === true)) {
             this.recipeService.addRecipe(this.recipe).subscribe({
@@ -89,7 +101,7 @@ export class AddRecipeComponent implements OnInit {
                             .addRecipeIngredients({
                                 recipeId: res.data.data.result.id,
                                 title: this.ingredients[i],
-                                quantity:'string'
+                                quantity: 'string',
                             })
                             .subscribe({});
                     }

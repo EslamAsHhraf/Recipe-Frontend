@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
     constructor(
         private profileService: ProfileService,
         private router: Router,
-        private sanitizer: DomSanitizer
     ) {}
 
     ngOnInit() {
