@@ -2,9 +2,15 @@
     <div class="grid">
         <div class="col-12">
             <div class="card">
+                <div *ngIf="auth">
+                    <div class="my-2" style="float: right;">
+                        <button pButton pRipple label="Edit" icon="pi pi-plus" class="p-button-success mr-2" routerLink="/" ></button>
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"  ></button>
+                    </div>
+                </div>
                 <span class="text-900 text-xl font-semibold">{{recipe["item1"].title}}</span>
                 <div class="block text-500 font-medium mb-3">{{recipe["item1"].description}}</div>
-
+                
                 <span class="text-900 font-medium text-xl">Steps:</span>
                 <div class="block text-500 font-medium mb-3">
                     <div *ngFor="let step of stepsList">
@@ -28,10 +34,11 @@
                 </div>
                 <span class="text-900 font-medium text-xl">Created by: </span>
                 <div class="block text-500 font-medium mb-3">
-                    {{recipe["item3"]}}
+                    {{recipe["item3"]["item1"]}}
                 </div>
                 <img src='{{recipe["item1"].image}}' alt="Chicken Curry" class="card-img-top">
             </div>
+            
         </div>
     </div>
 </div>
