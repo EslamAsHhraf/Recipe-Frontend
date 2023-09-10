@@ -46,4 +46,7 @@ export class RecipeService {
     getIngredients() {
         return this.http.get(this.baseUrl + '/recipeingredients');
     }
+    getMyRecipes() {
+        return this.http.get(this.baseUrl + '/recipe/getMyRecipes',{withCredentials:true});
+    }
 }
