@@ -3,13 +3,10 @@
         <div class="col-12">
             <p-toast position="top-right"></p-toast>
             <div class="card">
-                <div *ngIf="auth">
-                    <div class="my-2" style="float: right;" class="flex m-3">
-                        <button pButton pRipple label="Edit" icon="pi pi-plus" class="p-button-success mr-2" (click)="gotoEdit()" ></button>
-                            <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle" message="Are you sure you want to proceed?"
-                                            [style]="{width: '350px'}" acceptButtonStyleClass="p-button-text" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-                                    <button  pButton pRipple type="text" (click)="confirm1()"  icon="pi pi-trash" label="Delete" class="p-button-danger" ></button>
-                    </div>
+                <div class="m-2" style="float: right;">
+                    <img [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px' }" [src]="'data:image/jpeg;base64,'+recipe.item5"
+                        alt="recipe image" class="card-img-top">
+
                 </div>
                 <span class="text-900 text-xl font-semibold">{{recipe["item1"].title}}</span>
                 <div class="block text-500 font-medium mb-3">{{recipe["item1"].description}}</div>

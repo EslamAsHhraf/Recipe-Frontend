@@ -75,7 +75,7 @@ export class recipeComponent implements OnInit {
             {
                 next: (res)=>{
                     this.messageService.add({
-                        severity: 'error',
+                        severity: 'success',
                         summary: 'Success',
                         detail: 'Delete Successfully',
                         life: 3000,
@@ -84,6 +84,14 @@ export class recipeComponent implements OnInit {
                     setTimeout(() => {
                         this.router.navigate(['./myRecipe']);
                     }, 3000); // 3000 milliseconds (3 seconds)
+                },
+                error: (err) => {
+                     this.messageService.add({
+                         severity: 'error',
+                         summary: 'Success',
+                         detail: "Error happen can't Delete",
+                         life: 3000,
+                     });
                 }
             }
         );
