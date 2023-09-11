@@ -2,17 +2,10 @@
     <div class="grid">
         <div class="col-12">
             <div class="card">
-                <div *ngIf="auth">
-                    <div class="my-2" style="float: right;">
-                        <button pButton pRipple label="Edit" icon="pi pi-plus" class="p-button-success mr-2" (click)="gotoEdit()" ></button>
-                            <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle" message="Are you sure you want to proceed?"
-                                             [style]="{width: '350px'}" acceptButtonStyleClass="p-button-text" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-                            <div class="grid">
-                                <div class="col-12">
-                                    <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete" class="p-button-danger" style="width:auto;"></button>
-                                </div>
-                            </div>
-                    </div>
+                <div class="my-2" style="float: right;">
+                    <img [style]="{ 'height': '300px','width':'300px' }" [src]="'data:image/jpeg;base64,'+recipe.item5"
+                        alt="recipe image" class="card-img-top">
+
                 </div>
                 <span class="text-900 text-xl font-semibold">{{recipe["item1"].title}}</span>
                 <div class="block text-500 font-medium mb-3">{{recipe["item1"].description}}</div>
@@ -40,9 +33,27 @@
                 </div>
                 <span class="text-900 font-medium text-xl">Created by: </span>
                 <div class="block text-500 font-medium mb-3">
+                    <img width="32" style="vertical-align: middle;" [src]="'data:image/jpeg;base64,'+userImage">
                     {{recipe["item3"]["item1"]}}
                 </div>
-                <img [style]="{ 'height': '250px','width':'250px' }" [src]="'data:image/jpeg;base64,'+recipe.item5" alt="recipe image" class="card-img-top">
+                <div *ngIf="auth">
+
+                    <div class="flex">
+                        <button pButton pRipple label="Edit" [style]="{ 'height': '40px','width':'100px' }"
+                            icon="pi pi-plus" class="p-button-success mr-2" (click)="gotoEdit()"></button>
+                        <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle"
+                            message="Are you sure you want to proceed?" [style]="{width: '350px'}"
+                            acceptButtonStyleClass="p-button-text"
+                            rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+                        <div class="grid">
+                            <div class="col-12">
+                                <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete"
+                                    class="p-button-danger" style="width:auto;"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </div>

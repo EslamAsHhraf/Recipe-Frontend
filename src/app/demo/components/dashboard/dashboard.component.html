@@ -18,10 +18,10 @@
         </div>
     </div>
 
-    <div class="col-12 md:col-4">
+    <div class="col-12 md:col-4" >
         <div class="col-12 xl:col-12">
             <h6>Add Your Ingredients to find you perfect recipe</h6>
-            <p-autoComplete [(ngModel)]="value" (keyup.enter)="addSearchTerm(value)"  [suggestions]="filteredIngredient" (completeMethod)="searchIngredient()"  [dropdown]="true">
+            <p-autoComplete [(ngModel)]="value" [style]="{'width':'300px'}" (keyup.enter)="addSearchTerm(value)"  [suggestions]="filteredIngredient" (completeMethod)="searchIngredient()"  [dropdown]="true">
             </p-autoComplete>
         </div>
         <div *ngIf="searchTerms">
