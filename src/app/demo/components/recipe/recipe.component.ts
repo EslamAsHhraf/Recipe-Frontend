@@ -3,10 +3,13 @@ import { Recipe } from 'src/app/model/Recipe';
 import { RecipeService } from '../../service/recipe.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProfileService } from '../../service/profile.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-recipe',
     templateUrl: './recipe.component.html',
+    providers: [ConfirmationService, MessageService]
+
 })
 export class recipeComponent implements OnInit {
     recipeId?: number;
@@ -19,6 +22,8 @@ export class recipeComponent implements OnInit {
         private route: ActivatedRoute,
         private profileService: ProfileService,
         private router: Router
+        , private confirmationService: ConfirmationService
+        , private messageService: MessageService
     ) {}
     gotoEdit() {
         this.router.navigate(['editRecipe/',{ recipeId: this.recipeId }]);
@@ -51,7 +56,20 @@ export class recipeComponent implements OnInit {
                 this.router.navigate(['./auth/login']);
             },
         });
-
-
     }
+    confirm1() {
+        var res =this.confirmationService.confirm({
+            key: 'confirm1',
+            message: 'Are you sure to delete this recipe?',
+            
+            accept: () => this.acceptres()
+        })
+        console.log(res)
+    }
+    acceptres(){
+        this.recipeService.deleteRecipe(this.recipeId).subscribe();
+        console.log("called");
+        this.router.navigate(['./myRecipe']);
+    }
+    
 }

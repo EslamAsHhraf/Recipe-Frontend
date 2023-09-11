@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { ButtonModule } from 'primeng/button';
 		InputTextModule,
 		DropdownModule,
 		RatingModule,
-		ButtonModule
+		ButtonModule,
+		ConfirmDialogModule,
     ],
     declarations: [recipeComponent]
 })

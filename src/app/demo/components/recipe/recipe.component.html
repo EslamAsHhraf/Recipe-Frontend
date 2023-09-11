@@ -5,7 +5,13 @@
                 <div *ngIf="auth">
                     <div class="my-2" style="float: right;">
                         <button pButton pRipple label="Edit" icon="pi pi-plus" class="p-button-success mr-2" (click)="gotoEdit()" ></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"  ></button>
+                            <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle" message="Are you sure you want to proceed?"
+                                             [style]="{width: '350px'}" acceptButtonStyleClass="p-button-text" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+                            <div class="grid">
+                                <div class="col-12">
+                                    <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete" class="p-button-danger" style="width:auto;"></button>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <span class="text-900 text-xl font-semibold">{{recipe["item1"].title}}</span>

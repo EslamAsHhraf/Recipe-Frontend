@@ -12,25 +12,30 @@ export class DashboardComponent implements OnInit {
     recipeID?:number;
     recipes :Recipe[]=[];
     searchTerms: string[] = [];
-    filteredIngredient:Ingredient[]=[];
-
+    filteredIngredient:string[]=[];
+    value?:string;
     constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute ) {}
 
 
     ngOnInit() {
-        this.route.params.subscribe((params) => {
-            if (params['searchTerm']){
-              this.recipeService.searchRecipe(params['searchTerm'])
-              .subscribe((result: Recipe[]) => this.recipes = result);
-            }
-            else {
-                this.recipeService.getRecipes()
-                .subscribe((result:Recipe[]) => this.recipes = result);
-            }
-          });
-        this.recipeService.getIngredients().subscribe((result:Ingredient[]) => this.filteredIngredient = result);
-        console.log(this.filteredIngredient)
+      this.route.params.subscribe((params) => {
+        if (params['searchTerm']) {
+          this.recipeService.searchRecipe(params['searchTerm'])
+          .subscribe((result: Recipe[]) => this.recipes = result);
+        } else {
+          this.recipeService.getRecipes()
+          .subscribe((result: Recipe[]) => this.recipes = result);
+        }
+      });
+      
     }
+    searchIngredient() {
+      this.recipeService.getIngredients().subscribe((result:Ingredient[]) => {
+        this.filteredIngredient = result.map(ingredient => ingredient.title);
+      });   
+    }
+
+
     addSearchTerm(searchTerm: string) {
         if (searchTerm !== '') {
           // Check if the string is already in the list.
@@ -64,15 +69,7 @@ export class DashboardComponent implements OnInit {
         this.recipeID = recipe.id;
         this.router.navigate(['recipe/',{ recipeId: this.recipeID }]);
     }
-    addCheckbox(){
-        for(var ingre of this.filteredIngredient)
-        {
-            if(ingre.check==true)
-            {
-                this.addSearchTerm(ingre.title);
-            }
-        }
-    }
+
 }
 
 

@@ -17,25 +17,13 @@
             </div>
         </div>
     </div>
-    <div style="height:fit-content"class="col-12 md:col-4  card">
-        <div class="p-inputgroup">
-            <input type="text" pinputtext="" placeholder="Find Your Ingredient" class="p-inputtext p-component p-element"
-                (keyup.enter)="addSearchTerm($event.target.value)">
-        </div>
-        <label class="block text-900 font-medium text-xl my-4">Suggested Ingredients</label>
-        <div style="min-height: 300px; overflow-y: auto;" class="p-3">
-            <div class="flex flex-wrap gap-2 " *ngFor="let item of filteredIngredient">
-                <div class="grid align-items-center mb-2">
-                    <p-checkbox class="col-1" [(ngModel)]="item.check" [binary]="true" inputId="binary"></p-checkbox>
-                    <span class="col-8">{{item.title}}</span>
-                </div>
-            </div>
-            <button type="button" pbutton="" pripple="" label="Search" class="p-element p-button p-component"
-                ng-reflect-label="Search" (click)="addCheckbox()">
-                <span class="p-button-label">Add</span>
-            </button>
-        </div>
 
+    <div class="col-12 md:col-4">
+        <div class="col-12 xl:col-12">
+            <h6>Add Your Ingredients to find you perfect recipe</h6>
+            <p-autoComplete [(ngModel)]="value" (keyup.enter)="addSearchTerm(value)"  [suggestions]="filteredIngredient" (completeMethod)="searchIngredient()"  [dropdown]="true">
+            </p-autoComplete>
+        </div>
         <div *ngIf="searchTerms">
             <div *ngFor="let term of searchTerms">
                 <button pbutton="" pripple="" type="button" label="Info"

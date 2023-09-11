@@ -53,4 +53,7 @@ export class RecipeService {
     getMyRecipes() {
         return this.http.get(this.baseUrl + '/recipe/getMyRecipes',{withCredentials:true});
     }
+    deleteRecipe(recipeid: number){
+        return this.http.delete(this.baseUrl + '/recipe/' + recipeid ,{withCredentials:true});
+    }
 }
