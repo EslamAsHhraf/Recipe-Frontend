@@ -11,21 +11,23 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     imports: [
         CommonModule,
         recipeRoutingModule,
-		FormsModule,
-		DataViewModule,
-		PickListModule,
-		OrderListModule,
-		InputTextModule,
-		DropdownModule,
-		RatingModule,
-		ButtonModule,
-		ConfirmDialogModule,
+        FormsModule,
+        DataViewModule,
+        PickListModule,
+        OrderListModule,
+        InputTextModule,
+        DropdownModule,
+        RatingModule,
+        ButtonModule,
+        ConfirmDialogModule,
+        ToastModule,
     ],
-    declarations: [recipeComponent]
+    declarations: [recipeComponent],
 })
-export class recipeModule { }
+export class recipeModule {}

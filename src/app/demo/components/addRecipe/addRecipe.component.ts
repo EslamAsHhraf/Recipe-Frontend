@@ -134,7 +134,7 @@ export class AddRecipeComponent implements OnInit {
                             detail: 'Add New Recipe',
                             life: 3000,
                         });
-                        console.log(res.data);
+
                         setTimeout(() => {
                             this.router.navigate(['./']);
                         }, 3000); // 3000 milliseconds (3 seconds)

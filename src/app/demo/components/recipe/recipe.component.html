@@ -1,17 +1,14 @@
 <div *ngIf="recipe">
     <div class="grid">
         <div class="col-12">
+            <p-toast position="top-right"></p-toast>
             <div class="card">
                 <div *ngIf="auth">
-                    <div class="my-2" style="float: right;">
+                    <div class="my-2" style="float: right;" class="flex m-3">
                         <button pButton pRipple label="Edit" icon="pi pi-plus" class="p-button-success mr-2" (click)="gotoEdit()" ></button>
                             <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle" message="Are you sure you want to proceed?"
-                                             [style]="{width: '350px'}" acceptButtonStyleClass="p-button-text" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-                            <div class="grid">
-                                <div class="col-12">
-                                    <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete" class="p-button-danger" style="width:auto;"></button>
-                                </div>
-                            </div>
+                                            [style]="{width: '350px'}" acceptButtonStyleClass="p-button-text" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+                                    <button  pButton pRipple type="text" (click)="confirm1()"  icon="pi pi-trash" label="Delete" class="p-button-danger" ></button>
                     </div>
                 </div>
                 <span class="text-900 text-xl font-semibold">{{recipe["item1"].title}}</span>

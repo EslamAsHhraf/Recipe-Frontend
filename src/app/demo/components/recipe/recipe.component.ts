@@ -61,15 +61,29 @@ export class recipeComponent implements OnInit {
         var res =this.confirmationService.confirm({
             key: 'confirm1',
             message: 'Are you sure to delete this recipe?',
-            
+
             accept: () => this.acceptres()
         })
         console.log(res)
     }
     acceptres(){
-        this.recipeService.deleteRecipe(this.recipeId).subscribe();
-        console.log("called");
-        this.router.navigate(['./myRecipe']);
+        this.recipeService.deleteRecipe(this.recipeId).subscribe(
+            {
+                next: (res)=>{
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: 'Success',
+                        detail: 'Delete Successfully',
+                        life: 3000,
+                    });
+
+                    setTimeout(() => {
+                        this.router.navigate(['./myRecipe']);
+                    }, 3000); // 3000 milliseconds (3 seconds)
+                }
+            }
+        );
+
     }
-    
+
 }
