@@ -17,6 +17,8 @@ export class recipeComponent implements OnInit {
     stepsList: string[];
     userId!: number;
     auth?: boolean;
+    userImage: any;
+
     constructor(
         private recipeService: RecipeService,
         private route: ActivatedRoute,
@@ -36,6 +38,8 @@ export class recipeComponent implements OnInit {
         this.profileService.getMe().subscribe({
             next: (res: any) => {
                 this.userId = res?.data?.user?.id;
+                this.userImage = res?.data?.image?.fileContents;
+
 
             this.recipeService
                 .getRecipebyid(this.recipeId)
