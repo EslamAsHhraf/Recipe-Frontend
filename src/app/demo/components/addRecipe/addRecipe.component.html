@@ -16,14 +16,15 @@
                 <label for="steps" class="block text-900 font-medium text-xl mb-2">Steps</label>
                 <ol >
                     <li class="fs-4 fw-bold mb-2" *ngFor="let step  of steps; let i = index">{{step }}
-                        <button pButton pRipple (click)="deleteStep(i)" type="button" icon="pi pi-times" class="p-button-rounded p-button-danger custom-icon-class"></button>
+                        <button pButton pRipple (click)="deleteStep(i)" type="button" icon="pi pi-times" class="p-button-rounded p-button-danger custom-icon-class mr-2"></button>
+                        <button pButton pRipple (click)="editStep(i)" type="button" icon="pi pi-file-edit" class="p-button-rounded custom-icon-class"></button>
                     </li>
                 </ol>
                 <diV class="felx align-items-center justify-content-center mb-3">
                     <input id="title" type="text" [(ngModel)]="oneStep" placeholder="Enter Step" pInputText
                         class="w-full md:w-25rem mr-2 mb-2" [ngClass]="{ 'ng-invalid ng-dirty': error[2] }"
                         style="padding: 1rem" />
-                    <button pButton pRipple label="Add" icon="pi pi-plus" class="p-button-success mr-2 mb-2"
+                    <button pButton pRipple [label]="editIndex!=-1 ? 'Edit' : 'Add'" icon="pi pi-plus" class="p-button-success mr-2 mb-2"
                         (click)="AddStep()"></button>
                 </diV>
                 <p *ngIf="error[2]" class="error">Steps is required and don't input " * "</p>

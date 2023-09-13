@@ -33,6 +33,7 @@ import { Ingredient } from 'src/app/model/Ingredients';
             .custom-icon-class {
                 height: 1.5rem !important;
                 width: 1.5rem;
+
             }
             li {
                 font-size: 18px;
@@ -46,9 +47,10 @@ export class AddRecipeComponent implements OnInit {
     error: boolean[] = [false, false, false, false, false];
     category: Category[];
     ingredients: string[] | undefined;
-    selectedFile: FormData  = new FormData();
+    selectedFile: FormData = new FormData();
     steps: string[] = [];
     oneStep: string;
+    editIndex: number=-1;
     recipe: Recipe = {
         title: '',
         description: '',
@@ -92,18 +94,26 @@ export class AddRecipeComponent implements OnInit {
         // You can perform further actions, such as file validation or upload, here
     }
     AddStep() {
-        console.log(this.oneStep.trim());
         if (this.oneStep.includes('*') || this.oneStep.trim() == '') {
             this.error[2] = true;
         } else {
             this.error[2] = false;
-            this.steps.push(this.oneStep.trim());
+            if (this.editIndex == -1) {
+                this.steps.push(this.oneStep.trim());
+            } else {
+                this.steps[this.editIndex] = this.oneStep;
+                this.editIndex = -1;
+            }
             this.oneStep = '';
         }
     }
     // Function to delete an item from the array by index
     deleteStep(index: number) {
         this.steps.splice(index, 1);
+    }
+    editStep(index: number) {
+        this.oneStep = this.steps[index];
+        this.editIndex = index;
     }
     onSubmit() {
         this.recipe.category = this.selectedCategory.id;
@@ -114,9 +124,7 @@ export class AddRecipeComponent implements OnInit {
         this.error[2] = this.steps.length == 0 ? true : false;
         this.error[3] = this.selectedFile.has('imageFile') ? false : true;
         this.recipe.steps = this.steps.join('*');
-        var ingredientsData :Ingredient[]=[];
-       ;
-
+        var ingredientsData: Ingredient[] = [];
         if (!this.error.some((item) => item === true)) {
             this.recipeService
                 .addRecipe(this.recipe, this.selectedFile)
@@ -130,7 +138,7 @@ export class AddRecipeComponent implements OnInit {
                         });
                         this.recipeIngredientsServices
                             .addListIngredients(ingredientsData)
-                            .subscribe({});;
+                            .subscribe({});
                         this.errorMessage = '';
                         this.messageService.add({
                             severity: 'success',
