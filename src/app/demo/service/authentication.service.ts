@@ -25,7 +25,5 @@ export class AuthenticationService {
             , {withCredentials:true});
     }
 
-    getMe() {
-        return this.http.get(this.baseUrl + '/auth/me');
-    }
+
 }

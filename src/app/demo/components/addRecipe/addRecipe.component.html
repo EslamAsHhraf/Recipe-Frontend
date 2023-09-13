@@ -50,10 +50,12 @@
                         src="assets/Images/licensed-image.jpg" />
                 </ng-template>
                 <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" (onSelect)="onFileSelect($event)" accept="image/png,image/jpeg"
+                    <p-fileUpload mode="basic" (onSelect)="onFileSelect($event)" accept="image/jpeg"
                         [maxFileSize]="1000000" label="import" chooseLabel="Change Recipe Picture"
                         class="mr-2 inline-block"></p-fileUpload>
                 </ng-template>
+                <p *ngIf="error[3]" class="error">Image is required </p>
+
             </p-card>
         </div>
     </div>

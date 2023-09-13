@@ -7,6 +7,7 @@ import { RecipeService } from 'src/app/demo/service/recipe.service';
 import { MessageService } from 'primeng/api';
 import { RecipeIngredientsServices } from 'src/app/demo/service/recipeIngredients.services';
 import { ProfileService } from 'src/app/demo/service/profile.service';
+import { Ingredient } from 'src/app/model/Ingredients';
 
 @Component({
     selector: 'app-addRecipe',
@@ -45,7 +46,7 @@ export class AddRecipeComponent implements OnInit {
     error: boolean[] = [false, false, false, false, false];
     category: Category[];
     ingredients: string[] | undefined;
-    selectedFile: FormData | undefined = new FormData();
+    selectedFile: FormData  = new FormData();
     steps: string[] = [];
     oneStep: string;
     recipe: Recipe = {
@@ -55,7 +56,7 @@ export class AddRecipeComponent implements OnInit {
         category: 0,
         createdBy: 0,
         totalRating: 0,
-        imageFile: '',
+        imageFile: '-',
     };
     selectedCategory: Category;
     errorMessage: string = '';
@@ -111,22 +112,25 @@ export class AddRecipeComponent implements OnInit {
         this.error[0] = this.recipe.title.trim() == '' ? true : false;
         this.error[1] = this.recipe.description.trim() == '' ? true : false;
         this.error[2] = this.steps.length == 0 ? true : false;
-        // this.error[3] = this.selectedFile == undefined ? true : false;
+        this.error[3] = this.selectedFile.has('imageFile') ? false : true;
         this.recipe.steps = this.steps.join('*');
+        var ingredientsData :Ingredient[]=[];
+       ;
+
         if (!this.error.some((item) => item === true)) {
             this.recipeService
                 .addRecipe(this.recipe, this.selectedFile)
                 .subscribe({
                     next: (res: any) => {
-                        for (let i in this.ingredients) {
-                            this.recipeIngredientsServices
-                                .addRecipeIngredients({
-                                    recipeId: res.data.data.result.id,
-                                    title: this.ingredients[i],
-                                    quantity: ' ',
-                                })
-                                .subscribe({});
-                        }
+                        this.ingredients.forEach((element, index) => {
+                            ingredientsData.push({
+                                title: element,
+                                recipeId: res.data.id,
+                            });
+                        });
+                        this.recipeIngredientsServices
+                            .addListIngredients(ingredientsData)
+                            .subscribe({});;
                         this.errorMessage = '';
                         this.messageService.add({
                             severity: 'success',
@@ -136,7 +140,7 @@ export class AddRecipeComponent implements OnInit {
                         });
 
                         setTimeout(() => {
-                            this.router.navigate(['./']);
+                            this.router.navigate(['./myRecipe']);
                         }, 3000); // 3000 milliseconds (3 seconds)
                     },
                     error: (err) => {

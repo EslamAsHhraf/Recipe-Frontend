@@ -14,7 +14,7 @@ export class ProfileService {
     constructor(private http: HttpClient) {}
 
     getMe() {
-        return this.http.get(this.baseUrl + '/Auth', { withCredentials: true });
+        return this.http.get(this.baseUrl + '/auth/me', { withCredentials: true });
     }
     logout() {
         return this.http.get(this.baseUrl + '/Auth/logout', {

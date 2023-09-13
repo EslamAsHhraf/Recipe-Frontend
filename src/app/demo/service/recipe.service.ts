@@ -27,7 +27,9 @@ export class RecipeService {
                 '&Category=' +
                 recipe.createdBy +
                 '&CreatedBy=' +
-                recipe.createdBy,
+                recipe.createdBy +
+                '&ImageFile=' +
+                recipe.imageFile,
             imageFile,
             {
                 withCredentials: true,

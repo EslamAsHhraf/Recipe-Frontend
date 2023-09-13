@@ -16,4 +16,14 @@ export class RecipeIngredientsServices {
     addRecipeIngredients(data) {
         return this.http.post(this.baseUrl + '/recipeIngredient', data);
     }
+
+    addListIngredients(data) {
+        return this.http.post(
+            this.baseUrl + '/recipeIngredient/listIngredients',
+            data,
+            {
+                withCredentials: true,
+            }
+        );
+    }
 }

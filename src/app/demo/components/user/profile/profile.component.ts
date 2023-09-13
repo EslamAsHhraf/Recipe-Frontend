@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
             next: (res: any) => {
                 this.profile.id = res?.data?.user?.id;
                 this.profile.name = res?.data?.user?.name;
-                this.userImage = res?.data?.image?.fileContents;
+                this.userImage = res?.data?.image;
 
             },
             error: () => {
