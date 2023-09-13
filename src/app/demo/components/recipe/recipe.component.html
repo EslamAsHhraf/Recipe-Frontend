@@ -1,16 +1,20 @@
 <div *ngIf="recipe">
     <div class="grid">
         <div class="col-12">
+            <p-toast position="top-right"></p-toast>
             <div class="card">
-                <div *ngIf="auth">
-                    <div class="my-2" style="float: right;">
-                        <button pButton pRipple label="Edit" icon="pi pi-plus" class="p-button-success mr-2" routerLink="/" ></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"  ></button>
+                <div class="m-2" style="float: right;">
+                    <img [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px' }"
+                        [src]="'data:image/jpeg;base64,'+recipe.item5" alt="recipe image" class="card-img-top">
+                    <div>
+                        <span class="text-900 font-medium text-xl">Total Rating : </span>
+                        <p-rating [ngModel]="recipe['item1'].totalRating" [readonly]="true" [cancel]="false"
+                            styleClass="mb-2"></p-rating>
                     </div>
                 </div>
                 <span class="text-900 text-xl font-semibold">{{recipe["item1"].title}}</span>
                 <div class="block text-500 font-medium mb-3">{{recipe["item1"].description}}</div>
-                
+
                 <span class="text-900 font-medium text-xl">Steps:</span>
                 <div class="block text-500 font-medium mb-3">
                     <div *ngFor="let step of stepsList">
@@ -34,9 +38,65 @@
                 </div>
                 <span class="text-900 font-medium text-xl">Created by: </span>
                 <div class="block text-500 font-medium mb-3">
+                    <img width="32" style="vertical-align: middle;" [src]="'data:image/jpeg;base64,'+recipeUserImage">
                     {{recipe["item3"]["item1"]}}
                 </div>
-                <img src='{{recipe["item1"].image}}' alt="Chicken Curry" class="card-img-top">
+                <div *ngIf="auth">
+
+                    <div class="flex">
+                        <button pButton pRipple label="Edit" [style]="{ 'height': '40px','width':'100px' }"
+                            icon="pi pi-cog" class="p-button-success mr-2" (click)="gotoEdit()"></button>
+                        <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle"
+                            message="Are you sure you want to proceed?" [style]="{width: '350px'}"
+                            acceptButtonStyleClass="p-button-text"
+                            rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+                        <div class="grid">
+                            <div class="col-12">
+                                <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete"
+                                    class="p-button-danger" style="width:auto;"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="!auth">
+                    <div>
+                        <div class="col-12 md:col-12">
+                            <form [formGroup]="formGroup" class="flex">
+                                <span class="p-float-label">
+                                    <input id="float-input" type="text" [(ngModel)]="title" pInputText>
+                                    <label for="float-input">Leave Comment</label>
+                                </span>
+                                <div class="col-12 md:col-2">
+                                    <p-rating [(ngModel)]="rate"></p-rating>
+                                </div>
+
+                                <button pButton pRipple label="Save" type="submit"
+                                    [style]="{ 'height': '40px','width':'100px' }" icon="pi pi-check"
+                                    class="p-button-save mr-2" (click)="onSubmit(rate,title)"></button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="reciperating">
+                    <label class="text-900 font-medium text-xl">View Reviews</label>
+                    <div *ngFor="let raterec of reciperating">
+                        <div class="card">
+                            <div>
+                                <p-rating [ngModel]="raterec.rate.rate" [readonly]="true" [cancel]="false"
+                                styleClass="mb-2"></p-rating>
+                                <div class="block text-500 font-medium mb-3">
+                                    {{raterec.rate.title}}</div>
+                                <div class="block text-500 font-medium mb-3">
+                                    <img width="32" style="vertical-align: middle;" [src]="'data:image/jpeg;base64,'+raterec.ratedUserImage">
+                                       By {{raterec.ratedUser.item1}}</div>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+    
+                </div>
             </div>
             
         </div>

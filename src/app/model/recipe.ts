@@ -7,4 +7,5 @@ export interface Recipe {
     category: number;
     totalRating: number;
     imageFile: string;
+    favourited?:boolean;
 }
