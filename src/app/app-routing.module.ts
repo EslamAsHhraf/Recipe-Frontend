@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
+import { AuthGuardService } from './demo/service/AuthGuardService.service';
 
 @NgModule({
     imports: [
@@ -27,17 +28,11 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                         },
                         {
                             path: 'addRecipe',
+                            canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
                                     './demo/components/addRecipe/addRecipe.module'
                                 ).then((m) => m.AddRecipeModule),
-                        },
-                        {
-                            path: 'utilities',
-                            loadChildren: () =>
-                                import(
-                                    './demo/components/utilities/utilities.module'
-                                ).then((m) => m.UtilitiesModule),
                         },
                         {
                             path: 'pages',
@@ -48,6 +43,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                         },
                         {
                             path: 'user',
+                            canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
                                     './demo/components/user/user.module'
@@ -62,6 +58,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                         },
                         {
                             path: 'editRecipe',
+                            canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
                                     './demo/components/editRecipe/editRecipe.module'
@@ -69,6 +66,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                         },
                         {
                             path: 'myRecipe',
+                            canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
                                     './demo/components/myRecipe/myRecipe.module'

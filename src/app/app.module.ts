@@ -6,7 +6,6 @@ import { AppLayoutModule } from './layout/app.layout.module';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { RecipeService } from './demo/service/recipe.service';
 import { IngredientService } from './demo/service/ingredient.service';
-import { IconService } from './demo/service/icon.service';
 
 @NgModule({
     declarations: [
@@ -18,7 +17,7 @@ import { IconService } from './demo/service/icon.service';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-       RecipeService,IngredientService,IconService
+       RecipeService,IngredientService
     ],
     bootstrap: [AppComponent]
 })

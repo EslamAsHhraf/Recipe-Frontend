@@ -26,6 +26,6 @@ export class AuthenticationService {
     }
 
     getMe() {
-        return this.http.get(this.baseUrl + '/Auth');
+        return this.http.get(this.baseUrl + '/auth/me');
     }
 }
