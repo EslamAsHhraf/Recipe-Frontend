@@ -12,11 +12,4 @@
         <i class="pi pi-ellipsis-v"></i>
     </button>
 
-    <div *ngIf="login" #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button pbutton="" pripple="" type="button" label="Secondary" class="p-element p-ripple p-button-outlined p-button-secondary p-button p-component" ng-reflect-label="Secondary"><span class="p-button-label" (click)="myRecipes()">My Recipes</span><span class="p-ink"></span></button>
-        <button class="p-link layout-topbar-button" routerLink="/user/profile">
-            <i class="pi pi-user"></i>
-            <span>Profile</span>
-        </button>
-    </div>
 </div>
