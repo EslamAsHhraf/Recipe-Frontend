@@ -52,6 +52,8 @@ export class EditRecipeComponent implements OnInit {
     editIndex: number = -1;
     selectedCategory: Category;
     ingredients: string[] = [];
+    selectedFile: FormData = new FormData();
+    recipeImage: any;
 
     constructor(
         private recipeService: RecipeService,
@@ -60,7 +62,7 @@ export class EditRecipeComponent implements OnInit {
         private categoryService: CategoryService,
         private messageService: MessageService,
         private recipeIngredientsServices: RecipeIngredientsServices,
-        private profileService:ProfileService
+        private profileService: ProfileService
     ) {}
     recipe: Recipe = {
         title: '',
@@ -82,6 +84,7 @@ export class EditRecipeComponent implements OnInit {
                 this.recipe.category = res?.data.item1?.category;
                 this.recipe.totalRating = res?.data.item1?.totalRating;
                 this.recipe.imageFile = res?.data.item1?.imageFile;
+                this.recipeImage = res?.data.item5;
                 this.profileService.getMe().subscribe({
                     next: (res: any) => {
                         if (res.data.user.id != this.recipe.createdBy) {
@@ -100,13 +103,11 @@ export class EditRecipeComponent implements OnInit {
                     );
                     console.log(this.selectedCategory);
                 });
-
             },
             error: () => {
                 this.router.navigate(['./notfound']);
             },
         });
-
     }
     AddStep() {
         if (this.oneStep.includes('*') || this.oneStep.trim() == '') {
@@ -129,6 +130,15 @@ export class EditRecipeComponent implements OnInit {
         this.oneStep = this.steps[index];
         this.editIndex = index;
     }
+    onFileSelect(event: any) {
+        console.log(event.currentFiles);
+        // Handle the selected file here
+        if (event.currentFiles.length > 0) {
+            this.selectedFile.append('imageFile', event.currentFiles[0]);
+            console.log(this.selectedFile);
+        }
+        // You can perform further actions, such as file validation or upload, here
+    }
     onSubmit() {
         this.errorMessage = '';
         this.error[0] = this.recipe.title.trim() == '' ? true : false;
@@ -139,6 +149,12 @@ export class EditRecipeComponent implements OnInit {
         var ingredientsData: Ingredient[] = [];
         this.recipeService.editRecipe(this.recipe, this.recipeId).subscribe({
             next: () => {
+                if (this.selectedFile.has('imageFile'))
+                {
+                    this.recipeService
+                        .updateImage(this.recipeId, this.selectedFile)
+                        .subscribe({});
+                }
                 this.ingredients.forEach((element, index) => {
                     ingredientsData.push({
                         title: element,

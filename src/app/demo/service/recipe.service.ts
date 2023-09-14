@@ -46,18 +46,37 @@ export class RecipeService {
         return this.http.get(this.baseUrl + '/recipe/' + recipeid);
     }
     searchMoreRecipe(name: string[]) {
-        return this.http.get(this.baseUrl + '/recipe/search?searchTerm=' + name.join('&searchTerm='));
+        return this.http.get(
+            this.baseUrl +
+                '/recipe/search?searchTerm=' +
+                name.join('&searchTerm=')
+        );
     }
     searchRecipe(name: string) {
-        return this.http.get(this.baseUrl + '/recipe/search?searchTerm=' + name);
+        return this.http.get(
+            this.baseUrl + '/recipe/search?searchTerm=' + name
+        );
     }
     getIngredients() {
         return this.http.get(this.baseUrl + '/recipeingredients');
     }
     getMyRecipes() {
-        return this.http.get(this.baseUrl + '/recipe/getMyRecipes',{withCredentials:true});
-    }
-    deleteRecipe(recipeid: number){
-        return this.http.delete(this.baseUrl + '/recipe/' + recipeid ,{withCredentials:true});
+        return this.http.get(this.baseUrl + '/recipe/getMyRecipes', {
+            withCredentials: true,
+        });
+    }
+    deleteRecipe(recipeid: number) {
+        return this.http.delete(this.baseUrl + '/recipe/' + recipeid, {
+            withCredentials: true,
+        });
+    }
+    updateImage(recipeId,image) {
+        return this.http.put(
+            this.baseUrl + '/recipe/updateImage/' + recipeId,
+            image,
+            {
+                withCredentials: true,
+            }
+        );
     }
 }
