@@ -1,30 +1,10 @@
-<div class="grid">
-    <div class="col-12 md:col-8">
-        <div class="grid">
-            <div class="col-12 md:col-6" *ngFor="let recipe of recipes">
-                <div class="card mb-0">
-                    <div class="flex justify-content-between mb-3">
-                        <div>
-                            <span class="text-900 font-medium text-xl">{{ recipe.title }}</span>
-                            <img src="{{recipe.image}}" class="shadow-4" width="50">
-                            <div class="block text-500 font-medium mb-3">{{ recipe.description.slice(0,150) }}</div>
-                        </div>
-                    </div>
-                    <p-rating [ngModel]="recipe.totalRating" [readonly]="true" [cancel]="false"
-                        styleClass="mb-2"></p-rating>
-                    <span class="text-500" style="float: right;" ><button (click)="viewdetails(recipe)" pButton pRipple>See more</button></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-12 md:col-4" >
-        <div class="col-12 xl:col-12">
-            <h6>Add Your Ingredients to find you perfect recipe</h6>
-            <p-autoComplete [(ngModel)]="value" [style]="{'width':'300px'}" (keyup.enter)="addSearchTerm(value)"  [suggestions]="filteredIngredient" (completeMethod)="searchIngredient()"  [dropdown]="true">
-            </p-autoComplete>
-        </div>
-        <div *ngIf="searchTerms">
+<div class="col-12 md:col-12">
+    <div class="grid">
+        <div class="col-6 mb-2 lg:col-4 lg:mb-0" style="float: left;"><span class="p-input-icon-left"><input type="text"
+                    pinputtext="" placeholder="Search" class="p-inputtext p-component p-element"
+                    (keyup.enter)="searchRecipes($event.target.value)"><i class="pi pi-search"></i></span></div>
+        <div class="col-12 md:col-4">
+        <div *ngIf="searchTerms" class="grid">
             <div *ngFor="let term of searchTerms">
                 <button pbutton="" pripple="" type="button" label="Info"
                     class="p-element p-ripple p-button-rounded p-button-info p-button p-component"
@@ -35,6 +15,40 @@
                     ng-reflect-icon="pi pi-times"><span class="p-button-icon pi pi-times" aria-hidden="true"
                         (click)="deleteSearchTerm(term)"></span><span class="p-ink"></span>
                 </button>
+            </div>
+        </div>
+    </div>
+        <div class="col-12 md:col-4" style="float: right;">
+            <h6>Add Your Ingredients to find you perfect recipe</h6>
+            <p-autoComplete [(ngModel)]="value" [style]="{'width':'300px'}" (keyup.enter)="addSearchTerm(value)"
+                [suggestions]="filteredIngredient" (completeMethod)="searchIngredient()" [dropdown]="true">
+            </p-autoComplete>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-12 md:col-12">
+
+    <div class="grid">
+        <div class="col-12 md:col-4" *ngFor="let recipe of recipes">
+            <div class="card mb-0">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="text-900 font-medium text-xl">{{ recipe.title }}</span>
+                        <div class="block text-500 font-medium mb-3">{{ recipe.description.slice(0,150) }}</div>
+                    </div>
+                    <button *ngIf="recipe.favourited" (click)="deleteFavourite(recipe)" pbutton="" pripple="" type="button" icon="pi pi-heart-fill" style="font-size: 50rem ;color : rgb(201,16,16);" class="p-element p-ripple p-button-rounded p-button-help p-button-text p-button p-component p-button-icon-only" ng-reflect-icon="pi pi-heart-fill">
+                        <span class="p-button-icon pi pi-heart-fill" aria-hidden="true"></span><span class="p-ink"></span></button>
+
+                    <button *ngIf="!recipe.favourited" (click)="postFavourite(recipe)" pbutton="" pripple="" type="button" icon="pi pi-heart" style="font-size: 50rem ;color : rgb(201,16,16);" class="p-element p-ripple p-button-rounded p-button-help p-button-text p-button p-component p-button-icon-only" ng-reflect-icon="pi pi-heart">
+                        <span class="p-button-icon pi pi-heart" aria-hidden="true"></span><span class="p-ink"></span></button>
+
+                </div>
+                <p-rating [ngModel]="recipe.totalRating" [readonly]="true" [cancel]="false"
+                    styleClass="mb-2"></p-rating>
+                <span class="text-500" style="float: right;"><button (click)="viewdetails(recipe)" pButton pRipple>See
+                        more</button></span>
             </div>
         </div>
     </div>

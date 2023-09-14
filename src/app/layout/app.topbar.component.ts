@@ -32,6 +32,7 @@ export class AppTopBarComponent {
     searchRecipes(name: string) {
         this.router.navigate(['search', { searchTerm: name }]);
     }
+
     myRecipes() {
         this.router.navigate(['./myRecipe']);
     }

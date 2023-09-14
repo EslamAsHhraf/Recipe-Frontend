@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Rating } from 'src/app/model/Rating';
 
 @Injectable({
     providedIn: 'root',
@@ -41,7 +42,12 @@ export class RecipeService {
     getRecipes() {
         return this.http.get(this.baseUrl + '/recipe');
     }
-
+    postRating(rating:Rating) {
+        return this.http.post(this.baseUrl + '/rating' , rating);
+    }
+    getRecipeRating(ratingid : number) {
+        return this.http.get(this.baseUrl + '/rating/' + ratingid );
+    }
     getRecipebyid(recipeid: number) {
         return this.http.get(this.baseUrl + '/recipe/' + recipeid);
     }
@@ -79,4 +85,5 @@ export class RecipeService {
             }
         );
     }
+
 }
