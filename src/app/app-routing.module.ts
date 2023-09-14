@@ -32,7 +32,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                             canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
-                                    './demo/components/addRecipe/addRecipe.module'
+                                    './demo/components/manageRecipe/addRecipe/addRecipe.module'
                                 ).then((m) => m.AddRecipeModule),
                         },
                         {
@@ -62,7 +62,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                             canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
-                                    './demo/components/editRecipe/editRecipe.module'
+                                    './demo/components/manageRecipe/editRecipe/editRecipe.module'
                                 ).then((m) => m.EditRecipeModule),
                         },
                         {
@@ -70,7 +70,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                             canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
-                                    './demo/components/myRecipe/myRecipe.module'
+                                    './demo/components/manageRecipe/myRecipe/myRecipe.module'
                                 ).then((m) => m.MyRecipeModule),
                         },
                         {

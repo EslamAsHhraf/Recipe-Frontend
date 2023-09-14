@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/model/Category';
-import { Profile } from 'src/app/model/Profile';
+import { Category } from 'src/app/model/category';
+import { Profile } from 'src/app/model/profile';
 import { Recipe } from '../model/Recipe';
 import { ProfileService } from '../../../service/profile.service';
 import { Router } from '@angular/router';

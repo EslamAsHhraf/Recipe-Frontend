@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Recipe } from '../../../model/recipe';
+import { Recipe } from '../../../../model/recipe';
 import { RecipeService } from 'src/app/demo/service/recipe.service';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/model/Category';
+import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/demo/service/category.service';
 import { RecipeIngredientsServices } from 'src/app/demo/service/recipeIngredients.service';
-import { Ingredient } from 'src/app/model/Ingredients';
-import { ProfileService } from '../../service/profile.service';
+import { Ingredient } from 'src/app/model/ingredients';
+import { ProfileService } from '../../../service/profile.service';
 
 @Component({
     selector: 'app-editResipe',

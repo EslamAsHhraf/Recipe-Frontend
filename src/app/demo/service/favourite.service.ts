@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Favourite } from 'src/app/model/Favourite';
+import { Favourite } from 'src/app/model/favourite';
 
 @Injectable({
     providedIn: 'root',
