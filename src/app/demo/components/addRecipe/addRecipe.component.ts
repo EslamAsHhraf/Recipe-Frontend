@@ -5,7 +5,7 @@ import { Category } from 'src/app/model/Category';
 import { CategoryService } from 'src/app/demo/service/category.service';
 import { RecipeService } from 'src/app/demo/service/recipe.service';
 import { MessageService } from 'primeng/api';
-import { RecipeIngredientsServices } from 'src/app/demo/service/recipeIngredients.services';
+import { RecipeIngredientsServices } from 'src/app/demo/service/recipeIngredients.service';
 import { ProfileService } from 'src/app/demo/service/profile.service';
 import { Ingredient } from 'src/app/model/Ingredients';
 

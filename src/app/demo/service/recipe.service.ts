@@ -13,7 +13,9 @@ export class RecipeService {
         this.http = http;
     }
     editRecipe(recipe, id) {
-        return this.http.put(this.baseUrl + '/recipe/' + id, recipe);
+        return this.http.put(this.baseUrl + '/recipe/' + id, recipe, {
+            withCredentials: true,
+        });
     }
     addRecipe(recipe, imageFile) {
         return this.http.post(

@@ -26,4 +26,13 @@ export class RecipeIngredientsServices {
             }
         );
     }
+
+    deleteRecipeIngredients(id) {
+        return this.http.delete(
+            this.baseUrl + '/recipeIngredient/recipe/' + id,
+            {
+                withCredentials: true,
+            }
+        );
+    }
 }

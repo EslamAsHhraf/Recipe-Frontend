@@ -16,21 +16,32 @@
                 <label for="steps" class="block text-900 font-medium text-xl mb-2">Steps</label>
                 <ol >
                     <li class="fs-4 fw-bold mb-2" *ngFor="let step  of steps; let i = index">{{step }}
-                        <button pButton pRipple (click)="deleteStep(i)" type="button" icon="pi pi-times" class="p-button-rounded p-button-danger custom-icon-class"></button>
+                        <button pButton pRipple (click)="deleteStep(i)" type="button" icon="pi pi-times" class="p-button-rounded p-button-danger custom-icon-class mr-2"></button>
+                        <button pButton pRipple (click)="editStep(i)" type="button" icon="pi pi-file-edit" class="p-button-rounded custom-icon-class"></button>
+
                     </li>
                 </ol>
                 <diV class="felx align-items-center justify-content-center mb-3">
                     <input id="title" type="text" [(ngModel)]="oneStep" placeholder="Enter Step" pInputText
                         class="w-full md:w-30rem mr-2 mb-2" [ngClass]="{ 'ng-invalid ng-dirty': error[2] }"
                         style="padding: 1rem" />
-                    <button pButton pRipple label="Add" icon="pi pi-plus" class="p-button-success mr-2 mb-2"
+                    <button pButton pRipple [label]="editIndex!=-1 ? 'Edit' : 'Add'" icon="pi pi-plus" class="p-button-success mr-2 mb-2"
                         (click)="AddStep()"></button>
                 </diV>
                 <p *ngIf="error[2]" class="error">Steps is required and don't input " * "</p>
+
+                <label for="category" class="block text-900 font-medium text-xl mb-2">Category</label>
+                <p-dropdown name="recipe.createdBy" [options]="category" [(ngModel)]="selectedCategory" optionLabel="title"
+                    class="w-full md:w-25rem mb-4"></p-dropdown>
+                <label class="block text-900 font-medium text-xl my-4">Ingredients</label>
+                <div *ngIf="ingredients.length > 0">
+                <div class="w-full md:w-25rem mb-3 card ">
+                    <p-chips [(ngModel)]="ingredients" separator="," placeholder="Hint: a, b, c"></p-chips>
+                </div>
+                </div>
                 <div class="flex align-items-center justify-content-between mb-5 gap-5">
                     <div class="error">{{ errorMessage }}</div>
                 </div>
-
                 <button pButton label="Submit" (click)="onSubmit()"></button>
             </div>
         </div>
