@@ -8,6 +8,7 @@ import { Category } from 'src/app/model/Category';
 import { CategoryService } from 'src/app/demo/service/category.service';
 import { RecipeIngredientsServices } from 'src/app/demo/service/recipeIngredients.service';
 import { Ingredient } from 'src/app/model/Ingredients';
+import { ProfileService } from '../../service/profile.service';
 
 @Component({
     selector: 'app-editResipe',
@@ -59,6 +60,7 @@ export class EditRecipeComponent implements OnInit {
         private categoryService: CategoryService,
         private messageService: MessageService,
         private recipeIngredientsServices: RecipeIngredientsServices,
+        private profileService:ProfileService
     ) {}
     recipe: Recipe = {
         title: '',
@@ -80,6 +82,13 @@ export class EditRecipeComponent implements OnInit {
                 this.recipe.category = res?.data.item1?.category;
                 this.recipe.totalRating = res?.data.item1?.totalRating;
                 this.recipe.imageFile = res?.data.item1?.imageFile;
+                this.profileService.getMe().subscribe({
+                    next: (res: any) => {
+                        if (res.data.user.id != this.recipe.createdBy) {
+                            this.router.navigate(['./access']);
+                        }
+                    },
+                });
                 res?.data.item2?.forEach((element) => {
                     this.ingredients.push(element.title);
                 });
@@ -97,6 +106,7 @@ export class EditRecipeComponent implements OnInit {
                 this.router.navigate(['./notfound']);
             },
         });
+
     }
     AddStep() {
         if (this.oneStep.includes('*') || this.oneStep.trim() == '') {
@@ -150,7 +160,7 @@ export class EditRecipeComponent implements OnInit {
                     life: 3000,
                 });
                 setTimeout(() => {
-                    this.router.navigate(['./']);
+                    this.router.navigate(['./myRecipe']);
                 }, 3000); // 3000 milliseconds (3 seconds)
             },
             error: (err) => {

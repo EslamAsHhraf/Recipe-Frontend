@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { AuthGuardService } from './demo/service/authGuardService.service';
+import { AccessComponent } from './demo/components/auth/access/access.component';
 
 @NgModule({
     imports: [
@@ -89,6 +90,7 @@ import { AuthGuardService } from './demo/service/authGuardService.service';
                         ),
                 },
                 { path: 'notfound', component: NotfoundComponent },
+                { path: 'access', component: AccessComponent },
                 { path: '**', redirectTo: '/notfound' },
             ],
             {
