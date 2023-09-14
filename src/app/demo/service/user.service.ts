@@ -12,7 +12,7 @@ export class UserService {
 
     constructor(private http: HttpClient) {}
     getUser(id :number) {
-        return this.http.get(this.baseUrl + '/Auth/' +id);
+        return this.http.get(this.baseUrl + '/auth/' +id);
     }
-    
+
 }

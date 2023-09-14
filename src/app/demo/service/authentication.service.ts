@@ -13,12 +13,12 @@ export class AuthenticationService {
 
     constructor(private http: HttpClient) {}
     registerUser(user: User) {
-        return this.http.post(this.baseUrl + '/Auth/register', user);
+        return this.http.post(this.baseUrl + '/auth/register', user);
     }
     loginUser(user: User) {
         return this.http.get(
             this.baseUrl +
-                '/Auth/login?Username=' +
+                '/auth/login?Username=' +
                 user.username +
                 '&Password=' +
                 user.password

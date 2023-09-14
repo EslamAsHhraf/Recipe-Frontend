@@ -17,19 +17,19 @@ export class ProfileService {
         return this.http.get(this.baseUrl + '/auth/me', { withCredentials: true });
     }
     logout() {
-        return this.http.get(this.baseUrl + '/Auth/logout', {
+        return this.http.get(this.baseUrl + '/auth/logout', {
             withCredentials: true,
         });
     }
     uploadImage(ImageFile) {
-        return this.http.put(this.baseUrl + '/Auth/UpdateImage', ImageFile, {
+        return this.http.put(this.baseUrl + '/auth/UpdateImage', ImageFile, {
             withCredentials: true,
         });
     }
     changePassword(oldPassword, newPassword) {
         return this.http.put(
             this.baseUrl +
-            '/Auth/ChangePassword?oldPassword=' +
+            '/auth/ChangePassword?oldPassword=' +
             oldPassword + '&newPassword=' + newPassword,null,{
                 withCredentials: true,
             });

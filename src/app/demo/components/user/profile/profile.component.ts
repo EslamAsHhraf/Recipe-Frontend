@@ -4,11 +4,12 @@ import { Profile } from 'src/app/model/Profile';
 import { Recipe } from '../model/Recipe';
 import { ProfileService } from '../../../service/profile.service';
 import { Router } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
+    providers: [MessageService],
 })
 export class ProfileComponent implements OnInit {
     productDialog: boolean = false;
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
     constructor(
         private profileService: ProfileService,
         private router: Router,
+        private messageService: MessageService
     ) {}
 
     ngOnInit() {
@@ -33,7 +35,6 @@ export class ProfileComponent implements OnInit {
                 this.profile.id = res?.data?.user?.id;
                 this.profile.name = res?.data?.user?.name;
                 this.userImage = res?.data?.image;
-
             },
             error: () => {
                 this.router.navigate(['./auth/login']);
@@ -60,7 +61,17 @@ export class ProfileComponent implements OnInit {
             console.log('Selected File:', selectedFile);
             formData.append('ImageFile', selectedFile);
             this.profileService.uploadImage(formData).subscribe({
-                next: () => {},
+                next: () => {
+                    this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Change Image Successfully',
+                    life: 3000,
+                    });
+                setTimeout(() => {
+                    this.router.navigate(['/']);
+                }, 3000);
+                },
                 error: (err) => {
                     console.log(err);
                 },

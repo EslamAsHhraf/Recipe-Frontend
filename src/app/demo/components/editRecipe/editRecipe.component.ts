@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Recipe } from 'src/app/model/Recipe';
+import { Recipe } from '../../../model/recipe';
 import { RecipeService } from 'src/app/demo/service/recipe.service';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/model/Category';
