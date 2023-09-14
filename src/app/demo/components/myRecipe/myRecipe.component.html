@@ -15,26 +15,28 @@
                 </ng-template>
             </p-toolbar>
 
-            <div class="col-12 md:col-8">
+            <div class="col-12 ">
                 <div class="grid">
-                    <div class="col-12 md:col-6" *ngFor="let recipe of recipes">
+                    <div class="col-12 md:col-4" *ngFor="let recipe of recipes">
                         <div class="card mb-0">
                             <div class="flex justify-content-between mb-3">
                                 <div>
-                                    <span class="text-900 font-medium text-xl">{{ recipe.title }}</span>
-                                    <div class="block text-500 font-medium mb-3">{{ recipe.description }}</div>
+                                    <div class="flex justify-content-between align-content-center flex-wrap">
+                                    <h4>{{ recipe.title }}</h4>
+                                    </div>
+                                    <div class="block text-500 font-medium mb-3">{{ recipe.description.slice(0,150) }}</div>
+                                    <div class="flex flex-row-reverse">
+                                    <button  (click)="viewdetails(recipe)" pButton
+                                    pRipple>See more</button>
+                                    </div>
                                 </div>
                             </div>
-                            <span class="text-500" style="float: left;"><button (click)="viewdetails(recipe)" pButton
-                                    pRipple>See more</button></span>
-                            <button style="float: right;" pButton pRipple label="Edit" icon="pi pi-plus"
-                                class="p-button-success mr-2" routerLink="/"></button>
-                            <button style="float: right;" pButton pRipple label="Delete" icon="pi pi-trash"
-                                class="p-button-danger"></button>
+
                         </div>
 
                     </div>
                 </div>
+
             </div>
 
 

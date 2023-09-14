@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Recipe } from 'src/app/model/recipe';
+import { Recipe } from 'src/app/model/Recipe';
 import { Category } from 'src/app/model/Category';
 import { CategoryService } from 'src/app/demo/service/category.service';
 import { RecipeService } from 'src/app/demo/service/recipe.service';
@@ -30,11 +30,11 @@ import { ProfileService } from 'src/app/demo/service/profile.service';
                 font-size: 12px !important; /* Change the size as needed */
             }
             .custom-icon-class {
-                height: 2rem !important;
-                width: 2rem;
+                height: 1.5rem !important;
+                width: 1.5rem;
             }
             li {
-                font-size: 16px;
+                font-size: 18px;
             }
         `,
     ],
@@ -57,7 +57,6 @@ export class AddRecipeComponent implements OnInit {
         totalRating: 0,
         imageFile: '',
     };
-    separatorExp: RegExp = /,| /;
     selectedCategory: Category;
     errorMessage: string = '';
     constructor(
@@ -119,13 +118,12 @@ export class AddRecipeComponent implements OnInit {
                 .addRecipe(this.recipe, this.selectedFile)
                 .subscribe({
                     next: (res: any) => {
-                        console.log(res.data.data);
                         for (let i in this.ingredients) {
                             this.recipeIngredientsServices
                                 .addRecipeIngredients({
                                     recipeId: res.data.data.result.id,
                                     title: this.ingredients[i],
-                                    quantity: 'string',
+                                    quantity: ' ',
                                 })
                                 .subscribe({});
                         }
@@ -136,7 +134,7 @@ export class AddRecipeComponent implements OnInit {
                             detail: 'Add New Recipe',
                             life: 3000,
                         });
-                        console.log(res.data);
+
                         setTimeout(() => {
                             this.router.navigate(['./']);
                         }, 3000); // 3000 milliseconds (3 seconds)
