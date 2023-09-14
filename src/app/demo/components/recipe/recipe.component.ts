@@ -38,7 +38,9 @@ export class recipeComponent implements OnInit {
         private messageService: MessageService,
         private userService: UserService
     ) {}
-
+    gotoEdit() {
+        this.router.navigate(['editRecipe/', { recipeId: this.recipeId }]);
+    }
     ngOnInit() {
         this.profileService.getMe().subscribe({
             next: (res: any) => {

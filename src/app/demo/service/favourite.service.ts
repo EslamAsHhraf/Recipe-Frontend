@@ -14,13 +14,17 @@ export class FavouriteService {
         this.http = http;
     }
     postFavourite(fav: Favourite) {
-        return this.http.post(this.baseUrl + '/Favourite/' , fav);
+        return this.http.post(this.baseUrl + '/Favourite/', fav, {
+            withCredentials: true,
+        });
     }
     getFavouritesUser(userid:number) {
         return this.http.get(this.baseUrl + '/Favourite/Favouritesofuser?id=' + userid );
     }
     deleteFavourite(id:number) {
-        return this.http.delete(this.baseUrl + '/Favourite?id=' + id );
+        return this.http.delete(this.baseUrl + '/Favourite?id=' + id, {
+            withCredentials: true,
+        });
     }
-  
+
 }

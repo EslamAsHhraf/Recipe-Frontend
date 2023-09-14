@@ -61,12 +61,12 @@
                 <div class="card" *ngIf="!auth">
                     <div>
                         <div class="col-12 md:col-12">
-                            <form [formGroup]="formGroup" class="flex">
+                            <form [formGroup]="formGroup" class="flex align-items-center gap-2 flex-wrap">
                                 <span class="p-float-label">
                                     <input id="float-input" type="text" [(ngModel)]="title" pInputText>
                                     <label for="float-input">Leave Comment</label>
                                 </span>
-                                <div class="col-12 md:col-2">
+                                <div >
                                     <p-rating [(ngModel)]="rate"></p-rating>
                                 </div>
 

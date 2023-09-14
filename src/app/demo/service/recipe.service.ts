@@ -43,7 +43,9 @@ export class RecipeService {
         return this.http.get(this.baseUrl + '/recipe');
     }
     postRating(rating:Rating) {
-        return this.http.post(this.baseUrl + '/rating' , rating);
+        return this.http.post(this.baseUrl + '/rating', rating, {
+            withCredentials: true,
+        });
     }
     getRecipeRating(ratingid : number) {
         return this.http.get(this.baseUrl + '/rating/' + ratingid );
