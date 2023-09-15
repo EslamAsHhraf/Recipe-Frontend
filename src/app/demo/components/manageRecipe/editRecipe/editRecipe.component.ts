@@ -4,10 +4,10 @@ import { MessageService } from 'primeng/api';
 import { Recipe } from '../../../../model/recipe';
 import { RecipeService } from 'src/app/demo/service/recipe.service';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/model/category';
+import { Category } from 'src/app/model/Category';
 import { CategoryService } from 'src/app/demo/service/category.service';
 import { RecipeIngredientsServices } from 'src/app/demo/service/recipeIngredients.service';
-import { Ingredient } from 'src/app/model/ingredients';
+import { Ingredient } from 'src/app/model/Ingredients';
 import { ProfileService } from '../../../service/profile.service';
 
 @Component({

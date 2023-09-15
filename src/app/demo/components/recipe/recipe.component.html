@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" *ngIf="!auth">
+                <div class="card" *ngIf="!auth && !ratedbefore">
                     <div>
                         <div class="col-12 md:col-12">
                             <form [formGroup]="formGroup" class="flex align-items-center gap-2 flex-wrap">

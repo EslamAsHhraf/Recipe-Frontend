@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Favourite } from 'src/app/model/favourite';
+import { Favourite } from 'src/app/model/Favourite';
 
 @Injectable({
     providedIn: 'root',
@@ -25,6 +25,9 @@ export class FavouriteService {
         return this.http.delete(this.baseUrl + '/Favourite?id=' + id, {
             withCredentials: true,
         });
+    }
+    getFavouritesRecipes(userid:number) {
+        return this.http.get(this.baseUrl + '/Favourite?id=' + userid );
     }
 
 }

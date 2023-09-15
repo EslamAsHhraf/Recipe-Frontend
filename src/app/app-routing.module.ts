@@ -28,6 +28,13 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                 ).then((m) => m.DashboardModule),
                         },
                         {
+                            path: 'myFavorite',
+                            loadChildren: () =>
+                                import(
+                                    './demo/components/dashboard/dashboard.module'
+                                ).then((m) => m.DashboardModule),
+                        },
+                        {
                             path: 'addRecipe',
                             canActivate: [AuthGuardService],
                             loadChildren: () =>
@@ -35,13 +42,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                     './demo/components/manageRecipe/addRecipe/addRecipe.module'
                                 ).then((m) => m.AddRecipeModule),
                         },
-                        {
-                            path: 'pages',
-                            loadChildren: () =>
-                                import(
-                                    './demo/components/pages/pages.module'
-                                ).then((m) => m.PagesModule),
-                        },
+                     
                         {
                             path: 'user',
                             canActivate: [AuthGuardService],

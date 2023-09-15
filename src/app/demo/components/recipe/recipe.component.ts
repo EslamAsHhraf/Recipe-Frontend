@@ -19,7 +19,6 @@ export class recipeComponent implements OnInit {
     userId!: number;
     auth?: boolean;
     reciperating: any[];
-    allrating: any;
     rating: Rating = {
         rate: 0,
         title: '',
@@ -28,6 +27,7 @@ export class recipeComponent implements OnInit {
     };
     recipeUser: any;
     recipeUserImage: any;
+    ratedbefore: boolean = false;
 
     constructor(
         private recipeService: RecipeService,
@@ -52,8 +52,6 @@ export class recipeComponent implements OnInit {
                         this.recipe = result['data'];
                         let stepsist = this.recipe['item1'].steps.split('*');
                         this.stepsList = stepsist;
-                        console.log(this.userId); //1
-                        console.log(this.recipe['item3']['item2']); //2
                         if (this.userId === this.recipe['item3']['item2']) {
                             this.auth = true;
                         } else {
@@ -74,14 +72,15 @@ export class recipeComponent implements OnInit {
                     .getRecipeRating(this.recipeId)
                     .subscribe((result: Rating[]) => {
                         for (let rate of result['data']) {
-                            console.log(rate);
+                            if (this.userId === rate['authorId']) {
+                                this.ratedbefore = true;
+                            }
                             this.userService
                                 .getUser(rate['authorId'])
                                 .subscribe((res: any) => {
                                     ratedUser = res?.data?.user;
                                     ratedUserImage =
                                         res?.data?.image?.fileContents;
-                                    console.log(ratedUser);
                                     this.reciperating.push({
                                         rate: rate,
                                         ratedUser: ratedUser,
@@ -89,7 +88,6 @@ export class recipeComponent implements OnInit {
                                     });
                                 });
                         }
-                        console.log(this.reciperating); //1
                     });
             },
             error: () => {
@@ -105,7 +103,6 @@ export class recipeComponent implements OnInit {
                 this.recipe = result;
                 let stepsist = this.recipe['item1'].steps.split('*');
                 this.stepsList = stepsist;
-                console.log(this.recipe);
                 if (this.userId === this.recipe['item3']['item2']) {
                     this.auth = true;
                 } else {
