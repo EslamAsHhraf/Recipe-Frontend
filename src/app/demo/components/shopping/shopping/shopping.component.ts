@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShoppingService } from 'src/app/demo/service/shopping.service';
 import { Shopping } from 'src/app/model/shopping';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-shopping',
@@ -19,6 +20,7 @@ import { Shopping } from 'src/app/model/shopping';
             }
         `,
     ],
+    providers: [MessageService],
 })
 export class ShoppingComponent implements OnInit {
     shoppings: Shopping[] = [];
@@ -29,9 +31,11 @@ export class ShoppingComponent implements OnInit {
         title: '',
         createdBy: 0,
     };
+    shoppingDelete: Shopping;
     cols: any[] = [];
     validationMessage: string = '';
     productDialog: boolean = false;
+    deleteProductsDialog: boolean = false;
     editNumber: number = 0;
     constructor(
         private shoppingServices: ShoppingService,
@@ -73,6 +77,12 @@ export class ShoppingComponent implements OnInit {
     closeEdit() {
         this.productDialog = false;
         this.validationMessage = '';
-
-    };
+    }
+    confirmDeleteSelected() {
+        this.deleteProductsDialog = false;
+    }
+    deleteProduct(object: Shopping) {
+        this.deleteProductsDialog = true;
+        this.shoppingDelete = object;
+    }
 }

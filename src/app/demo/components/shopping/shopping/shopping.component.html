@@ -1,6 +1,8 @@
 <div class="grid">
     <div class="col-12">
         <div class="card px-6 py-6">
+            <p-toast position="top-right"></p-toast>
+
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
@@ -53,7 +55,7 @@
                 </ng-template>
             </p-table>
 
-        <p-dialog  om[(visible)]="productDialog" [style]="{width: '450px'}" header="Shopping Details" [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Shopping Details" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
 
                 <div class="field">
@@ -66,6 +68,16 @@
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeEdit()"></button>
                 <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="submit()"></button>
+            </ng-template>
+        </p-dialog>
+         <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="shoppingDelete">Are you sure you want to delete <b>{{shoppingDelete.title}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
             </ng-template>
         </p-dialog>
     </div>
