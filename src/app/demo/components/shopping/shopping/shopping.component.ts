@@ -67,11 +67,39 @@ export class ShoppingComponent implements OnInit {
         console.log(this.editNumber);
         console.log(this.shoppingEdit.quantityShopping);
 
-        if (this.shoppingEdit.quantityShopping > this.editNumber) {
-            this.validationMessage = `Number must be less than or equal to ${this.editNumber}`;
+        if (
+            this.shoppingEdit.quantityShopping > this.editNumber ||
+            this.shoppingEdit.quantityShopping<=0 ) {
+            this.validationMessage = `Number must be less than or equal to ${this.editNumber} and large than 0`;
             this.shoppingEdit.quantityShopping = this.editNumber;
         } else {
             this.validationMessage = '';
+            this.shoppingServices
+                .addPurchased(
+                    this.shoppingEdit.id,
+                    this.shoppingEdit.quantityShopping
+                )
+                .subscribe({
+                    next: (res) => {
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: 'Update Successfully',
+                            life: 3000,
+                        });
+                        setTimeout(() => {
+                            this.router.navigate(['shopping/purchased']);
+                        }, 3000); // 3000 milliseconds (3 seconds)
+                    },
+                    error: (err) => {
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: 'error in updating product',
+                            life: 3000,
+                        });
+                    },
+                });
         }
         console.log(this.validationMessage);
     }

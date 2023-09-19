@@ -16,7 +16,12 @@ export class ShoppingService {
         });
     }
     deleteProduct(id) {
-         return this.http.delete(this.baseUrl + '/shopping/'+id, {
+        return this.http.delete(this.baseUrl + '/shopping/' + id, {
+            withCredentials: true,
+        });
+    }
+    addPurchased(id, quantity) {
+        return this.http.post(this.baseUrl + '/shopping/addPurchased?id=+'+id+'&quantity='+quantity,null ,{
             withCredentials: true,
         });
     }
