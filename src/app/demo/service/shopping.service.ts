@@ -15,4 +15,9 @@ export class ShoppingService {
             withCredentials: true,
         });
     }
+    deleteProduct(id) {
+         return this.http.delete(this.baseUrl + '/shopping/'+id, {
+            withCredentials: true,
+        });
+    }
 }

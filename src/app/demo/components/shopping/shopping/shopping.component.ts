@@ -39,7 +39,8 @@ export class ShoppingComponent implements OnInit {
     editNumber: number = 0;
     constructor(
         private shoppingServices: ShoppingService,
-        private router: Router
+        private router: Router,
+        private messageService: MessageService
     ) {}
 
     ngOnInit() {
@@ -78,8 +79,29 @@ export class ShoppingComponent implements OnInit {
         this.productDialog = false;
         this.validationMessage = '';
     }
-    confirmDeleteSelected() {
+    confirmDelete() {
         this.deleteProductsDialog = false;
+        this.shoppingServices.deleteProduct(this.shoppingDelete.id).subscribe({
+            next: (res) => {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Delete Product',
+                    life: 3000,
+                });
+                this.shoppings = this.shoppings.filter(
+                    (item) => item.id !== this.shoppingDelete.id
+                );
+            },
+            error: (err) => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'error in deleting product',
+                    life: 3000,
+                });
+            },
+        });
     }
     deleteProduct(object: Shopping) {
         this.deleteProductsDialog = true;
