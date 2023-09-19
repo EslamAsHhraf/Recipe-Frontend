@@ -1,0 +1,72 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <h4>Shopping List</h4>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="my-2">
+                        <button
+                            pButton
+                            pRipple
+                            label="New"
+                            icon="pi pi-plus"
+                            class="p-button-success mr-2"
+                            routerLink="/addRecipe"
+                        ></button>
+                    </div>
+                </ng-template>
+            </p-toolbar>
+        </div>
+        <p-table #dt [value]="shoppings" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['title','quantityShopping']" [paginator]="true"  [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" selectionMode="none" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Manage Shopping List</h5>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
+                        <th pSortableColumn="quantityShopping">Quantity <p-sortIcon field="quantityShopping"></p-sortIcon></th>
+                        <th>Options</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">Name</span>
+                            {{product.title}}
+                        </td>
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">Quantity</span>
+                            {{product.quantityShopping}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                            </div>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        <p-dialog  om[(visible)]="productDialog" [style]="{width: '450px'}" header="Shopping Details" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+
+                <div class="field">
+                    <label for="description">Quantity Shopping</label>
+                    <p-inputNumber type="number" [showButtons]="true"   inputId="integeronly"  [(ngModel)]="shoppingEdit.quantityShopping"  mode="decimal"required [ngClass]="{'ng-invalid ng-dirty': validationMessage !=''}" />
+                    <p *ngIf="validationMessage !=''" class="error">{{validationMessage}}</p>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeEdit()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="submit()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

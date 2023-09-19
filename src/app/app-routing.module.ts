@@ -42,7 +42,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                     './demo/components/manageRecipe/addRecipe/addRecipe.module'
                                 ).then((m) => m.AddRecipeModule),
                         },
-                     
+
                         {
                             path: 'user',
                             canActivate: [AuthGuardService],
@@ -80,6 +80,13 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                 import(
                                     './demo/components/ingredients/ingredients.module'
                                 ).then((m) => m.ingredientsModule),
+                        },
+                        {
+                            path: 'shopping',
+                            loadChildren: () =>
+                                import(
+                                    './demo/components/shopping/shopping.module'
+                                ).then((m) => m.ShoppingModule),
                         },
                     ],
                 },
