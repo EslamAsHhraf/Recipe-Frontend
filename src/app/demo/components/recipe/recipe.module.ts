@@ -12,6 +12,9 @@ import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { CalendarModule } from "primeng/calendar";
+import { DialogModule } from 'primeng/dialog';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -26,6 +29,8 @@ import { ToastModule } from 'primeng/toast';
 		ButtonModule,
 		ConfirmDialogModule,
 		ToastModule,
+		CalendarModule,
+		DialogModule,
     ],
     declarations: [recipeComponent],
 })

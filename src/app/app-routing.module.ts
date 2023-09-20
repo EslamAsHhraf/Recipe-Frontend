@@ -81,6 +81,13 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                     './demo/components/ingredients/ingredients.module'
                                 ).then((m) => m.ingredientsModule),
                         },
+                        {
+                            path: 'eventcalendar',
+                            loadChildren: () =>
+                                import(
+                                    './demo/components/EventCalendar/eventcalendar.module'
+                                ).then((m) => m.EventCalendarModule),
+                        },
                     ],
                 },
                 {

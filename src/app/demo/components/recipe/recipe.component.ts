@@ -4,8 +4,9 @@ import { RecipeService } from '../../service/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../service/profile.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Rating } from 'src/app/model/rating';
+import { Rating } from 'src/app/model/Rating';
 import { UserService } from '../../service/user.service';
+import { PlanMealsService } from '../../service/planmeals.service';
 
 @Component({
     selector: 'app-recipe',
@@ -25,10 +26,18 @@ export class recipeComponent implements OnInit {
         authorId: 0,
         recipeId: 0,
     };
+    SelectedDateDialog = false;
+
     recipeUser: any;
     recipeUserImage: any;
     ratedbefore: boolean = false;
-
+    plan: any = {
+        title: "",
+        authorId: 0,
+        recipeId: 0,
+        dateOn:new Date(),
+    };
+    recipedate:Date;
     constructor(
         private recipeService: RecipeService,
         private route: ActivatedRoute,
@@ -36,7 +45,8 @@ export class recipeComponent implements OnInit {
         private router: Router,
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
-        private userService: UserService
+        private userService: UserService,
+        private planmealService:PlanMealsService,
     ) {}
     gotoEdit() {
         this.router.navigate(['editRecipe/', { recipeId: this.recipeId }]);
@@ -154,7 +164,7 @@ export class recipeComponent implements OnInit {
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Success',
-                    detail: res['data'],
+                    detail: "added success",
                     life: 3000,
                 });
             },
@@ -167,5 +177,39 @@ export class recipeComponent implements OnInit {
                 });
             },
         });
+    }
+    gotoAddPlan(){
+        this.SelectedDateDialog=true;
+    }
+    addrecipeplan(){
+        this.plan.authorId = this.userId;
+        this.plan.title = this.recipe["item1"].title;
+        this.plan.recipeId = this.recipe["item1"].id;
+        this.recipedate.setDate(this.recipedate.getDate() + 1);
+
+        this.plan.dateOn = this.recipedate;
+        console.log(this.recipedate);
+        console.log(this.plan);
+        this.planmealService.postPlan(this.plan).subscribe({
+            next: (res) => {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail:"added success",
+                    life: 3000,
+                });
+                new Promise((resolve) => setTimeout(resolve, 1000));
+
+                window.location.reload();
+            },
+            error: (err) => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'error',
+                    detail: err['data'],
+                    life: 3000,
+                });
+            },
+        })
     }
 }

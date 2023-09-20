@@ -2,7 +2,11 @@
     <div class="grid">
         <div class="col-12">
             <p-toast position="top-right"></p-toast>
+            <button pButton pRipple label="Add To Clendar" [style]="{ 'height': '40px','width':'200px','margin':'10px' }"
+                            icon="pi pi-calendar-plus" class="p-button mr-2" (click)="gotoAddPlan()"></button>
+                
             <div class="card">
+                
                 <div class="m-2" style="float: right;">
                     <img [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px' }"
                         [src]="'data:image/jpeg;base64,'+recipe.item5" alt="recipe image" class="card-img-top">
@@ -41,6 +45,16 @@
                     <img width="32" style="vertical-align: middle;" [src]="'data:image/jpeg;base64,'+recipeUserImage">
                     {{recipe["item3"]["item1"]}}
                 </div>
+			    
+                
+                <p-dialog header="Select New Date" [(visible)]="SelectedDateDialog" [modal]="true" [responsive]="true"
+                    [style]="{ 'max-width': '80vw', 'width': '30%' ,'max-height': '80vw', 'height': '70%' }">
+                    <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="recipedate"></p-calendar>
+
+                    <p-button (click)="addrecipeplan()" style="position: absolute; bottom: 20px; right: 20px;">OK</p-button>
+                </p-dialog>
+                
+                
                 <div *ngIf="auth">
 
                     <div class="flex">

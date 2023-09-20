@@ -42,6 +42,11 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-heart',
                         routerLink: ['/myFavorite'],
                     },
+                    {
+                        label: 'My Calender Planes',
+                        icon: 'pi pi-fw pi-calendar-plus',
+                        routerLink: ['/eventcalendar'],
+                    },
                 ],
             },
         ];

@@ -19,7 +19,9 @@ export class FavouriteService {
         });
     }
     getFavouritesUser(userid:number) {
-        return this.http.get(this.baseUrl + '/Favourite/Favouritesofuser?id=' + userid );
+        return this.http.post(this.baseUrl + '/Favourite/Favouritesofuser' , userid  ,{
+            withCredentials: true,
+        });
     }
     deleteFavourite(id:number) {
         return this.http.delete(this.baseUrl + '/Favourite?id=' + id, {
@@ -27,7 +29,9 @@ export class FavouriteService {
         });
     }
     getFavouritesRecipes(userid:number) {
-        return this.http.get(this.baseUrl + '/Favourite?id=' + userid );
+        return this.http.post(this.baseUrl + '/Favourite/FavouritesRecipes' , userid  ,{
+            withCredentials: true,
+        });
     }
 
 }
