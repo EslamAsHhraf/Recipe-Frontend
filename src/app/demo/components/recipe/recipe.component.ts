@@ -6,6 +6,7 @@ import { ProfileService } from '../../service/profile.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Rating } from 'src/app/model/rating';
 import { UserService } from '../../service/user.service';
+import { ShoppingService } from '../../service/shopping.service';
 
 @Component({
     selector: 'app-recipe',
@@ -36,7 +37,8 @@ export class recipeComponent implements OnInit {
         private router: Router,
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
-        private userService: UserService
+        private userService: UserService,
+        private shoppingServices:ShoppingService
     ) {}
     gotoEdit() {
         this.router.navigate(['editRecipe/', { recipeId: this.recipeId }]);
@@ -163,6 +165,37 @@ export class recipeComponent implements OnInit {
                     severity: 'error',
                     summary: 'error',
                     detail: err['data'],
+                    life: 3000,
+                });
+            },
+        });
+    }
+    addShopping() {
+        var products = this.addShopping.map((val) => ({
+            createdBy: this.userId,
+            quantityShopping: 1,
+            quantityPurchased: 0,
+            title: val,
+        }));
+
+        this.addShopping = [];
+        this.shoppingServices.addShopping(products).subscribe({
+            next: (res) => {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Add Products',
+                    life: 3000,
+                });
+                setTimeout(() => {
+                    this.router.navigate(['./shopping']);
+                }, 2000); // 3000 milliseconds (3 seconds)
+            },
+            error: (err) => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'error in add products',
                     life: 3000,
                 });
             },

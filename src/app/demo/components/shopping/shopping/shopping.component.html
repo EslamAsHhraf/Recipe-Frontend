@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="grid" [style]="{ 'font-size': '16px'}">
     <div class="col-12">
         <div class="card px-6 py-6">
             <p-toast position="top-right"></p-toast>
@@ -66,11 +66,11 @@
             </ng-template>
             <ng-template pTemplate="body" let-product>
                 <tr>
-                    <td style="width: 40%; min-width: 10rem">
+                    <td style="width: 40%; min-width: 10rem" [style]="{ 'font-size': '16px','font-weight': 'bold'}">
                         <span class="p-column-title">Name</span>
                         {{ product.title }}
                     </td>
-                    <td style="width: 40%; min-width: 10rem">
+                    <td style="width: 40%; min-width: 10rem" [style]="{ 'font-size': '16px','font-weight': 'bold'}">
                         <span class="p-column-title">Quantity</span>
                         {{ product.quantityShopping }}
                     </td>

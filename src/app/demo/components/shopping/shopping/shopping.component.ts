@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ShoppingService } from 'src/app/demo/service/shopping.service';
 import { Shopping } from 'src/app/model/shopping';
 import { MessageService } from 'primeng/api';
-import { Location } from '@angular/common';
 import { ProfileService } from 'src/app/demo/service/profile.service';
 
 @Component({

@@ -41,6 +41,7 @@
                     <img width="32" style="vertical-align: middle;" [src]="'data:image/jpeg;base64,'+recipeUserImage">
                     {{recipe["item3"]["item1"]}}
                 </div>
+                <div class="flex">
                 <div *ngIf="auth">
 
                     <div class="flex">
@@ -57,6 +58,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="flex-1 flex justify-content-end">
+                 <button pButton pRipple label="Add to Shopping List" [style]="{ 'height': '45px','width':'200px' }"
+                            icon="pi pi-shopping-bag" class="p-button-warning mr-2" (click)="addShopping()"></button>
+                </div>
                 </div>
                 <div class="card" *ngIf="!auth && !ratedbefore">
                     <div>

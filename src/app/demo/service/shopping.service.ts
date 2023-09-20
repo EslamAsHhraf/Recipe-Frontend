@@ -15,6 +15,11 @@ export class ShoppingService {
             withCredentials: true,
         });
     }
+    getPurchased() {
+        return this.http.get(this.baseUrl + '/shopping/getPurchased', {
+            withCredentials: true,
+        });
+    }
     deleteProduct(id) {
         return this.http.delete(this.baseUrl + '/shopping/' + id, {
             withCredentials: true,
