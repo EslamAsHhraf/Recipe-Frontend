@@ -22,6 +22,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from "primeng/calendar";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -50,6 +51,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
         MultiSelectModule,
         AutoCompleteModule,
         FullCalendarModule,
+        ToastModule
     ],
     declarations: [EventcalendarComponent]
 })

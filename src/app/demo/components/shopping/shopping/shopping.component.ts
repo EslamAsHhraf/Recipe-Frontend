@@ -41,6 +41,7 @@ export class ShoppingComponent implements OnInit {
     addProductsDialog: boolean = false;
     editNumber: number = 0;
     userId!: number;
+    addError: boolean = false;
 
     constructor(
         private shoppingServices: ShoppingService,
@@ -151,6 +152,13 @@ export class ShoppingComponent implements OnInit {
         this.shoppingDelete = object;
     }
     addProduct() {
+        if (this.addShopping ==undefined|| this.addShopping.length == 0) {
+            this.addError = true;
+            console.log('Sa');
+            return;
+        }
+        this.addError = false;
+
         this.addProductsDialog = false;
         var products = this.addShopping.map((val) => ({
             createdBy: this.userId,

@@ -8,6 +8,8 @@ import { RecipeService } from '../../service/recipe.service';
 import { Recipe } from 'src/app/model/recipe';
 import { ProfileService } from '../../service/profile.service';
 import interactionPlugin from '@fullcalendar/interaction';
+import { ShoppingService } from '../../service/shopping.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './eventcalendar.component.html',
@@ -59,7 +61,9 @@ export class EventcalendarComponent implements OnInit {
         private messageService: MessageService,
         private recipeService: RecipeService,
         private profileService: ProfileService,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private shoppingServices: ShoppingService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -321,6 +325,46 @@ export class EventcalendarComponent implements OnInit {
             },
         });
     }
-
+    addShopping() {
+        this.recipeService.getRecipebyid(this.meal.recipeId).subscribe({
+            next: (res: any) => {
+                var products = res.data['item2'].map((val) => ({
+                    createdBy: this.userId,
+                    quantityShopping: 1,
+                    quantityPurchased: 0,
+                    title: val.title,
+                }));
+                this.shoppingServices.addShopping(products).subscribe({
+                    next: (res) => {
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: 'Add Products',
+                            life: 3000,
+                        });
+                        setTimeout(() => {
+                            this.router.navigate(['./shopping']);
+                        }, 2000); // 3000 milliseconds (3 seconds)
+                    },
+                    error: (err) => {
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: 'error in add products',
+                            life: 3000,
+                        });
+                    },
+                });
+            },
+            error: () => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: "can't find recipe",
+                    life: 3000,
+                });
+            },
+        });
+    }
     eventsPromise: Promise<EventInput>;
 }

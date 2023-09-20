@@ -79,7 +79,7 @@
                             <button
                                 pButton
                                 pRipple
-                                icon="pi pi-pencil"
+                                icon="pi pi-cart-plus"
                                 class="p-button-rounded p-button-success mr-2"
                                 (click)="editProduct(product)"
                             ></button>
@@ -192,6 +192,8 @@
                     separator=","
                     placeholder="Hint: a, b, c"
                 ></p-chips>
+            <p *ngIf="addError" class="error text-l font-bold">Should add items</p>
+
             </div>
             <ng-template pTemplate="footer">
                 <button

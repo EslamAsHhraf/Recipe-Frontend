@@ -88,8 +88,8 @@ export class DashboardComponent implements OnInit {
                                 this.recipes = result['data'];
                                 this.recipes.forEach((r) => { r.favourited = true; })
                             });
-                            
-                    } 
+
+                    }
             },
         });
 
