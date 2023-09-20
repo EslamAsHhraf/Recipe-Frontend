@@ -75,14 +75,8 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                 ).then((m) => m.MyRecipeModule),
                         },
                         {
-                            path: 'ingredients',
-                            loadChildren: () =>
-                                import(
-                                    './demo/components/ingredients/ingredients.module'
-                                ).then((m) => m.ingredientsModule),
-                        },
-                        {
                             path: 'shopping',
+                            canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
                                     './demo/components/shopping/shopping.module'
