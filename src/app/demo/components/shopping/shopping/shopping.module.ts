@@ -12,6 +12,9 @@ import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { ChipsModule } from 'primeng/chips';
+import { OverlayModule } from 'primeng/overlay';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
     imports: [
@@ -27,7 +30,10 @@ import { FormsModule } from '@angular/forms';
         DropdownModule,
         InputTextModule,
         ToastModule,
-        FormsModule
+        FormsModule,
+        OverlayModule,
+        TabViewModule,
+        ChipsModule,
     ],
     declarations: [ShoppingComponent],
 })

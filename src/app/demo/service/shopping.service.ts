@@ -21,8 +21,25 @@ export class ShoppingService {
         });
     }
     addPurchased(id, quantity) {
-        return this.http.post(this.baseUrl + '/shopping/addPurchased?id=+'+id+'&quantity='+quantity,null ,{
-            withCredentials: true,
-        });
+        return this.http.post(
+            this.baseUrl +
+                '/shopping/addPurchased?id=+' +
+                id +
+                '&quantity=' +
+                quantity,
+            null,
+            {
+                withCredentials: true,
+            }
+        );
+    }
+    addShopping(products) {
+        return this.http.post(
+            this.baseUrl + '/shopping/addShopping',
+            products,
+            {
+                withCredentials: true,
+            }
+        );
     }
 }

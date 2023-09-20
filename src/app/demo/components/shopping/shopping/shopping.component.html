@@ -11,74 +11,197 @@
                 </ng-template>
                 <ng-template pTemplate="right">
                     <div class="my-2">
-                        <button pButton pRipple label="Purchased" icon="pi pi-delete-left" class="p-button-help mr-2"  routerLink="/shopping/purchased"></button>
+                        <button
+                            pButton
+                            pRipple
+                            label="Purchased"
+                            icon="pi pi-delete-left"
+                            class="p-button-help mr-2"
+                            routerLink="/shopping/purchased"
+                        ></button>
                         <button
                             pButton
                             pRipple
                             label="New"
                             icon="pi pi-plus"
                             class="p-button-success mr-2"
-                            routerLink="/addRecipe"
+                            (click)="addProductsDialog = true"
                         ></button>
                     </div>
                 </ng-template>
             </p-toolbar>
         </div>
-        <p-table #dt [value]="shoppings" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['title','quantityShopping']" [paginator]="true"  [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" selectionMode="none" [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Manage Shopping List</h5>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
-                        <th pSortableColumn="quantityShopping">Quantity <p-sortIcon field="quantityShopping"></p-sortIcon></th>
-                        <th>Options</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-product>
-                    <tr>
-                        <td style="width:40%; min-width:10rem;">
-                            <span class="p-column-title">Name</span>
-                            {{product.title}}
-                        </td>
-                        <td style="width:40%; min-width:10rem;">
-                            <span class="p-column-title">Quantity</span>
-                            {{product.quantityShopping}}
-                        </td>
-                        <td>
-                            <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
-                            </div>
-                    </tr>
-                </ng-template>
-            </p-table>
+        <p-table
+            #dt
+            [value]="shoppings"
+            [columns]="cols"
+            responsiveLayout="scroll"
+            [rows]="10"
+            [globalFilterFields]="['title', 'quantityShopping']"
+            [paginator]="true"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            selectionMode="none"
+            [rowHover]="true"
+            dataKey="id"
+        >
+            <ng-template pTemplate="caption">
+                <div
+                    class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                >
+                    <h5 class="m-0">Manage Shopping List</h5>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="title">
+                        Title <p-sortIcon field="title"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="quantityShopping">
+                        Quantity
+                        <p-sortIcon field="quantityShopping"></p-sortIcon>
+                    </th>
+                    <th>Options</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td style="width: 40%; min-width: 10rem">
+                        <span class="p-column-title">Name</span>
+                        {{ product.title }}
+                    </td>
+                    <td style="width: 40%; min-width: 10rem">
+                        <span class="p-column-title">Quantity</span>
+                        {{ product.quantityShopping }}
+                    </td>
+                    <td>
+                        <div class="flex">
+                            <button
+                                pButton
+                                pRipple
+                                icon="pi pi-pencil"
+                                class="p-button-rounded p-button-success mr-2"
+                                (click)="editProduct(product)"
+                            ></button>
+                            <button
+                                pButton
+                                pRipple
+                                icon="pi pi-trash"
+                                class="p-button-rounded p-button-warning"
+                                (click)="deleteProduct(product)"
+                            ></button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
 
-        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Shopping Details" [modal]="true" class="p-fluid">
+        <p-dialog
+            [(visible)]="productDialog"
+            [style]="{ width: '450px' }"
+            header="Shopping Details"
+            [modal]="true"
+            class="p-fluid"
+        >
             <ng-template pTemplate="content">
-
                 <div class="field">
-                    <label for="description">Quantity Shopping</label>
-                    <p-inputNumber type="number" [showButtons]="true"   inputId="integeronly"  [(ngModel)]="shoppingEdit.quantityShopping"  mode="decimal"required [ngClass]="{'ng-invalid ng-dirty': validationMessage !=''}" />
-                    <p *ngIf="validationMessage !=''" class="error">{{validationMessage}}</p>
+                    <label for="description">Add Quantity to be Purchased</label>
+                    <p-inputNumber
+                        type="number"
+                        [showButtons]="true"
+                        inputId="integeronly"
+                        [(ngModel)]="shoppingEdit.quantityShopping"
+                        mode="decimal"
+                        required
+                        [ngClass]="{
+                            'ng-invalid ng-dirty': validationMessage != ''
+                        }"
+                    />
+                    <p *ngIf="validationMessage != ''" class="error">
+                        {{ validationMessage }}
+                    </p>
                 </div>
             </ng-template>
 
             <ng-template pTemplate="footer">
-                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeEdit()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="submit()"></button>
+                <button
+                    pButton
+                    pRipple
+                    label="Cancel"
+                    icon="pi pi-times"
+                    class="p-button-text"
+                    (click)="closeEdit()"
+                ></button>
+                <button
+                    pButton
+                    pRipple
+                    label="Save"
+                    icon="pi pi-check"
+                    class="p-button-text"
+                    (click)="submit()"
+                ></button>
             </ng-template>
         </p-dialog>
-         <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <p-dialog
+            [(visible)]="deleteProductsDialog"
+            header="Confirm"
+            [modal]="true"
+            [style]="{ width: '450px' }"
+        >
             <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="shoppingDelete">Are you sure you want to delete <b>{{shoppingDelete.title}}</b>?</span>
+                <i
+                    class="pi pi-exclamation-triangle mr-3"
+                    style="font-size: 2rem"
+                ></i>
+                <span *ngIf="shoppingDelete"
+                    >Are you sure you want to delete
+                    <b>{{ shoppingDelete.title }}</b
+                    >?</span
+                >
             </div>
             <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-times"
+                    class="p-button-text"
+                    label="No"
+                    (click)="deleteProductsDialog = false"
+                ></button>
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-check"
+                    class="p-button-text"
+                    label="Yes"
+                    (click)="confirmDelete()"
+                ></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog
+            [(visible)]="addProductsDialog"
+            header="Add Products"
+            [modal]="true"
+            [style]="{ width: '450px' }"
+            class="p-fluid"
+        >
+            <div class="w-full mb-3 p-fluid">
+                <p-chips
+                    [(ngModel)]="addShopping"
+                    separator=","
+                    placeholder="Hint: a, b, c"
+                ></p-chips>
+            </div>
+            <ng-template pTemplate="footer">
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-check"
+                    class="p-button-text"
+                    label="ADD"
+                    (click)="addProduct()"
+                ></button>
             </ng-template>
         </p-dialog>
     </div>

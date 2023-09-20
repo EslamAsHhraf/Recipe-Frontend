@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ShoppingService } from 'src/app/demo/service/shopping.service';
 import { Shopping } from 'src/app/model/shopping';
 import { MessageService } from 'primeng/api';
+import { Location } from '@angular/common';
+import { ProfileService } from 'src/app/demo/service/profile.service';
 
 @Component({
     selector: 'app-shopping',
@@ -31,16 +33,21 @@ export class ShoppingComponent implements OnInit {
         title: '',
         createdBy: 0,
     };
+    addShopping: string[] | undefined;
     shoppingDelete: Shopping;
     cols: any[] = [];
     validationMessage: string = '';
     productDialog: boolean = false;
     deleteProductsDialog: boolean = false;
+    addProductsDialog: boolean = false;
     editNumber: number = 0;
+    userId!: number;
+
     constructor(
         private shoppingServices: ShoppingService,
         private router: Router,
-        private messageService: MessageService
+        private messageService: MessageService,
+        private profileService: ProfileService
     ) {}
 
     ngOnInit() {
@@ -56,6 +63,14 @@ export class ShoppingComponent implements OnInit {
             { field: 'title', header: 'Title' },
             { field: 'quantityShopping', header: 'Quantity' },
         ];
+        this.profileService.getMe().subscribe({
+            next: (res: any) => {
+                this.userId = res?.data?.user?.id;
+            },
+            error: () => {
+                this.router.navigate(['./auth/login']);
+            },
+        });
     }
     editProduct(object: Shopping) {
         this.shoppingEdit = object;
@@ -69,7 +84,8 @@ export class ShoppingComponent implements OnInit {
 
         if (
             this.shoppingEdit.quantityShopping > this.editNumber ||
-            this.shoppingEdit.quantityShopping<=0 ) {
+            this.shoppingEdit.quantityShopping <= 0
+        ) {
             this.validationMessage = `Number must be less than or equal to ${this.editNumber} and large than 0`;
             this.shoppingEdit.quantityShopping = this.editNumber;
         } else {
@@ -134,5 +150,37 @@ export class ShoppingComponent implements OnInit {
     deleteProduct(object: Shopping) {
         this.deleteProductsDialog = true;
         this.shoppingDelete = object;
+    }
+    addProduct() {
+        this.addProductsDialog = false;
+        var products = this.addShopping.map((val) => ({
+            createdBy: this.userId,
+            quantityShopping: 1,
+            quantityPurchased: 0,
+            title: val,
+        }));
+
+        this.addShopping = [];
+        this.shoppingServices.addShopping(products).subscribe({
+            next: (res) => {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Add Products',
+                    life: 3000,
+                });
+                setTimeout(() => {
+                    location.reload();
+                }, 2000); // 3000 milliseconds (3 seconds)
+            },
+            error: (err) => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'error in add products',
+                    life: 3000,
+                });
+            },
+        });
     }
 }
