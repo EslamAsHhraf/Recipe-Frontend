@@ -171,14 +171,12 @@ export class recipeComponent implements OnInit {
         });
     }
     addShopping() {
-        var products = this.addShopping.map((val) => ({
+        var products = this.recipe['item2'].map((val) => ({
             createdBy: this.userId,
             quantityShopping: 1,
             quantityPurchased: 0,
-            title: val,
+            title: val.title,
         }));
-
-        this.addShopping = [];
         this.shoppingServices.addShopping(products).subscribe({
             next: (res) => {
                 this.messageService.add({
