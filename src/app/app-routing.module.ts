@@ -29,6 +29,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                         },
                         {
                             path: 'myFavorite',
+                            canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
                                     './demo/components/dashboard/dashboard.module'
@@ -42,7 +43,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                     './demo/components/manageRecipe/addRecipe/addRecipe.module'
                                 ).then((m) => m.AddRecipeModule),
                         },
-                     
+
                         {
                             path: 'user',
                             canActivate: [AuthGuardService],
@@ -75,11 +76,12 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                 ).then((m) => m.MyRecipeModule),
                         },
                         {
-                            path: 'ingredients',
+                            path: 'shopping',
+                            canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
-                                    './demo/components/ingredients/ingredients.module'
-                                ).then((m) => m.ingredientsModule),
+                                    './demo/components/shopping/shopping.module'
+                                ).then((m) => m.ShoppingModule),
                         },
                         {
                             path: 'eventcalendar',

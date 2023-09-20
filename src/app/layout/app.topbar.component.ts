@@ -3,7 +3,6 @@ import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
 import { Recipe } from '../model/recipe';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-topbar',
@@ -23,11 +22,9 @@ export class AppTopBarComponent {
     constructor(
         public layoutService: LayoutService,
         private router: Router,
-        private cookieService: CookieService
     ) {}
     ngOnInit() {
-        this.login = this.cookieService.check("token");
-        console.log(this.login)
+
     }
     searchRecipes(name: string) {
         this.router.navigate(['search', { searchTerm: name }]);

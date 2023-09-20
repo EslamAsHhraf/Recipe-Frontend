@@ -7,6 +7,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Rating } from 'src/app/model/Rating';
 import { UserService } from '../../service/user.service';
 import { PlanMealsService } from '../../service/planmeals.service';
+import { ShoppingService } from '../../service/shopping.service';
 
 @Component({
     selector: 'app-recipe',
@@ -32,12 +33,12 @@ export class recipeComponent implements OnInit {
     recipeUserImage: any;
     ratedbefore: boolean = false;
     plan: any = {
-        title: "",
+        title: '',
         authorId: 0,
         recipeId: 0,
-        dateOn:new Date(),
+        dateOn: new Date(),
     };
-    recipedate:Date;
+    recipedate: Date;
     constructor(
         private recipeService: RecipeService,
         private route: ActivatedRoute,
@@ -46,7 +47,8 @@ export class recipeComponent implements OnInit {
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
         private userService: UserService,
-        private planmealService:PlanMealsService,
+        private planmealService: PlanMealsService,
+        private shoppingServices: ShoppingService
     ) {}
     gotoEdit() {
         this.router.navigate(['editRecipe/', { recipeId: this.recipeId }]);
@@ -56,9 +58,8 @@ export class recipeComponent implements OnInit {
             next: (res: any) => {
                 this.userId = res?.data?.user?.id;
 
-                this.recipeService
-                    .getRecipebyid(this.recipeId)
-                    .subscribe((result: Recipe) => {
+                this.recipeService.getRecipebyid(this.recipeId).subscribe({
+                    next: (result: Recipe) => {
                         this.recipe = result['data'];
                         let stepsist = this.recipe['item1'].steps.split('*');
                         this.stepsList = stepsist;
@@ -74,7 +75,11 @@ export class recipeComponent implements OnInit {
                                 this.recipeUserImage =
                                     result?.data?.image?.fileContents;
                             });
-                    });
+                    },
+                    error: () => {
+                        this.router.navigate(['./notfound']);
+                    },
+                });
                 this.reciperating = [];
                 var ratedUser;
                 var ratedUserImage;
@@ -164,7 +169,7 @@ export class recipeComponent implements OnInit {
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Success',
-                    detail: "added success",
+                    detail: 'added success',
                     life: 3000,
                 });
             },
@@ -178,13 +183,13 @@ export class recipeComponent implements OnInit {
             },
         });
     }
-    gotoAddPlan(){
-        this.SelectedDateDialog=true;
+    gotoAddPlan() {
+        this.SelectedDateDialog = true;
     }
-    addrecipeplan(){
+    addrecipeplan() {
         this.plan.authorId = this.userId;
-        this.plan.title = this.recipe["item1"].title;
-        this.plan.recipeId = this.recipe["item1"].id;
+        this.plan.title = this.recipe['item1'].title;
+        this.plan.recipeId = this.recipe['item1'].id;
         this.recipedate.setDate(this.recipedate.getDate() + 1);
 
         this.plan.dateOn = this.recipedate;
@@ -195,7 +200,7 @@ export class recipeComponent implements OnInit {
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Success',
-                    detail:"added success",
+                    detail: 'added success',
                     life: 3000,
                 });
                 new Promise((resolve) => setTimeout(resolve, 1000));
@@ -210,6 +215,35 @@ export class recipeComponent implements OnInit {
                     life: 3000,
                 });
             },
-        })
+        });
+    }
+    addShopping() {
+        var products = this.recipe['item2'].map((val) => ({
+            createdBy: this.userId,
+            quantityShopping: 1,
+            quantityPurchased: 0,
+            title: val.title,
+        }));
+        this.shoppingServices.addShopping(products).subscribe({
+            next: (res) => {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Add Products',
+                    life: 3000,
+                });
+                setTimeout(() => {
+                    this.router.navigate(['./shopping']);
+                }, 2000); // 3000 milliseconds (3 seconds)
+            },
+            error: (err) => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'error in add products',
+                    life: 3000,
+                });
+            },
+        });
     }
 }
