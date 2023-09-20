@@ -29,6 +29,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                         },
                         {
                             path: 'myFavorite',
+                            canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
                                     './demo/components/dashboard/dashboard.module'
