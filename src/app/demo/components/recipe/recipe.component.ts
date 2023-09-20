@@ -38,7 +38,7 @@ export class recipeComponent implements OnInit {
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
         private userService: UserService,
-        private shoppingServices:ShoppingService
+        private shoppingServices: ShoppingService
     ) {}
     gotoEdit() {
         this.router.navigate(['editRecipe/', { recipeId: this.recipeId }]);
@@ -48,9 +48,8 @@ export class recipeComponent implements OnInit {
             next: (res: any) => {
                 this.userId = res?.data?.user?.id;
 
-                this.recipeService
-                    .getRecipebyid(this.recipeId)
-                    .subscribe((result: Recipe) => {
+                this.recipeService.getRecipebyid(this.recipeId).subscribe({
+                    next: (result: Recipe) => {
                         this.recipe = result['data'];
                         let stepsist = this.recipe['item1'].steps.split('*');
                         this.stepsList = stepsist;
@@ -66,7 +65,11 @@ export class recipeComponent implements OnInit {
                                 this.recipeUserImage =
                                     result?.data?.image?.fileContents;
                             });
-                    });
+                    },
+                    error: () => {
+                        this.router.navigate(['./notfound']);
+                    },
+                });
                 this.reciperating = [];
                 var ratedUser;
                 var ratedUserImage;
