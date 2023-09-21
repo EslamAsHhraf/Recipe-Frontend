@@ -21,9 +21,9 @@
 
                 <span class="text-900 font-medium text-xl">Steps:</span>
                 <div class="block text-500 font-medium mb-3">
-                    <div *ngFor="let step of stepsList">
+                    <div *ngFor="let step of stepsList let i = index">
                         <div class="list-unstyled">
-                            {{step}}
+                           <strong >{{i+1}}</strong>:  {{step}}
                         </div>
                     </div>
                 </div>
