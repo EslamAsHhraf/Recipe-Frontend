@@ -66,6 +66,7 @@ export class ShoppingComponent implements OnInit {
         this.profileService.getMe().subscribe({
             next: (res: any) => {
                 this.userId = res?.data?.user?.id;
+                console.log(this.userId);
             },
             error: () => {
                 this.router.navigate(['./auth/login']);

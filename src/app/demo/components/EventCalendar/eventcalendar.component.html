@@ -5,13 +5,14 @@
     [style]="{ 'max-width': '80vw', 'width': '30%' ,'max-height': '80vw', 'height': '70%' }">
     <div *ngIf="!userSelectedDate" style="margin-bottom: 50px;">
         <div><label for="datePicker">Select a date:</label></div>
-        <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="selectedDate"></p-calendar>
+        <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="selectedDate" [style]="{ 'width': '100%' }"></p-calendar>
     </div>
     <div class="recipe-dropdown">
 
         <div><label for="recipeSelect">Select a recipe:</label></div>
         <p-autoComplete id="recipeAutoComplete" [(ngModel)]="selectedRecipe" [suggestions]="recipes"
-            (completeMethod)="filterRecipes($event)" field="title" [dropdown]="true"></p-autoComplete>
+            (completeMethod)="filterRecipes($event)" field="title" [dropdown]="true" [style]="{ 'width': '100%' }"></p-autoComplete>
+            <div><img src="assets/Images/favicon-180.png" alt="logo" style="position: absolute; bottom: 50px; left: 50px;"></div>
 
     </div>
     <p-button (click)="onRecipeSelected()" style="position: absolute; bottom: 20px; right: 20px;">OK</p-button>
@@ -20,7 +21,8 @@
 
 <p-dialog header="Select New Date" [(visible)]="displayEditdate" [modal]="true" [responsive]="true"
     [style]="{ 'max-width': '80vw', 'width': '30%' ,'max-height': '80vw', 'height': '70%' }">
-    <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="newSelectedDate"></p-calendar>
+    <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="newSelectedDate" [style]="{ 'width': '100%' }"></p-calendar>
+    <div><img src="assets/Images/favicon-180.png" alt="logo" style="position: absolute; bottom: 50px; left: 50px;"></div>
 
     <p-button (click)="onEditing()" style="position: absolute; bottom: 20px; right: 20px;">OK</p-button>
 </p-dialog>
