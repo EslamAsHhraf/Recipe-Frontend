@@ -88,7 +88,7 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                             canActivate: [AuthGuardService],
                             loadChildren: () =>
                                 import(
-                                    './demo/components/EventCalendar/eventcalendar.module'
+                                    './demo/components/eventCalendar/eventcalendar.module'
                                 ).then((m) => m.EventCalendarModule),
                         },
                     ],

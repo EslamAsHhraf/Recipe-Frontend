@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { AppTopBarComponent } from './app.topbar.component';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
+import { AppFooterComponent } from './app.footer.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import { AppLayoutComponent } from "./app.layout.component";
         AppMenuComponent,
         AppSidebarComponent,
         AppLayoutComponent,
+        AppFooterComponent
     ],
     imports: [
         BrowserModule,
