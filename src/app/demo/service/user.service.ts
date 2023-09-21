@@ -11,7 +11,9 @@ export class UserService {
 
     constructor(private http: HttpClient) {}
     getUser(id :number) {
-        return this.http.get(this.baseUrl + '/auth/' +id);
+        return this.http.get(this.baseUrl + '/auth/' + id, {
+            withCredentials: true,
+        });
     }
 
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Rating } from 'src/app/model/Rating';
+import { Rating } from 'src/app/model/rating';
 
 @Injectable({
     providedIn: 'root',
@@ -48,10 +48,14 @@ export class RecipeService {
         });
     }
     getRecipeRating(ratingid : number) {
-        return this.http.get(this.baseUrl + '/rating?recipeid=' + ratingid );
+        return this.http.get(this.baseUrl + '/rating?recipeid=' + ratingid, {
+            withCredentials: true,
+        });
     }
     getRecipebyid(recipeid: number) {
-        return this.http.get(this.baseUrl + '/recipe/' + recipeid);
+        return this.http.get(this.baseUrl + '/recipe/' + recipeid, {
+            withCredentials: true,
+        });
     }
     searchMoreRecipe(name: string[]) {
         return this.http.get(

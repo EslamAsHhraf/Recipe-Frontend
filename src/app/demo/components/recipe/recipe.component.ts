@@ -4,7 +4,7 @@ import { RecipeService } from '../../service/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../service/profile.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Rating } from 'src/app/model/Rating';
+import { Rating } from 'src/app/model/rating';
 import { UserService } from '../../service/user.service';
 import { PlanMealsService } from '../../service/planmeals.service';
 import { ShoppingService } from '../../service/shopping.service';

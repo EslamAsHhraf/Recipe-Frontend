@@ -23,7 +23,7 @@ export class AuthGuardService {
             }),
             catchError((error) => {
                 console.error('An error occurred:', error);
-                 this.router.navigate(['/auth/login']);
+                this.router.navigate(['/auth/login']);
                 return of(false); // Return a boolean indicating failure
             })
         );

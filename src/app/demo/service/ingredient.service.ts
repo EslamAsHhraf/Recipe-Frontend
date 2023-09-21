@@ -14,6 +14,8 @@ export class IngredientService {
     constructor(private http: HttpClient) {}
 
     getIngredients() {
-        return this.http.get(this.baseUrl + '/ingredients');
+        return this.http.get(this.baseUrl + '/ingredients', {
+            withCredentials: true,
+        });
     }
 }
