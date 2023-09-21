@@ -7,7 +7,7 @@ import { RecipeService } from 'src/app/demo/service/recipe.service';
 import { MessageService } from 'primeng/api';
 import { RecipeIngredientsServices } from 'src/app/demo/service/recipeIngredients.service';
 import { ProfileService } from 'src/app/demo/service/profile.service';
-import { Ingredient } from 'src/app/model/Ingredients';
+import { Ingredient } from 'src/app/model/ingredients';
 
 @Component({
     selector: 'app-addRecipe',
