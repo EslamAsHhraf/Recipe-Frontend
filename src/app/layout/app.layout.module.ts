@@ -16,6 +16,8 @@ import { AppTopBarComponent } from './app.topbar.component';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { AppFooterComponent } from './app.footer.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
     declarations: [
@@ -38,6 +40,8 @@ import { AppFooterComponent } from './app.footer.component';
         InputSwitchModule,
         RippleModule,
         RouterModule,
+        PanelMenuModule,
+        MenuModule
     ],
     exports: [AppLayoutComponent]
 })

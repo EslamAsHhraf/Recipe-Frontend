@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
     templateUrl: './app.topbar.component.html',
 })
 export class AppTopBarComponent {
-    items!: MenuItem[];
     recipes: Recipe[] = [];
     login: boolean = false;
 
@@ -19,12 +18,8 @@ export class AppTopBarComponent {
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(
-        public layoutService: LayoutService,
-        private router: Router,
-    ) {}
+    constructor(public layoutService: LayoutService, private router: Router) {}
     ngOnInit() {
-
     }
     searchRecipes(name: string) {
         this.router.navigate(['search', { searchTerm: name }]);

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/model/category';
 import { Profile } from 'src/app/model/profile';
-import { Recipe } from '../model/Recipe';
 import { ProfileService } from '../../../service/profile.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -15,7 +14,6 @@ export class ProfileComponent implements OnInit {
     productDialog: boolean = false;
     ingredient!: string;
     userImage: any;
-    recipe: Recipe[] = [];
     category: Category[] = [];
     profile: Profile = {
         id: 0,
