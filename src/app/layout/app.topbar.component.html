@@ -8,13 +8,14 @@
         <i class="pi pi-bars"></i>
     </button>
 
-    <button class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
-        <i class="pi pi-ellipsis-v"></i>
+    <button *ngIf="login" class="p-link layout-topbar-menu-button layout-topbar-button" (click)="menu.toggle($event)">
+        <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" alt="Profile Image" [src]="'data:image/jpeg;base64,'+userImage" />
     </button>
-    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button class="p-link layout-topbar-button">
-            <i class="pi pi-calendar"></i>
-            <span>Calendar</span>
+    <div *ngIf="login" #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <button class="p-link flex align-items-center gap-2"  [style]="{ 'box-shadow':'none' }" (click)="menu.toggle($event)">
+            <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" alt="Profile Image" [src]="'data:image/jpeg;base64,'+userImage" />
         </button>
     </div>
+    <p-menu  #menu [model]="items" [popup]="true"></p-menu>
+
 </div>
