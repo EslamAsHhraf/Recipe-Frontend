@@ -22,6 +22,35 @@ import {PasswordStrict} from 'src/app/demo/service/passwordStrict.service'
                 color: green;
                 font-weight: bold;
             }
+            :host ::ng-deep .hero {
+                height: 100vh;
+                margin: 0px;
+                background: linear-gradient(
+                        rgba(15, 23, 43, 0.9),
+                        rgba(15, 23, 43, 0.9)
+                    ),
+                    url('../../../../../assets/Images/bg-hero.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            :host ::ng-deep .image {
+                height: 100vh;
+                background: linear-gradient(
+                        rgba(15, 23, 43, 0.5),
+                        rgba(15, 23, 43, 0.5)
+                    ),
+                    url('../../../../../assets/images/hero-register.jpeg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            @media (max-width: 1170px) {
+                .small-screen {
+                    display: none;
+                }
+            }
         `,
     ],
 })
@@ -33,16 +62,16 @@ export class RegisterComponent {
     };
     confirmPassword: string = '';
     feedbackArr;
-    errorMessage:string='';
+    errorMessage: string = '';
     constructor(
         private authenticationService: AuthenticationService,
         private router: Router,
         public layoutService: LayoutService,
-        private passwordStrict:PasswordStrict
+        private passwordStrict: PasswordStrict
     ) {}
     ngOnInit() {
         this.feedbackArr = this.passwordStrict.data();
-  }
+    }
     onSubmit() {
         this.error[0] = this.user.username == '' ? true : false;
         this.error[1] = this.user.password == '' ? true : false;
@@ -54,16 +83,16 @@ export class RegisterComponent {
         if (!this.error.some((item) => item === true)) {
             this.authenticationService.registerUser(this.user).subscribe({
                 next: () => {
-                    this.errorMessage='';
+                    this.errorMessage = '';
                     this.router.navigate(['./auth/login']);
                 },
                 error: (err) => {
                     // put error message
                     console.log(err);
-                     this.errorMessage =
-                         'title' in err.error.data
-                             ? err?.error.data?.title
-                             : 'Error, Can you try again after 5 Minutes';
+                    this.errorMessage =
+                        'title' in err.error.data
+                            ? err?.error.data?.title
+                            : 'Error, Can you try again after 5 Minutes';
                 },
             });
         }
@@ -82,9 +111,7 @@ export class RegisterComponent {
         )
             ? true
             : false;
-        this.feedbackArr[4].status = /\d/.test(
-            this.user.password
-        )
+        this.feedbackArr[4].status = /\d/.test(this.user.password)
             ? true
             : false;
     }

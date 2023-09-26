@@ -16,7 +16,33 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
                 color: var(--primary-color) !important;
             }
             :host ::ng-deep .error {
-                color :red;
+                color: red;
+            }
+            :host ::ng-deep .hero {
+                height: 100vh;
+                margin: 0px;
+                background: linear-gradient(
+                        rgba(15, 23, 43, 0.9),
+                        rgba(15, 23, 43, 0.9)
+                    ),
+                    url('../../../../../assets/Images/bg-hero.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            img {
+                width: 50%;
+                max-width: 100%;
+                height: auto;
+                -webkit-animation: spin 35s linear infinite;
+                -moz-animation: spin 35s linear infinite;
+                animation: spin 35s linear infinite;
+            }
+
+            @media (max-width: 1170px) {
+                .small-screen {
+                    display: none;
+                }
             }
         `,
     ],
@@ -37,8 +63,8 @@ export class LoginComponent {
     ) {}
 
     onSubmit() {
-        this.error[0] = (this.user.username == '') ? true : false;
-        this.error[1] = (this.user.password == '') ? true : false;
+        this.error[0] = this.user.username == '' ? true : false;
+        this.error[1] = this.user.password == '' ? true : false;
         if (!this.error.some((item) => item === true)) {
             this.authenticationService.loginUser(this.user).subscribe({
                 next: () => {
