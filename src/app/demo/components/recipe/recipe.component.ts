@@ -111,19 +111,20 @@ export class recipeComponent implements OnInit {
         });
 
         this.recipeId = parseInt(this.route.snapshot.params['recipeId']);
-
-        this.recipeService
-            .getRecipebyid(this.recipeId)
-            .subscribe((result: Recipe) => {
-                this.recipe = result;
-                let stepsist = this.recipe['item1'].steps.split('*');
-                this.stepsList = stepsist;
-                if (this.userId === this.recipe['item3']['item2']) {
-                    this.auth = true;
-                } else {
-                    this.auth = false;
-                }
-            });
+        if (this.recipeId) {
+            this.recipeService
+                .getRecipebyid(this.recipeId)
+                .subscribe((result: Recipe) => {
+                    this.recipe = result;
+                    let stepsist = this.recipe['item1']?.steps.split('*');
+                    this.stepsList = stepsist;
+                    if (this.userId === this.recipe['item3']?.item2) {
+                        this.auth = true;
+                    } else {
+                        this.auth = false;
+                    }
+                });
+        }
     }
     confirm1() {
         var res = this.confirmationService.confirm({

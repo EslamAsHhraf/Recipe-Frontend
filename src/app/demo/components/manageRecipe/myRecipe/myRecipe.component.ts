@@ -3,13 +3,14 @@ import { RecipeService } from '../../../service/recipe.service';
 import { ProfileService } from '../../../service/profile.service';
 import { Router } from '@angular/router';
 import { Recipe } from '../../../../model/recipe';
+import { RecipeData } from 'src/app/model/recipeData';
 
 @Component({
     selector: 'app-myRecipe',
     templateUrl: './myRecipe.component.html',
 })
 export class MyRecipeComponent implements OnInit {
-    recipes: Recipe[];
+    recipes: RecipeData[];
     userId!: number;
 
     constructor(
