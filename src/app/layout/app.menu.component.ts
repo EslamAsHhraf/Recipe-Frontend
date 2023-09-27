@@ -40,7 +40,6 @@ export class AppMenuComponent implements OnInit {
                         },
                         {
                             label: 'My Recipe',
-                            
                             icon: 'pi pi-fw pi-list',
                             routerLink: ['/myRecipe'],
                         },

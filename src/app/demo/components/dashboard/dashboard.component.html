@@ -1,12 +1,13 @@
 <div class="col-12 md:col-12">
     <div class="grid">
-        <div class="col-6 mb-2 lg:col-3 lg:mb-0" ><span class="p-input-icon-left"><input type="text"
-                    pinputtext="" placeholder="Search" class="p-inputtext p-component p-element"
+        <div class="col-6 mb-2 lg:col-3 lg:mb-0"><span class="p-input-icon-left"><input type="text" pinputtext=""
+                    placeholder="Search" class="p-inputtext p-component p-element"
                     (keyup.enter)="searchRecipes($event.target.value)"><i class="pi pi-search"></i></span></div>
 
         <div class="col-12 md:col-3">
             <p-autoComplete [(ngModel)]="value" [style]="{'width':'200px'}" (keyup.enter)="addSearchTerm(value)"
-                [suggestions]="filteredIngredient" (completeMethod)="searchIngredient()" [dropdown]="true" placeholder="Ingredients">
+                [suggestions]="filteredIngredient" (completeMethod)="searchIngredient()" [dropdown]="true"
+                placeholder="Ingredients">
             </p-autoComplete>
 
         </div>
@@ -31,32 +32,40 @@
 <div class="col-12 md:col-12">
 
     <div class="grid">
-        <div class="col-12 md:col-4" *ngFor="let recipe of recipes">
-            <div class="card mb-0">
+        <div class="col-12 md:col-6 lg:col-4" [style]="{ 'height': '550px' }" *ngFor="let recipe of recipes">
+            <div class="card mb-0 ">
+                <div class="flex align-items-center justify-content-center mb-2">
+                     <img class="align-self-center" [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' ,'max-width':'100%'}"
+                        [src]="'data:image/jpeg;base64,'+recipe.image" alt="recipe image" class="card-img-top">
+                </div>
                 <div class="flex justify-content-between mb-3">
                     <div>
-                        <span class="text-900 font-medium text-xl">{{ recipe.title }}</span>
-                        <div class="block text-500 font-medium mb-3">{{ recipe.description.slice(0,150) }}</div>
+                        <span class="text-900 font-medium text-xl">{{ recipe.recipe.title }}</span>
+                        <div class="block text-500 font-medium mb-3">{{ recipe.recipe.description.slice(0,150) }}</div>
                     </div>
-                    <button *ngIf="recipe.favourited" (click)="deleteFavourite(recipe)" pbutton="" pripple=""
-                        type="button" icon="pi pi-heart-fill" style="font-size: 50rem ;color : rgb(201,16,16);"
+                    <button *ngIf="recipe.recipe.favourited" (click)="deleteFavourite(recipe.recipe)" pbutton=""
+                        pripple="" type="button" icon="pi pi-heart-fill"
+                        style="font-size: 50rem ;color : rgb(201,16,16);"
                         class="p-element p-ripple p-button-rounded p-button-help p-button-text p-button p-component p-button-icon-only"
                         ng-reflect-icon="pi pi-heart-fill">
                         <span class="p-button-icon pi pi-heart-fill" aria-hidden="true"></span><span
                             class="p-ink"></span></button>
 
-                    <button *ngIf="!recipe.favourited" (click)="postFavourite(recipe)" pbutton="" pripple=""
-                        type="button" icon="pi pi-heart" style="font-size: 50rem ;color : rgb(201,16,16);"
+                    <button *ngIf="!recipe.recipe.favourited" (click)="postFavourite(recipe.recipe)" pbutton=""
+                        pripple="" type="button" icon="pi pi-heart" style="font-size: 50rem ;color : rgb(201,16,16);"
                         class="p-element p-ripple p-button-rounded p-button-help p-button-text p-button p-component p-button-icon-only"
                         ng-reflect-icon="pi pi-heart">
                         <span class="p-button-icon pi pi-heart" aria-hidden="true"></span><span
                             class="p-ink"></span></button>
 
                 </div>
-                <p-rating [ngModel]="recipe.totalRating" [readonly]="true" [cancel]="false"
+                <div class="flex align-items-center justify-content-between">
+                <p-rating [ngModel]="recipe.recipe.totalRating" [readonly]="true" [cancel]="false"
                     styleClass="mb-2"></p-rating>
-                <span class="text-500" style="float: right;"><button (click)="viewdetails(recipe)" pButton pRipple>See
+                <span class="text-500" style="float: right;"><button (click)="viewdetails(recipe.recipe)" pButton
+                        pRipple>See
                         more</button></span>
+                </div>
             </div>
         </div>
     </div>

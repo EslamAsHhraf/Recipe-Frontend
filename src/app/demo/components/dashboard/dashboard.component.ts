@@ -7,6 +7,7 @@ import { Favourite } from 'src/app/model/favourite';
 import { FavouriteService } from '../../service/favourite.service';
 import { ProfileService } from '../../service/profile.service';
 import { MessageService } from 'primeng/api';
+import { RecipeData } from 'src/app/model/recipeData';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -41,7 +42,7 @@ import { MessageService } from 'primeng/api';
 })
 export class DashboardComponent implements OnInit {
     recipeID?: number;
-    recipes: Recipe[] = [];
+    recipes: RecipeData[] = [];
     searchTerms: string[] = [];
     filteredIngredient: string[] = [];
     value?: string;
@@ -71,25 +72,26 @@ export class DashboardComponent implements OnInit {
                     .subscribe((result: Favourite[]) => {
                         this.favouritedRecipes = result['data'];
                         this.recipes.forEach((r) => {
-                            const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.id
+                            const favourited = this.favouritedRecipes?.find(
+                                (fr) => fr.recipeId === r.recipe.id
                             );
                             if (favourited) {
-                                r.favourited = true;
+                                r.recipe.favourited = true;
                             } else {
-                                r.favourited = false;
+                                r.recipe.favourited = false;
                             }
                         });
                     });
-                    if (this.router.url=='/myFavorite') {
-                        this.favouritrService
-                            .getFavouritesRecipes(this.userId)
-                            .subscribe((result: Recipe[]) => {
-                                this.recipes = result['data'];
-                                this.recipes.forEach((r) => { r.favourited = true; })
+                if (this.router.url == '/myFavorite') {
+                    this.favouritrService
+                        .getFavouritesRecipes(this.userId)
+                        .subscribe((result: Recipe[]) => {
+                            this.recipes = result['data'];
+                            this.recipes.forEach((r) => {
+                                r.recipe.favourited = true;
                             });
-
-                    }
+                        });
+                }
             },
         });
 
@@ -101,29 +103,29 @@ export class DashboardComponent implements OnInit {
                         this.recipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.id
+                                (fr) => fr.recipeId === r.recipe.id
                             );
                             if (favourited) {
-                                r.favourited = true;
+                                r.recipe.favourited = true;
                             } else {
-                                r.favourited = false;
+                                r.recipe.favourited = false;
                             }
                         });
                     });
-            }
-            else {
+            } else {
                 this.recipeService
                     .getRecipes()
                     .subscribe((result: Recipe[]) => {
                         this.recipes = result['data'];
-                        this.recipes.forEach((r) => {
-                            const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.id
+                        console.log(result['data']);
+                        result['data'].forEach((r) => {
+                            const favourited = this.favouritedRecipes?.find(
+                                (fr) => fr.recipeId === r.recipe.id
                             );
                             if (favourited) {
-                                r.favourited = true;
+                                r.recipe.favourited = true;
                             } else {
-                                r.favourited = false;
+                                r.recipe.favourited = false;
                             }
                         });
                     });
@@ -152,7 +154,7 @@ export class DashboardComponent implements OnInit {
                 });
             },
         });
-         new Promise(resolve => setTimeout(resolve, 800));
+        new Promise((resolve) => setTimeout(resolve, 800));
 
         window.location.reload();
     }
@@ -180,7 +182,7 @@ export class DashboardComponent implements OnInit {
                 });
             },
         });
-        new Promise(resolve => setTimeout(resolve, 800));
+        new Promise((resolve) => setTimeout(resolve, 800));
 
         window.location.reload();
     }
@@ -208,12 +210,12 @@ export class DashboardComponent implements OnInit {
                         this.recipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.id
+                                (fr) => fr.recipeId === r.recipe.id
                             );
                             if (favourited) {
-                                r.favourited = true;
+                                r.recipe.favourited = true;
                             } else {
-                                r.favourited = false;
+                                r.recipe.favourited = false;
                             }
                         });
                     });
@@ -223,12 +225,12 @@ export class DashboardComponent implements OnInit {
                 this.recipes = result['data'];
                 this.recipes.forEach((r) => {
                     const favourited = this.favouritedRecipes.find(
-                        (fr) => fr.recipeId === r.id
+                        (fr) => fr.recipeId === r.recipe.id
                     );
                     if (favourited) {
-                        r.favourited = true;
+                        r.recipe.favourited = true;
                     } else {
-                        r.favourited = false;
+                        r.recipe.favourited = false;
                     }
                 });
             });
@@ -248,12 +250,12 @@ export class DashboardComponent implements OnInit {
                         this.recipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.id
+                                (fr) => fr.recipeId === r.recipe.id
                             );
                             if (favourited) {
-                                r.favourited = true;
+                                r.recipe.favourited = true;
                             } else {
-                                r.favourited = false;
+                                r.recipe.favourited = false;
                             }
                         });
                     });
@@ -264,12 +266,12 @@ export class DashboardComponent implements OnInit {
                         this.recipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.id
+                                (fr) => fr.recipeId === r.recipe.id
                             );
                             if (favourited) {
-                                r.favourited = true;
+                                r.recipe.favourited = true;
                             } else {
-                                r.favourited = false;
+                                r.recipe.favourited = false;
                             }
                         });
                     });
