@@ -18,6 +18,7 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MultiSelectModule } from "primeng/multiselect";
 import { AutoCompleteModule } from "primeng/autocomplete";
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
@@ -41,6 +42,7 @@ import { AutoCompleteModule } from "primeng/autocomplete";
         CheckboxModule,
         MultiSelectModule,
         AutoCompleteModule,
+        PaginatorModule
     ],
     declarations: [DashboardComponent]
 })

@@ -1,4 +1,4 @@
-<div class="grid">
+<div >
     <div class="col-12">
         <div class="card px-6 py-6">
             <p-toolbar styleClass="mb-4">
@@ -17,8 +17,8 @@
 
             <div class="col-12 ">
                 <div class="grid">
-                    <div class="col-12 md:col-6 lg:col-4" [style]="{ 'height': '550px' }"
-                        *ngFor="let recipe of recipes">
+                    <div class="col-12 md:col-6 lg:col-4 mt-3" [style]="{ 'height': '575px' }"
+                        *ngFor="let recipe of recipes | slice:(first):(first+rows)">
                         <div class="card mb-0 ">
                             <div class="flex align-items-center justify-content-center mb-2">
                                 <img class="align-self-center"
@@ -30,15 +30,9 @@
                                 <div>
                                     <span class="text-900 font-medium text-xl">{{ recipe.recipe.title }}</span>
                                     <div class="block text-500 font-medium mb-3">
-                                        {{ recipe.recipe.description.slice(0,150) }}</div>
+                                        {{ recipe.recipe.description.slice(0,150) }}
+                                    </div>
                                 </div>
-                                <button *ngIf="recipe.recipe.favourited" (click)="deleteFavourite(recipe.recipe)"
-                                    pbutton="" pripple="" type="button" icon="pi pi-heart-fill"
-                                    style="font-size: 50rem ;color : rgb(201,16,16);"
-                                    class="p-element p-ripple p-button-rounded p-button-help p-button-text p-button p-component p-button-icon-only"
-                                    ng-reflect-icon="pi pi-heart-fill">
-                                    <span class="p-button-icon pi pi-heart-fill" aria-hidden="true"></span><span
-                                        class="p-ink"></span></button>
 
                             </div>
                             <div class="flex align-items-center justify-content-between">
@@ -57,5 +51,9 @@
 
         </div>
 
+    </div>
+    <div class="card flex justify-content-center mt-3">
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows"
+            [totalRecords]="recipes.length"></p-paginator>
     </div>
 </div>

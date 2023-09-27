@@ -8,6 +8,7 @@ import { FavouriteService } from '../../service/favourite.service';
 import { ProfileService } from '../../service/profile.service';
 import { MessageService } from 'primeng/api';
 import { RecipeData } from 'src/app/model/recipeData';
+import { PageEvent } from 'src/app/model/pageEvent';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -54,6 +55,9 @@ export class DashboardComponent implements OnInit {
         authorId: 0,
         recipeId: 0,
     };
+    first: number = 0;
+    rows: number = 6;
+
     constructor(
         private recipeService: RecipeService,
         private profileService: ProfileService,
@@ -281,5 +285,9 @@ export class DashboardComponent implements OnInit {
     viewdetails(recipe: Recipe) {
         this.recipeID = recipe.id;
         this.router.navigate(['recipe/', { recipeId: this.recipeID }]);
+    }
+    onPageChange(event: PageEvent) {
+        this.first = event.first;
+        this.rows = event.rows;
     }
 }

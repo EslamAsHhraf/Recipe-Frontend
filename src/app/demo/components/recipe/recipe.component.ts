@@ -8,7 +8,6 @@ import { Rating } from 'src/app/model/rating';
 import { UserService } from '../../service/user.service';
 import { PlanMealsService } from '../../service/planmeals.service';
 import { ShoppingService } from '../../service/shopping.service';
-
 @Component({
     selector: 'app-recipe',
     templateUrl: './recipe.component.html',
@@ -39,6 +38,8 @@ export class recipeComponent implements OnInit {
         dateOn: new Date(),
     };
     recipedate: Date;
+
+
     constructor(
         private recipeService: RecipeService,
         private route: ActivatedRoute,
@@ -247,4 +248,5 @@ export class recipeComponent implements OnInit {
             },
         });
     }
+
 }

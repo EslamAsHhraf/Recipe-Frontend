@@ -9,6 +9,7 @@ import { RatingModule } from 'primeng/rating';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DataViewModule } from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
     imports: [
         CommonModule,
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
         RatingModule,
         PanelMenuModule,
         DataViewModule,
-        FormsModule
+        FormsModule,
+        PaginatorModule,
     ],
     declarations: [MyRecipeComponent],
 })

@@ -4,6 +4,7 @@ import { ProfileService } from '../../../service/profile.service';
 import { Router } from '@angular/router';
 import { Recipe } from '../../../../model/recipe';
 import { RecipeData } from 'src/app/model/recipeData';
+import { PageEvent } from 'src/app/model/pageEvent';
 
 @Component({
     selector: 'app-myRecipe',
@@ -12,7 +13,8 @@ import { RecipeData } from 'src/app/model/recipeData';
 export class MyRecipeComponent implements OnInit {
     recipes: RecipeData[];
     userId!: number;
-
+    first: number = 0;
+    rows: number = 6;
     constructor(
         private recipeService: RecipeService,
         private profileService: ProfileService,
@@ -37,5 +39,9 @@ export class MyRecipeComponent implements OnInit {
     viewdetails(recipe: any) {
         console.log(recipe.id);
         this.router.navigate(['recipe/', { recipeId: recipe.id }]);
+    }
+    onPageChange(event: PageEvent) {
+        this.first = event.first;
+        this.rows = event.rows;
     }
 }
