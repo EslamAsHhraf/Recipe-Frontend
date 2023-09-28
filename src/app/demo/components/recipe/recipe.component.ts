@@ -11,6 +11,21 @@ import { ShoppingService } from '../../service/shopping.service';
 @Component({
     selector: 'app-recipe',
     templateUrl: './recipe.component.html',
+    styles: [
+        `
+            .image {
+                float: right;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+            @media (max-width: 700px) {
+                .image {
+                    float: none;
+                }
+            }
+        `,
+    ],
     providers: [ConfirmationService, MessageService],
 })
 export class recipeComponent implements OnInit {
@@ -38,7 +53,6 @@ export class recipeComponent implements OnInit {
         dateOn: new Date(),
     };
     recipedate: Date;
-
 
     constructor(
         private recipeService: RecipeService,
@@ -248,5 +262,4 @@ export class recipeComponent implements OnInit {
             },
         });
     }
-
 }

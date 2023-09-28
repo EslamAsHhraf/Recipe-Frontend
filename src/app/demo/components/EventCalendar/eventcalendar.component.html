@@ -18,13 +18,14 @@
         <div *ngIf="userSelectedDate" style="height: 50px;">
         </div>
     </div>
-    <div class="flex flex-column mt-5 text-lg gap-3 mb-3">
+    <div class="flex flex-column mt-5 text-lg gap-2 mb-3">
         <strong>Note:</strong>
-        <p class="text-900">You Will added recipe to your meal plan. You can also add ingredients of recipe to shopping
+        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> You Will added recipe to your meal plan. You can also add ingredients of recipe to shopping
             list</p>
-        <p>Enjoy your meal and happy cooking!. ❤️</p>
+        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Enjoy preparing and savoring this delightful meal! If you have any dietary preferences or allergies, don't forget to make necessary substitutions.</p>
+        <p>Happy cooking!. ❤️</p>
     </div>
-    <div [style]="{'height': '100px' }" class="flex justify-content-end align-items-end">
+    <div [style]="{'height': '70px' }" class="flex justify-content-end align-items-end">
         <p-button (click)="onRecipeSelected()" style="  right: 0px;">OK</p-button>
     </div>
 
@@ -34,13 +35,14 @@
     [style]="{ 'min-width': '300px', 'width': '475px' , 'height': '525px' }">
     <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="newSelectedDate"
         [style]="{ 'width': '100%' }"></p-calendar>
-    <div class="flex flex-column mt-5 text-lg gap-3 mb-3">
+    <div class="flex flex-column mt-5 text-lg gap-2 mb-3"  [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}">
         <strong>Note:</strong>
-        <p class="text-900">You Will added recipe to your meal plan. You can also add ingredients of recipe to shopping
+        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Will added recipe to your meal plan. You can also add ingredients of recipe to shopping
             list</p>
-        <p>Enjoy your meal and happy cooking!. ❤️</p>
+        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Enjoy preparing and savoring this delightful meal! If you have any dietary preferences or allergies, don't forget to make necessary substitutions.</p>
+        <p>Happy cooking!. ❤️</p>
     </div>
-    <div [style]="{'height': '150px' }" class="flex justify-content-end align-items-end">
+    <div [style]="{'height': '100px' }" class="flex justify-content-end align-items-end">
         <p-button (click)="onEditing()" style="  right: 0px;">OK</p-button>
     </div>
 </p-dialog>
