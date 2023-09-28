@@ -10,6 +10,7 @@ import { ProfileService } from '../../service/profile.service';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ShoppingService } from '../../service/shopping.service';
 import { Router } from '@angular/router';
+import { RecipeData } from 'src/app/model/recipeData';
 
 @Component({
     templateUrl: './eventcalendar.component.html',
@@ -45,7 +46,7 @@ import { Router } from '@angular/router';
 export class EventcalendarComponent implements OnInit {
     selectedDate: string;
     selectedRecipe: Recipe;
-    recipes: Recipe[];
+    recipes: Recipe[]=[];
     planmeals: any[];
     userId!: number;
     events: { title: string; date: string }[];
@@ -67,8 +68,10 @@ export class EventcalendarComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.recipeService.getRecipes().subscribe((result: Recipe[]) => {
-            this.recipes = result['data'];
+        this.recipeService.getRecipes().subscribe((result: RecipeData[]) => {
+             result['data'].forEach(element => {
+                this.recipes.push(element.recipe);
+             });
         });
 
         this.profileService.getMe().subscribe({
@@ -150,7 +153,7 @@ export class EventcalendarComponent implements OnInit {
                         this.messageService.add({
                             severity: 'error',
                             summary: 'Success',
-                            detail: "Error happen can't Delete",
+                            detail: "Error happen can't Update",
                             life: 3000,
                         });
                     },
@@ -287,7 +290,7 @@ export class EventcalendarComponent implements OnInit {
                 this.messageService.add({
                     severity: 'error',
                     summary: 'Success',
-                    detail: "Error happen can't Delete",
+                    detail: "Error happen can't Update",
                     life: 3000,
                 });
             },

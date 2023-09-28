@@ -2,48 +2,65 @@
 <p-toast position="top-right"></p-toast>
 
 <p-dialog header="Select a Recipe" [(visible)]="displayRecipeDialog" [modal]="true" [responsive]="true"
-    [style]="{ 'max-width': '80vw', 'width': '30%' ,'max-height': '80vw', 'height': '70%' }">
-    <div *ngIf="!userSelectedDate" style="margin-bottom: 50px;">
-        <div><label for="datePicker">Select a date:</label></div>
-        <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="selectedDate" [style]="{ 'width': '100%' }"></p-calendar>
+    [style]="{ 'min-width': '350px', 'width': '500px' , 'height': '600px' }">
+    <div *ngIf="!userSelectedDate" style="margin-bottom: 50px;" class="mb-2">
+        <div class="mb-2"><label [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}" for="datePicker">Select a date:</label></div>
+        <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="selectedDate"
+            [style]="{ 'width': '100%' }"></p-calendar>
     </div>
+
     <div class="recipe-dropdown">
 
-        <div><label for="recipeSelect">Select a recipe:</label></div>
+        <div class="mb-2"><label for="recipeSelect" [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}">Select a recipe:</label></div>
         <p-autoComplete id="recipeAutoComplete" [(ngModel)]="selectedRecipe" [suggestions]="recipes"
-            (completeMethod)="filterRecipes($event)" field="title" [dropdown]="true" [style]="{ 'width': '100%' }"></p-autoComplete>
-            <div><img src="assets/Images/favicon-180.png" alt="logo" style="position: absolute; bottom: 50px; left: 50px;"></div>
-
+            (completeMethod)="filterRecipes($event)" field="title" [dropdown]="true"
+            [style]="{ 'width': '100%' }"></p-autoComplete>
+        <div *ngIf="userSelectedDate" style="height: 50px;">
+        </div>
     </div>
-    <p-button (click)="onRecipeSelected()" style="position: absolute; bottom: 20px; right: 20px;">OK</p-button>
+    <div class="flex flex-column mt-5 text-lg gap-3 mb-3">
+        <strong>Note:</strong>
+        <p class="text-900">You Will added recipe to your meal plan. You can also add ingredients of recipe to shopping
+            list</p>
+        <p>Enjoy your meal and happy cooking!. ❤️</p>
+    </div>
+    <div [style]="{'height': '100px' }" class="flex justify-content-end align-items-end">
+        <p-button (click)="onRecipeSelected()" style="  right: 0px;">OK</p-button>
+    </div>
 
 </p-dialog>
 
 <p-dialog header="Select New Date" [(visible)]="displayEditdate" [modal]="true" [responsive]="true"
-    [style]="{ 'max-width': '80vw', 'width': '30%' ,'max-height': '80vw', 'height': '70%' }">
-    <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="newSelectedDate" [style]="{ 'width': '100%' }"></p-calendar>
-    <div><img src="assets/Images/favicon-180.png" alt="logo" style="position: absolute; bottom: 50px; left: 50px;"></div>
-
-    <p-button (click)="onEditing()" style="position: absolute; bottom: 20px; right: 20px;">OK</p-button>
+    [style]="{ 'min-width': '300px', 'width': '475px' , 'height': '525px' }">
+    <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="newSelectedDate"
+        [style]="{ 'width': '100%' }"></p-calendar>
+    <div class="flex flex-column mt-5 text-lg gap-3 mb-3">
+        <strong>Note:</strong>
+        <p class="text-900">You Will added recipe to your meal plan. You can also add ingredients of recipe to shopping
+            list</p>
+        <p>Enjoy your meal and happy cooking!. ❤️</p>
+    </div>
+    <div [style]="{'height': '150px' }" class="flex justify-content-end align-items-end">
+        <p-button (click)="onEditing()" style="  right: 0px;">OK</p-button>
+    </div>
 </p-dialog>
 
-<div >
-    <p-dialog  header="Select Option" [(visible)]="displayeditdeleteDialog" [modal]="true" [responsive]="true"
+<div>
+    <p-dialog header="Select Option" [(visible)]="displayeditdeleteDialog" [modal]="true" [responsive]="true"
         [style]="{ 'width': '500px' , 'height': '200px' }">
-       <div class="flex align-items-center justify-content-center flex-wrap " style="height:100%;">
-            <button pButton pRipple label="Edit"
-                [style]="{ 'height': '40px','width':'100px' }" icon="pi pi-cog"
+        <div class="flex align-items-center justify-content-center flex-wrap " style="height:100%;">
+            <button pButton pRipple label="Edit" [style]="{ 'height': '40px','width':'100px' }" icon="pi pi-cog"
                 class="p-button-success mr-2" (click)="onClick()"></button>
-                    <button pButton pRipple label="Add to Shopping" [style]="{ 'height': '45px','width':'200px' }"
-                        icon="pi pi-shopping-bag" class="p-button-warning mr-2" (click)="addShopping()"></button>
-                    <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete"
-                        class="p-button-danger" style="width:auto;"></button>
-</div>
+            <button pButton pRipple label="Add to Shopping" [style]="{ 'height': '45px','width':'200px' }"
+                icon="pi pi-shopping-bag" class="p-button-warning mr-2" (click)="addShopping()"></button>
+            <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete" class="p-button-danger"
+                style="width:auto;"></button>
+        </div>
     </p-dialog>
 
 </div>
-            <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle"
-                message="Are you sure you want to proceed?" [style]="{width: '350px'}"
-                acceptButtonStyleClass="p-button-text" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle"
+    message="Are you sure you want to proceed?" [style]="{width: '350px'}" acceptButtonStyleClass="p-button-text"
+    rejectButtonStyleClass="p-button-text"></p-confirmDialog>
 <full-calendar [options]="calendarOptions" [events]="eventsPromise | async">
 </full-calendar>
