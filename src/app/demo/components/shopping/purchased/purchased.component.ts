@@ -52,7 +52,7 @@ export class PurchasedComponent implements OnInit {
         ];
         this.profileService.getMe().subscribe({
             next: (res: any) => {
-                this.userId = res?.data?.user?.id;
+                this.userId = res?.data?.id;
             },
             error: () => {
                 this.router.navigate(['./auth/login']);

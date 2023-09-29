@@ -87,7 +87,7 @@ export class EditRecipeComponent implements OnInit {
                 this.recipeImage = res?.data.item5;
                 this.profileService.getMe().subscribe({
                     next: (res: any) => {
-                        if (res.data.user.id != this.recipe.createdBy) {
+                        if (res.data.id != this.recipe.createdBy) {
                             this.router.navigate(['./access']);
                         }
                     },

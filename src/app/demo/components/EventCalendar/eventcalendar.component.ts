@@ -76,7 +76,7 @@ export class EventcalendarComponent implements OnInit {
 
         this.profileService.getMe().subscribe({
             next: (res: any) => {
-                this.userId = res?.data?.user?.id;
+                this.userId = res?.data?.id;
                 this.planMealService
                     .getallUsersplanes(this.userId)
                     .subscribe((result: PlanMeal[]) => {

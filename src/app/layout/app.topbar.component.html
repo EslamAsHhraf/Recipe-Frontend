@@ -9,11 +9,11 @@
     </button>
 
     <button *ngIf="login" class="p-link layout-topbar-menu-button layout-topbar-button" (click)="menu.toggle($event)">
-        <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" alt="Profile Image" [src]="'data:image/jpeg;base64,'+userImage" />
+        <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" alt="Profile Image" [src]="userImage" />
     </button>
     <div *ngIf="login" #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
         <button class="p-link flex align-items-center gap-2"  [style]="{ 'box-shadow':'none' }" (click)="menu.toggle($event)">
-            <img [style]="{ 'height': '40px','width':'40px','border-radius':'50%' }" alt="Profile Image" [src]="'data:image/jpeg;base64,'+userImage" />
+            <img [style]="{ 'height': '40px','width':'40px','border-radius':'50%' }" alt="Profile Image" [src]="userImage" />
         </button>
     </div>
     <p-menu  #menu [model]="items" [popup]="true"></p-menu>

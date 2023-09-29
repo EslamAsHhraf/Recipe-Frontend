@@ -34,9 +34,9 @@ export class AppTopBarComponent {
     ngOnInit() {
         this.profileService.getMe().subscribe({
             next: (res: any) => {
-                this.profile.id = res?.data?.user?.id;
-                this.profile.name = res?.data?.user?.name;
-                this.userImage = res?.data?.image;
+                this.profile.id = res?.data?.id;
+                this.profile.name = res?.data?.name;
+                this.userImage = res?.data?.imageFile;
                 this.login = true;
             },
         });

@@ -2,12 +2,13 @@
     <div class="grid">
         <div class="col-12">
             <p-toast position="top-right"></p-toast>
-            <button pButton pRipple label="Add To Clendar" [style]="{ 'height': '40px','width':'200px','margin':'10px' }"
-                            icon="pi pi-calendar-plus" class="p-button mr-2" (click)="gotoAddPlan()"></button>
+            <button pButton pRipple label="Add To Clendar"
+                [style]="{ 'height': '40px','width':'200px','margin':'10px' }" icon="pi pi-calendar-plus"
+                class="p-button mr-2" (click)="gotoAddPlan()"></button>
 
             <div class="card">
 
-                <div class="m-2 image" >
+                <div class="m-2 image">
                     <img [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' }"
                         [src]="'data:image/jpeg;base64,'+recipe.item5" alt="recipe image" class="card-img-top">
                     <div>
@@ -17,13 +18,16 @@
                     </div>
                 </div>
                 <span class="text-900 text-xl font-semibold mb-2">{{recipe["item1"]?.title}}</span>
-                <div class="block text-500 mb-3" [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}" >{{recipe["item1"]?.description}}</div>
+                <div class="block text-500 mb-3"
+                    [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
+                    {{recipe["item1"]?.description}}</div>
 
-                <span class="text-900 font-medium text-xl " >Steps:</span>
-                <div class="block text-500 font-medium mb-3 mt-3"  >
-                    <div class="mb-1 "   *ngFor="let step of stepsList let i = index">
-                        <div class="list-unstyled" [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                           <strong >{{i+1}}</strong>:  {{step}}
+                <span class="text-900 font-medium text-xl ">Steps:</span>
+                <div class="block text-500 font-medium mb-3 mt-3">
+                    <div class="mb-1 " *ngFor="let step of stepsList let i = index">
+                        <div class="list-unstyled"
+                            [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
+                            <strong>{{i+1}}</strong>: {{step}}
                         </div>
                     </div>
                 </div>
@@ -31,52 +35,68 @@
                 <ul class="list-unstyled">
                     <div class="block text-500 font-medium mb-3">
 
-                        <li *ngFor='let ingredient of recipe["item2"]' [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
+                        <li *ngFor='let ingredient of recipe["item2"]'
+                            [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
                             <span class="mr-2">{{ingredient.quantity}}</span> {{ingredient.title}}
                         </li>
                     </div>
                 </ul>
                 <div class="list-unstyled"><span class="text-900 font-medium text-xl">Category: </span>
-                    <div class="block text-500 mb-3 mt-2" [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                        {{recipe["item4"]?.title}}</div>
+                    <div class="block text-500 mb-3 mt-2"
+                        [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
+                        {{recipe["item4"]?.title}}
+                    </div>
                 </div>
                 <span class="text-900 font-medium text-xl mb-2">Created by: </span>
-                <div class="block text-500 mb-3 mt-2" [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                    <img width="32" style="vertical-align: middle;" [src]="'data:image/jpeg;base64,'+recipeUserImage">
+                <div class="block text-500 mb-3 mt-2"
+                    [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
+                    <img width="32" style="vertical-align: middle;" [src]="recipeUserImage">
                     {{recipe["item3"]?.item1}}
                 </div>
 
 
                 <p-dialog header="Select New Date" [(visible)]="SelectedDateDialog" [modal]="true" [responsive]="true"
-                    [style]="{ 'max-width': '80vw', 'width': '30%' ,'max-height': '80vw', 'height': '70%' }">
+                    [style]="{ 'min-width': '350px', 'width': '500px' , 'height': '550px' }">
                     <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="recipedate"></p-calendar>
-
-                    <p-button (click)="addrecipeplan()" style="position: absolute; bottom: 20px; right: 20px;">OK</p-button>
+                    <div class="flex flex-column mt-5 text-lg gap-2 mb-3">
+                        <strong>Note:</strong>
+                        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> You Will
+                            added recipe to your meal plan. You can also add ingredients of recipe to shopping
+                            list</p>
+                        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Enjoy
+                            preparing and savoring this delightful meal! If you have any dietary preferences or
+                            allergies, don't forget to make necessary substitutions.</p>
+                        <p>Happy cooking!. ❤️</p>
+                    </div>
+                    <div [style]="{'height': '70px' }" class="flex justify-content-end align-items-end">
+                        <p-button (click)="addrecipeplan()" style="  right: 0px;">OK</p-button>
+                    </div>
                 </p-dialog>
 
 
                 <div class="flex flex-wrap mb-3">
-                <div *ngIf="auth">
+                    <div *ngIf="auth">
 
-                    <div class="flex">
-                        <button pButton pRipple label="Edit" [style]="{ 'height': '40px','width':'100px' }"
-                            icon="pi pi-cog" class="p-button-success mr-2" (click)="gotoEdit()"></button>
-                        <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle"
-                            message="Are you sure you want to proceed?" [style]="{width: '350px'}"
-                            acceptButtonStyleClass="p-button-text"
-                            rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-                        <div class="grid">
-                            <div class="col-12">
-                                <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete"
-                                    class="p-button-danger" style="width:auto;"></button>
+                        <div class="flex">
+                            <button pButton pRipple label="Edit" [style]="{ 'height': '40px','width':'100px' }"
+                                icon="pi pi-cog" class="p-button-success mr-2" (click)="gotoEdit()"></button>
+                            <p-confirmDialog header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle"
+                                message="Are you sure you want to proceed?" [style]="{width: '350px'}"
+                                acceptButtonStyleClass="p-button-text"
+                                rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+                            <div class="grid">
+                                <div class="col-12">
+                                    <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete"
+                                        class="p-button-danger" style="width:auto;"></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="flex-1 flex justify-content-end">
-                 <button pButton pRipple label="Add to Shopping List" [style]="{ 'height': '45px','width':'220px' }"
-                            icon="pi pi-shopping-bag" class="p-button-warning mr-2" (click)="addShopping()"></button>
-                </div>
+                    <div class="flex-1 flex justify-content-end">
+                        <button pButton pRipple label="Add to Shopping List"
+                            [style]="{ 'height': '45px','width':'220px' }" icon="pi pi-shopping-bag"
+                            class="p-button-warning mr-2" (click)="addShopping()"></button>
+                    </div>
                 </div>
                 <div class="card" *ngIf="!auth && !ratedbefore">
                     <div>
@@ -86,7 +106,7 @@
                                     <input id="float-input" type="text" [(ngModel)]="title" pInputText>
                                     <label for="float-input">Leave Comment</label>
                                 </span>
-                                <div >
+                                <div>
                                     <p-rating [(ngModel)]="rate"></p-rating>
                                 </div>
 
@@ -104,12 +124,14 @@
                         <div class="card">
                             <div>
                                 <p-rating [ngModel]="raterec.rate.rate" [readonly]="true" [cancel]="false"
-                                styleClass="mb-2"></p-rating>
+                                    styleClass="mb-2"></p-rating>
                                 <div class="block text-500 font-medium mb-3">
-                                    {{raterec.rate.title}}</div>
+                                    {{raterec.rate.title}}
+                                </div>
                                 <div class="block text-500 font-medium mb-3">
-                                    <img width="32" style="vertical-align: middle;" [src]="'data:image/jpeg;base64,'+raterec.ratedUserImage">
-                                       By {{raterec.ratedUser.item1}}</div>
+                                    <img width="32" style="vertical-align: middle;" [src]="raterec.ratedUserImage">
+                                    By {{raterec.ratedUser?.name}}
+                                </div>
                             </div>
 
                         </div>

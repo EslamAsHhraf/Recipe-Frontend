@@ -65,7 +65,7 @@ export class ShoppingComponent implements OnInit {
         ];
         this.profileService.getMe().subscribe({
             next: (res: any) => {
-                this.userId = res?.data?.user?.id;
+                this.userId = res?.data?.id;
                 console.log(this.userId);
             },
             error: () => {

@@ -71,7 +71,7 @@ export class recipeComponent implements OnInit {
     ngOnInit() {
         this.profileService.getMe().subscribe({
             next: (res: any) => {
-                this.userId = res?.data?.user?.id;
+                this.userId = res?.data?.id;
 
                 this.recipeService.getRecipebyid(this.recipeId).subscribe({
                     next: (result: Recipe) => {
@@ -88,7 +88,7 @@ export class recipeComponent implements OnInit {
                             .subscribe((result: any) => {
                                 this.recipeUser = result['data'];
                                 this.recipeUserImage =
-                                    result?.data?.image?.fileContents;
+                                    result?.data?.image;
                             });
                     },
                     error: () => {
@@ -110,7 +110,7 @@ export class recipeComponent implements OnInit {
                                 .subscribe((res: any) => {
                                     ratedUser = res?.data?.user;
                                     ratedUserImage =
-                                        res?.data?.image?.fileContents;
+                                        res?.data?.image;
                                     this.reciperating.push({
                                         rate: rate,
                                         ratedUser: ratedUser,
@@ -226,7 +226,7 @@ export class recipeComponent implements OnInit {
             error: (err) => {
                 this.messageService.add({
                     severity: 'error',
-                    summary: 'error',
+                    summary: 'you add this recipe to this day before',
                     detail: err['data'],
                     life: 3000,
                 });
