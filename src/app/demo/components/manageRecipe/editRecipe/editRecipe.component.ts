@@ -53,7 +53,6 @@ export class EditRecipeComponent implements OnInit {
     selectedCategory: Category;
     ingredients: string[] = [];
     selectedFile: FormData = new FormData();
-    recipeImage: any;
 
     constructor(
         private recipeService: RecipeService,
@@ -84,7 +83,6 @@ export class EditRecipeComponent implements OnInit {
                 this.recipe.category = res?.data.item1?.category;
                 this.recipe.totalRating = res?.data.item1?.totalRating;
                 this.recipe.imageFile = res?.data.item1?.imageFile;
-                this.recipeImage = res?.data.item5;
                 this.profileService.getMe().subscribe({
                     next: (res: any) => {
                         if (res.data.id != this.recipe.createdBy) {
@@ -149,11 +147,34 @@ export class EditRecipeComponent implements OnInit {
         var ingredientsData: Ingredient[] = [];
         this.recipeService.editRecipe(this.recipe, this.recipeId).subscribe({
             next: () => {
-                if (this.selectedFile.has('imageFile'))
-                {
+                if (this.selectedFile.has('imageFile')) {
                     this.recipeService
                         .updateImage(this.recipeId, this.selectedFile)
-                        .subscribe({});
+                        .subscribe({
+                            next: () => {
+                                this.errorMessage = '';
+                                this.messageService.add({
+                                    severity: 'success',
+                                    summary: 'Success',
+                                    detail: 'Edit Recipe',
+                                    life: 3000,
+                                });
+                                setTimeout(() => {
+                                    this.router.navigate(['./myRecipe']);
+                                }, 3000); // 3000 milliseconds (3 seconds)
+                            },
+                            error: (err) => {
+                                // put error message
+                                if (err.status == 401) {
+                                } else {
+                                    console.log(err);
+                                    this.errorMessage =
+                                        'title' in err.error.data
+                                            ? err?.error.data?.title
+                                            : 'Error, Can you try again after 5 Minutes';
+                                }
+                            },
+                        });
                 }
                 this.ingredients.forEach((element, index) => {
                     ingredientsData.push({
@@ -167,17 +188,6 @@ export class EditRecipeComponent implements OnInit {
                 this.recipeIngredientsServices
                     .addListIngredients(ingredientsData)
                     .subscribe({});
-
-                this.errorMessage = '';
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Success',
-                    detail: 'Edit Recipe',
-                    life: 3000,
-                });
-                setTimeout(() => {
-                    this.router.navigate(['./myRecipe']);
-                }, 3000); // 3000 milliseconds (3 seconds)
             },
             error: (err) => {
                 // put error message

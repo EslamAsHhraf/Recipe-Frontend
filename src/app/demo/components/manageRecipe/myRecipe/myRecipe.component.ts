@@ -3,7 +3,6 @@ import { RecipeService } from '../../../service/recipe.service';
 import { ProfileService } from '../../../service/profile.service';
 import { Router } from '@angular/router';
 import { Recipe } from '../../../../model/recipe';
-import { RecipeData } from 'src/app/model/recipeData';
 import { PageEvent } from 'src/app/model/pageEvent';
 
 @Component({
@@ -11,7 +10,7 @@ import { PageEvent } from 'src/app/model/pageEvent';
     templateUrl: './myRecipe.component.html',
 })
 export class MyRecipeComponent implements OnInit {
-    recipes: RecipeData[];
+    recipes: Recipe[];
     userId!: number;
     first: number = 0;
     rows: number = 6;
@@ -33,7 +32,6 @@ export class MyRecipeComponent implements OnInit {
         this.recipeService.getMyRecipes().subscribe((res: any) => {
             console.log(res);
             this.recipes = res.data;
-            console.log(this.recipes);
         });
     }
     viewdetails(recipe: any) {

@@ -10,7 +10,6 @@ import { ProfileService } from '../../service/profile.service';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ShoppingService } from '../../service/shopping.service';
 import { Router } from '@angular/router';
-import { RecipeData } from 'src/app/model/recipeData';
 
 @Component({
     templateUrl: './eventcalendar.component.html',
@@ -68,10 +67,8 @@ export class EventcalendarComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.recipeService.getRecipes().subscribe((result: RecipeData[]) => {
-             result['data'].forEach(element => {
-                this.recipes.push(element.recipe);
-             });
+        this.recipeService.getRecipes().subscribe((result: Recipe[]) => {
+             this.recipes=result['data']
         });
 
         this.profileService.getMe().subscribe({

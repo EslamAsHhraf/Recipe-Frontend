@@ -10,7 +10,7 @@
 
                 <div class="m-2 image">
                     <img [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' }"
-                        [src]="'data:image/jpeg;base64,'+recipe.item5" alt="recipe image" class="card-img-top">
+                        [src]="recipe.item1.imageFile" alt="recipe image" class="card-img-top">
                     <div>
                         <span class="text-900 font-medium text-xl">Total Rating : </span>
                         <p-rating [ngModel]="recipe['item1']?.totalRating" [readonly]="true" [cancel]="false"

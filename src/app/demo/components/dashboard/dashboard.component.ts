@@ -7,7 +7,6 @@ import { Favourite } from 'src/app/model/favourite';
 import { FavouriteService } from '../../service/favourite.service';
 import { ProfileService } from '../../service/profile.service';
 import { MessageService } from 'primeng/api';
-import { RecipeData } from 'src/app/model/recipeData';
 import { PageEvent } from 'src/app/model/pageEvent';
 
 @Component({
@@ -43,7 +42,7 @@ import { PageEvent } from 'src/app/model/pageEvent';
 })
 export class DashboardComponent implements OnInit {
     recipeID?: number;
-    recipes: RecipeData[] = [];
+    recipes: Recipe[] = [];
     searchTerms: string[] = [];
     filteredIngredient: string[] = [];
     value?: string;
@@ -77,12 +76,12 @@ export class DashboardComponent implements OnInit {
                         this.favouritedRecipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes?.find(
-                                (fr) => fr.recipeId === r.recipe.id
+                                (fr) => fr.recipeId === r.id
                             );
                             if (favourited) {
-                                r.recipe.favourited = true;
+                                r.favourited = true;
                             } else {
-                                r.recipe.favourited = false;
+                                r.favourited = false;
                             }
                         });
                     });
@@ -92,7 +91,7 @@ export class DashboardComponent implements OnInit {
                         .subscribe((result: Recipe[]) => {
                             this.recipes = result['data'];
                             this.recipes.forEach((r) => {
-                                r.recipe.favourited = true;
+                                r.favourited = true;
                             });
                         });
                 }
@@ -107,12 +106,12 @@ export class DashboardComponent implements OnInit {
                         this.recipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.recipe.id
+                                (fr) => fr.recipeId === r.id
                             );
                             if (favourited) {
-                                r.recipe.favourited = true;
+                                r.favourited = true;
                             } else {
-                                r.recipe.favourited = false;
+                                r.favourited = false;
                             }
                         });
                     });
@@ -214,12 +213,12 @@ export class DashboardComponent implements OnInit {
                         this.recipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.recipe.id
+                                (fr) => fr.recipeId === r.id
                             );
                             if (favourited) {
-                                r.recipe.favourited = true;
+                                r.favourited = true;
                             } else {
-                                r.recipe.favourited = false;
+                                r.favourited = false;
                             }
                         });
                     });
@@ -229,12 +228,12 @@ export class DashboardComponent implements OnInit {
                 this.recipes = result['data'];
                 this.recipes.forEach((r) => {
                     const favourited = this.favouritedRecipes.find(
-                        (fr) => fr.recipeId === r.recipe.id
+                        (fr) => fr.recipeId === r.id
                     );
                     if (favourited) {
-                        r.recipe.favourited = true;
+                        r.favourited = true;
                     } else {
-                        r.recipe.favourited = false;
+                        r.favourited = false;
                     }
                 });
             });
@@ -254,12 +253,12 @@ export class DashboardComponent implements OnInit {
                         this.recipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.recipe.id
+                                (fr) => fr.recipeId === r.id
                             );
                             if (favourited) {
-                                r.recipe.favourited = true;
+                                r.favourited = true;
                             } else {
-                                r.recipe.favourited = false;
+                                r.favourited = false;
                             }
                         });
                     });
@@ -270,12 +269,12 @@ export class DashboardComponent implements OnInit {
                         this.recipes = result['data'];
                         this.recipes.forEach((r) => {
                             const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.recipe.id
+                                (fr) => fr.recipeId === r.id
                             );
                             if (favourited) {
-                                r.recipe.favourited = true;
+                                r.favourited = true;
                             } else {
-                                r.recipe.favourited = false;
+                                r.favourited = false;
                             }
                         });
                     });

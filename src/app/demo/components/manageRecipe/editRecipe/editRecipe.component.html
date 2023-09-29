@@ -42,7 +42,7 @@
                 <div>
                 <div class="mb-3">
                     <img [style]="{ height: '250px', width: '250px' }" alt="Recipe Image"
-                   [src]="'data:image/jpeg;base64,'+recipeImage" />
+                   [src]="recipe.imageFile" />
                 </div>
                 <p-fileUpload mode="basic" (onSelect)="onFileSelect($event)" accept="image/jpeg"
                     [maxFileSize]="1000000" label="import" chooseLabel="Change Recipe Picture"
