@@ -46,7 +46,7 @@ export class AddRecipeComponent implements OnInit {
     userId!: number;
     error: boolean[] = [false, false, false, false, false];
     category: Category[];
-    ingredients: string[] | undefined;
+    ingredients: string[] =[];
     selectedFile: FormData = new FormData();
     steps: string[] = [];
     oneStep: string;
@@ -123,6 +123,8 @@ export class AddRecipeComponent implements OnInit {
         this.error[1] = this.recipe.description.trim() == '' ? true : false;
         this.error[2] = this.steps.length == 0 ? true : false;
         this.error[3] = this.selectedFile.has('imageFile') ? false : true;
+        this.error[4] = this.ingredients.length == 0 ? true : false;
+        console.log(this.error)
         this.recipe.steps = this.steps.join('*');
         var ingredientsData: Ingredient[] = [];
         if (!this.error.some((item) => item === true)) {

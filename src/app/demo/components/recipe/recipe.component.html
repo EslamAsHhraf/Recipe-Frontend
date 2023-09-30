@@ -2,13 +2,22 @@
     <div class="grid">
         <div class="col-12">
             <p-toast position="top-right"></p-toast>
+            <div class="flex align-items-center  gap-2 flex-wrap justify-content-between">
             <button pButton pRipple label="Add To Clendar"
                 [style]="{ 'height': '40px','width':'200px','margin':'10px' }" icon="pi pi-calendar-plus"
                 class="p-button mr-2" (click)="gotoAddPlan()"></button>
+                <div style="float: right;"  [style]="{ 'height': '40px','margin':'10px' }" >
+                    <span class="text-900 font-medium text-xl font-bold">Share with Your friends </span>
 
+                    <i class="pi pi-whatsapp" (click)="shareOnWhatapp()" style="font-size: 1.5rem ;margin:5px ;color: #4FCE5D"></i>
+                    <i class="pi pi-linkedin" (click)="shareOnLinkedIn()" style="font-size: 1.5rem;margin:5px ;color: #0072b1"></i>
+                    <i class="pi pi-facebook" (click)="shareOnFaceBook()" style="font-size: 1.5rem;margin:5px ;color:  #3b5998"></i>
+                </div>
+            </div>
             <div class="card">
 
                 <div class="m-2 image">
+                    
                     <img [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' }"
                         [src]="recipe.item1.imageFile" alt="recipe image" class="card-img-top">
                     <div>
@@ -17,19 +26,21 @@
                             styleClass="mb-2"></p-rating>
                     </div>
                 </div>
-                <span class="text-900 text-xl font-semibold mb-2">{{recipe["item1"]?.title}}</span>
-                <div class="block text-500 mb-3"
-                    [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                    {{recipe["item1"]?.description}}</div>
+                <span class="text-900 text-xl font-semibold mb-3">{{recipe["item1"]?.title}}</span>
+                <div class="block text-500 mb-3 mt-3"
+                    [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600' ,'max-width':'850px' , 'min-width':'400px'}">
+                    {{recipe["item1"]?.description}}
+                </div>
 
                 <span class="text-900 font-medium text-xl ">Steps:</span>
-                <div class="block text-500 font-medium mb-3 mt-3">
-                    <div class="mb-1 " *ngFor="let step of stepsList let i = index">
-                        <div class="list-unstyled"
-                            [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                            <strong>{{i+1}}</strong>: {{step}}
-                        </div>
+                <div class="block text-500 font-medium  mb-3 mt-3">
+                    <ol class="list-unstyled">
+
+                    <div class="mb-1 " *ngFor="let step of stepsList">
+                        <li [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
+                             {{step}} </li>
                     </div>
+                </ol>
                 </div>
                 <span class="text-900 font-medium text-xl">Ingredients:</span>
                 <ul class="list-unstyled">
@@ -37,7 +48,7 @@
 
                         <li *ngFor='let ingredient of recipe["item2"]'
                             [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                            <span class="mr-2">{{ingredient.quantity}}</span> {{ingredient.title}}
+                            <span class="mr-2">{{ingredient.title}}</span> 
                         </li>
                     </div>
                 </ul>
@@ -48,9 +59,9 @@
                     </div>
                 </div>
                 <span class="text-900 font-medium text-xl mb-2">Created by: </span>
-                <div class="block text-500 mb-3 mt-2"
+                <div class="block text-500 mb-3 mt-2 flex align-items-center gap-2"
                     [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                    <img width="32" style="vertical-align: middle;" [src]="recipeUserImage">
+                    <img  [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" [src]="recipeUserImage">
                     {{recipe["item3"]?.item1}}
                 </div>
 
@@ -66,7 +77,7 @@
                         <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Enjoy
                             preparing and savoring this delightful meal! If you have any dietary preferences or
                             allergies, don't forget to make necessary substitutions.</p>
-                        <p>Happy cooking!. ❤️</p>
+                        <p>Happy cooking!. ❤</p>
                     </div>
                     <div [style]="{'height': '70px' }" class="flex justify-content-end align-items-end">
                         <p-button (click)="addrecipeplan()" style="  right: 0px;">OK</p-button>
@@ -87,7 +98,7 @@
                             <div class="grid">
                                 <div class="col-12">
                                     <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete"
-                                        class="p-button-danger" style="width:auto;"></button>
+                                        class="p-button-danger" [style]="{ 'height': '40px','width':'100px' }"></button>
                                 </div>
                             </div>
                         </div>
@@ -128,9 +139,9 @@
                                 <div class="block text-500 font-medium mb-3">
                                     {{raterec.rate.title}}
                                 </div>
-                                <div class="block text-500 font-medium mb-3">
-                                    <img width="32" style="vertical-align: middle;" [src]="raterec.ratedUserImage">
-                                    By {{raterec.ratedUser?.name}}
+                                <div class="block text-500 font-medium mb-3 flex align-items-center gap-2">
+                                    <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" [src]="raterec.ratedUserImage">
+                                    {{raterec.ratedUser?.name}}
                                 </div>
                             </div>
 

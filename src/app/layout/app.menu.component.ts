@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
-import { CookieService } from 'ngx-cookie-service';
+import { ProfileService } from '../demo/service/profile.service';
 
 @Component({
     selector: 'app-menu',
@@ -12,7 +12,7 @@ export class AppMenuComponent implements OnInit {
 
     constructor(
         public layoutService: LayoutService,
-        private cookieService: CookieService
+        private profileService: ProfileService
     ) {}
 
     ngOnInit() {
@@ -28,8 +28,8 @@ export class AppMenuComponent implements OnInit {
                 ],
             },
         ];
-        if (this.cookieService.check("token")) {
-            {
+        this.profileService.getMe().subscribe({
+            next: (res: any) => {
                 this.model.push({
                     label: 'User',
                     items: [
@@ -60,7 +60,7 @@ export class AppMenuComponent implements OnInit {
                         },
                     ],
                 });
-            }
-        }
+            },
+        });
     }
 }

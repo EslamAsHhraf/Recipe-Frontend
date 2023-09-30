@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  baseUrl: 'https://yummyrecipes.bsite.net/api',
+  production:true
 };

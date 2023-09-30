@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
     filteredIngredient: string[] = [];
     value?: string;
     favouritedRecipes: Favourite[];
-    userId!: number;
+    userId: number=-1;
     favorit: any = {
         createdOn: new Date(),
         title: '',

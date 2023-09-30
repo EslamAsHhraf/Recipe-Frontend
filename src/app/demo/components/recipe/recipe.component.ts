@@ -108,7 +108,7 @@ export class recipeComponent implements OnInit {
                             this.userService
                                 .getUser(rate['authorId'])
                                 .subscribe((res: any) => {
-                                    ratedUser = res?.data?.user;
+                                    ratedUser = res?.data;
                                     ratedUserImage =
                                         res?.data?.image;
                                     this.reciperating.push({
@@ -116,7 +116,9 @@ export class recipeComponent implements OnInit {
                                         ratedUser: ratedUser,
                                         ratedUserImage: ratedUserImage,
                                     });
+
                                 });
+
                         }
                     });
             },
@@ -141,6 +143,27 @@ export class recipeComponent implements OnInit {
                 });
         }
     }
+    // Angular TypeScript code
+    shareOnWhatapp() {
+        const postTitle = encodeURIComponent(this.recipe["item1"].title);
+        const postDescription = encodeURIComponent(this.recipe["item1"].description);
+        const post = encodeURIComponent(document.location.href);
+
+        window.open(`https://wa.me/?text=${postTitle} ${postDescription} ${post}, '_blank'`);
+
+    }
+    shareOnLinkedIn() {
+        const post = encodeURIComponent(document.location.href);
+        const postTitle = encodeURIComponent(this.recipe["item1"].title);
+    
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${post}&title=$${postTitle}, '_blank'`);
+
+    }
+    shareOnFaceBook() {
+        const post = encodeURIComponent(document.location.href);     
+        window.open(`https://www.facebook.com/sharer.php?u=${post}, '_blank'`);
+    }
+  
     confirm1() {
         var res = this.confirmationService.confirm({
             key: 'confirm1',

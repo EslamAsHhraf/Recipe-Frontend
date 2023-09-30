@@ -156,7 +156,7 @@ export class EditRecipeComponent implements OnInit {
                                 this.messageService.add({
                                     severity: 'success',
                                     summary: 'Success',
-                                    detail: 'Edit Recipe',
+                                    detail: 'Add Image',
                                     life: 3000,
                                 });
                                 setTimeout(() => {
@@ -184,10 +184,23 @@ export class EditRecipeComponent implements OnInit {
                 });
                 this.recipeIngredientsServices
                     .deleteRecipeIngredients(this.recipeId)
-                    .subscribe({});
-                this.recipeIngredientsServices
-                    .addListIngredients(ingredientsData)
-                    .subscribe({});
+                    .subscribe({
+                        next: () => {
+                            this.recipeIngredientsServices
+                                .addListIngredients(ingredientsData)
+                                .subscribe({});
+                        },
+                    });
+
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Update Successfully',
+                    life: 3000,
+                });
+                setTimeout(() => {
+                    this.router.navigate(['./myRecipe']);
+                }, 3000); // 3000 milliseconds (3 seconds)
             },
             error: (err) => {
                 // put error message

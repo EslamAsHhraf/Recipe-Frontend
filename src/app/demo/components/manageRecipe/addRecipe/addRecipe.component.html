@@ -35,6 +35,7 @@
                 <div class="w-full md:w-25rem mb-3 card p-fluid">
                     <p-chips [(ngModel)]="ingredients" separator="," placeholder="Hint: a, b, c"></p-chips>
                 </div>
+                <p *ngIf="error[4]" class="error">ingredients is required</p>
                 <div class="flex align-items-center justify-content-between mb-5 gap-5">
                     <div class="error">{{ errorMessage }}</div>
                 </div>
