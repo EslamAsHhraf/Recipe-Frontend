@@ -28,7 +28,7 @@ export class RecipeService {
                 '&Steps=' +
                 recipe.steps +
                 '&Category=' +
-                recipe.createdBy +
+                recipe.category +
                 '&CreatedBy=' +
                 recipe.createdBy +
                 '&ImageFile=' +

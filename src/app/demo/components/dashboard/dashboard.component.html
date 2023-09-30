@@ -31,8 +31,8 @@
 
 <div class="col-12 md:col-12">
 
-    <div class="grid">
-        <div class="col-12 md:col-6 lg:col-4 mt-3" [style]="{ 'height': '575px' }" *ngFor="let recipe of recipes | slice:(first):(first+rows)">
+    <div class="grid mb-6">
+        <div class="col-12 md:col-6 lg:col-4 mt-3 " [style]="{ 'height': '575px' }" *ngFor="let recipe of recipes | slice:(first):(first+rows)">
             <div class="card mb-0 ">
                 <div class="flex align-items-center justify-content-center mb-2">
                      <img class="align-self-center" [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' ,'max-width':'100%'}"
@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-    <div class="card flex justify-content-center mt-3">
+    <div class="card flex justify-content-center">
     <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="recipes.length" ></p-paginator>
 </div>
 </div>
