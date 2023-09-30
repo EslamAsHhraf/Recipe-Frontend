@@ -14,7 +14,7 @@ export class FavouriteService {
         this.http = http;
     }
     postFavourite(fav: Favourite) {
-        return this.http.post(this.baseUrl + '/Favourite/', fav, {
+        return this.http.post(this.baseUrl + '/Favourite', fav, {
             withCredentials: true,
         });
     }
