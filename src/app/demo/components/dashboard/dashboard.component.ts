@@ -157,9 +157,12 @@ export class DashboardComponent implements OnInit {
                 });
             },
         });
-        new Promise((resolve) => setTimeout(resolve, 800));
+        console.log(favourite);
+        setTimeout(() => {
+            // Reload the current page after the pause
+            window.location.reload();
+        }, 3000);
 
-        window.location.reload();
     }
     async postFavourite(recipe: Recipe) {
         this.favorit.title = '';
@@ -185,9 +188,11 @@ export class DashboardComponent implements OnInit {
                 });
             },
         });
-        new Promise((resolve) => setTimeout(resolve, 800));
-
-        window.location.reload();
+        console.log(this.favorit);
+        setTimeout(() => {
+            // Reload the current page after the pause
+            window.location.reload();
+        }, 3000);        
     }
     searchIngredient() {
         this.recipeService
