@@ -49,12 +49,12 @@
 
 <div>
     <p-dialog header="Select Option" [(visible)]="displayeditdeleteDialog" [modal]="true" [responsive]="true"
-        [style]="{ 'width': '500px' , 'height': '200px' }">
+        [style]="{ 'width': '500px' , 'min-height': '200px'}">
         <div class="flex align-items-center justify-content-center flex-wrap " style="height:100%;">
             <button pButton pRipple label="Edit" [style]="{ 'height': '40px','width':'100px' }" icon="pi pi-cog"
-                class="p-button-success mr-2" (click)="onClick()"></button>
+                class="p-button-success mr-2 mb-2" (click)="onClick()"></button>
             <button pButton pRipple label="Add to Shopping" [style]="{ 'height': '45px','width':'200px' }"
-                icon="pi pi-shopping-bag" class="p-button-warning mr-2" (click)="addShopping()"></button>
+                icon="pi pi-shopping-bag" class="p-button-warning mr-2 mb-2" (click)="addShopping()"></button>
             <button type="text" (click)="confirm1()" pButton icon="pi pi-trash" label="Delete" class="p-button-danger"
                 style="width:auto;"></button>
         </div>

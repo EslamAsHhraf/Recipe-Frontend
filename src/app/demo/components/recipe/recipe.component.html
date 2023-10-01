@@ -2,16 +2,19 @@
     <div class="grid">
         <div class="col-12">
             <p-toast position="top-right"></p-toast>
-            <div class="flex align-items-center  gap-2 flex-wrap justify-content-between">
-            <button pButton pRipple label="Add To Clendar"
-                [style]="{ 'height': '40px','width':'200px','margin':'10px' }" icon="pi pi-calendar-plus"
-                class="p-button mr-2" (click)="gotoAddPlan()"></button>
-                <div style="float: right;"  [style]="{ 'height': '40px','margin':'10px' }" >
+            <div class="flex align-items-center  gap-2 flex-wrap justify-content-between mb-3">
+                <button pButton pRipple label="Add To Clendar"
+                    [style]="{ 'height': '40px','width':'200px','margin':'10px' }" icon="pi pi-calendar-plus"
+                    class="p-button mr-2" (click)="gotoAddPlan()"></button>
+                <div style="float: right;" [style]="{ 'height': '40px','margin':'10px' }">
                     <span class="text-900 font-medium text-xl font-bold">Share with Your friends </span>
 
-                    <i class="pi pi-whatsapp" (click)="shareOnWhatapp()" style="font-size: 1.5rem ;margin:5px ;color: #4FCE5D"></i>
-                    <i class="pi pi-linkedin" (click)="shareOnLinkedIn()" style="font-size: 1.5rem;margin:5px ;color: #0072b1"></i>
-                    <i class="pi pi-facebook" (click)="shareOnFaceBook()" style="font-size: 1.5rem;margin:5px ;color:  #3b5998"></i>
+                    <i class="pi pi-whatsapp" (click)="shareOnWhatapp()"
+                        style="font-size: 1.5rem ;margin:5px ;color: #4FCE5D"></i>
+                    <i class="pi pi-linkedin" (click)="shareOnLinkedIn()"
+                        style="font-size: 1.5rem;margin:5px ;color: #0072b1"></i>
+                    <i class="pi pi-facebook" (click)="shareOnFaceBook()"
+                        style="font-size: 1.5rem;margin:5px ;color:  #3b5998"></i>
                 </div>
             </div>
             <div class="card">
@@ -28,7 +31,7 @@
                 </div>
                 <span class="text-900 text-xl font-semibold mb-3">{{recipe["item1"]?.title}}</span>
                 <div class="block text-500 mb-3 mt-3"
-                    [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600' ,'max-width':'850px' , 'min-width':'400px'}">
+                    [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600' ,'max-width':'850px' }">
                     {{recipe["item1"]?.description}}
                 </div>
 
@@ -36,11 +39,13 @@
                 <div class="block text-500 font-medium  mb-3 mt-3">
                     <ol class="list-unstyled">
 
-                    <div class="mb-1 " *ngFor="let step of stepsList">
-                        <li [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                             {{step}} </li>
-                    </div>
-                </ol>
+                        <div class="mb-1 " *ngFor="let step of stepsList">
+                            <li
+                                [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
+                                {{step}}
+                            </li>
+                        </div>
+                    </ol>
                 </div>
                 <span class="text-900 font-medium text-xl">Ingredients:</span>
                 <ul class="list-unstyled">
@@ -59,10 +64,9 @@
                     </div>
                 </div>
                 <span class="text-900 font-medium text-xl mb-2">Created by: </span>
-                <div class="text-500 mb-3 mt-2 flex align-items-center gap-2 user"
-                    (click)="routeUser(recipe.item3.item2)"
+                <div class="block text-500 mb-3 mt-2 flex align-items-center gap-2"
                     [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                    <img  [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" [src]="recipeUserImage">
+                    <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" [src]="recipeUserImage">
                     {{recipe["item3"]?.item1}}
                 </div>
 
@@ -140,8 +144,9 @@
                                 <div class="block text-500 font-medium mb-3">
                                     {{raterec.rate.title}}
                                 </div>
-                                <div class="block text-500 font-medium mb-3 flex align-items-center gap-2 user"   (click)="routeUser(raterec.ratedUser?.id)">
-                                    <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" [src]="raterec.ratedUserImage">
+                                <div class="block text-500 font-medium mb-3 flex align-items-center gap-2">
+                                    <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }"
+                                        [src]="raterec.ratedUserImage">
                                     {{raterec.ratedUser?.name}}
                                 </div>
                             </div>
