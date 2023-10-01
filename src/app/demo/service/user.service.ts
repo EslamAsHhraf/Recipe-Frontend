@@ -10,15 +10,14 @@ export class UserService {
     baseUrl = environment.baseUrl;
 
     constructor(private http: HttpClient) {}
-    getUser(id :number) {
+    getUser(id: number) {
         return this.http.get(this.baseUrl + '/auth/' + id, {
             withCredentials: true,
         });
     }
-    getRecipesOfUser(id:number){
+    getRecipesOfUser(id: number) {
         return this.http.get(this.baseUrl + '/recipe/user/' + id, {
             withCredentials: true,
         });
     }
-
 }

@@ -4,8 +4,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
     imports: [RouterModule.forChild([
         { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
-        { path: '', loadChildren: () => import('./UserRecipes/user-recipes.module').then(m => m.UserRecipesModule) },
-
+        { path: 'profile/:id', loadChildren: () => import('./otherProfile/otherProfile-routing.module').then(m => m.OtherProfileRoutingModule) },
     ])],
     exports: [RouterModule]
 })

@@ -17,7 +17,7 @@
             <div class="card">
 
                 <div class="m-2 image">
-                    
+
                     <img [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' }"
                         [src]="recipe.item1.imageFile" alt="recipe image" class="card-img-top">
                     <div>
@@ -48,7 +48,7 @@
 
                         <li *ngFor='let ingredient of recipe["item2"]'
                             [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
-                            <span class="mr-2">{{ingredient.title}}</span> 
+                            <span class="mr-2">{{ingredient.title}}</span>
                         </li>
                     </div>
                 </ul>
@@ -59,7 +59,8 @@
                     </div>
                 </div>
                 <span class="text-900 font-medium text-xl mb-2">Created by: </span>
-                <div class="block text-500 mb-3 mt-2 flex align-items-center gap-2"
+                <div class="text-500 mb-3 mt-2 flex align-items-center gap-2 user"
+                    (click)="routeUser(recipe.item3.item2)"
                     [style]="{ 'letter-spacing':' 0.5px',' font-size': 'large' ,'font-family':'sans-serif' ,'font-weight':'600'}">
                     <img  [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" [src]="recipeUserImage">
                     {{recipe["item3"]?.item1}}
@@ -139,7 +140,7 @@
                                 <div class="block text-500 font-medium mb-3">
                                     {{raterec.rate.title}}
                                 </div>
-                                <div class="block text-500 font-medium mb-3 flex align-items-center gap-2">
+                                <div class="block text-500 font-medium mb-3 flex align-items-center gap-2 user"   (click)="routeUser(raterec.ratedUser?.id)">
                                     <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' }" [src]="raterec.ratedUserImage">
                                     {{raterec.ratedUser?.name}}
                                 </div>

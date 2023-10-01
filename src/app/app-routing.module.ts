@@ -43,7 +43,6 @@ import { AccessComponent } from './demo/components/auth/access/access.component'
                                     './demo/components/manageRecipe/addRecipe/addRecipe.module'
                                 ).then((m) => m.AddRecipeModule),
                         },
-
                         {
                             path: 'user',
                             canActivate: [AuthGuardService],

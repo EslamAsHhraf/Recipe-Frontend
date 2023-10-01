@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileRoutingModule } from './user-recipes-routing.module';
-import { UserRecipesComponent } from './user-recipes.component';
+import { OtherProfileComponent } from './otherProfile.component';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
@@ -23,10 +22,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { TabViewModule } from 'primeng/tabview';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
     imports: [
         CommonModule,
-        ProfileRoutingModule,
         ButtonModule,
         CheckboxModule,
         InputTextModule,
@@ -46,8 +45,9 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
         DropdownModule,
         RadioButtonModule,
         TabViewModule,
-        OverlayPanelModule
+        OverlayPanelModule,
+        PaginatorModule
     ],
-    declarations: [UserRecipesComponent],
+    declarations: [OtherProfileComponent],
 })
-export class UserRecipesModule {}
+export class OtherProfileModule {}

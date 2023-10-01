@@ -33,10 +33,14 @@ import { Ingredient } from 'src/app/model/ingredients';
             .custom-icon-class {
                 height: 1.5rem !important;
                 width: 1.5rem;
-
             }
             li {
                 font-size: 18px;
+            }
+            @media screen and (max-width: 767px) {
+                .image {
+                    order: -1;
+                }
             }
         `,
     ],
@@ -46,11 +50,11 @@ export class AddRecipeComponent implements OnInit {
     userId!: number;
     error: boolean[] = [false, false, false, false, false];
     category: Category[];
-    ingredients: string[] =[];
+    ingredients: string[] = [];
     selectedFile: FormData = new FormData();
     steps: string[] = [];
     oneStep: string;
-    editIndex: number=-1;
+    editIndex: number = -1;
     recipe: Recipe = {
         title: '',
         description: '',
@@ -124,7 +128,7 @@ export class AddRecipeComponent implements OnInit {
         this.error[2] = this.steps.length == 0 ? true : false;
         this.error[3] = this.selectedFile.has('imageFile') ? false : true;
         this.error[4] = this.ingredients.length == 0 ? true : false;
-        console.log(this.error)
+        console.log(this.error);
         this.recipe.steps = this.steps.join('*');
         var ingredientsData: Ingredient[] = [];
         if (!this.error.some((item) => item === true)) {

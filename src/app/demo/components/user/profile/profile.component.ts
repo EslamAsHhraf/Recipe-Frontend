@@ -9,6 +9,15 @@ import { MessageService } from 'primeng/api';
     selector: 'app-profile',
     templateUrl: './profile.component.html',
     providers: [MessageService],
+    styles: [
+        `
+            @media screen and (max-width: 767px) {
+                .image {
+                    order: -1;
+                }
+            }
+        `,
+    ],
 })
 export class ProfileComponent implements OnInit {
     productDialog: boolean = false;
@@ -61,14 +70,14 @@ export class ProfileComponent implements OnInit {
             this.profileService.uploadImage(formData).subscribe({
                 next: () => {
                     this.messageService.add({
-                    severity: 'success',
-                    summary: 'Success',
-                    detail: 'Change Image Successfully',
-                    life: 3000,
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: 'Change Image Successfully',
+                        life: 3000,
                     });
-                setTimeout(() => {
-                    this.router.navigate(['/']);
-                }, 3000);
+                    setTimeout(() => {
+                        this.router.navigate(['/']);
+                    }, 3000);
                 },
                 error: (err) => {
                     console.log(err);

@@ -1,0 +1,54 @@
+<div class="grid">
+    <div class="col-12 md:col-8">
+
+        <p-tabView orientation="left">
+            <h3 class="blue-text font-bold  text-center">User Recipes</h3>
+            <div class="col-12 ">
+                <div class="grid">
+                    <div class="col-12 lg:col-6  mt-3" [style]="{ 'height': '575px' }"
+                        *ngFor="let recipe of recipes | slice:(first):(first+rows)">
+                        <div class="card mb-0 ">
+                            <div class="flex align-items-center justify-content-center mb-2">
+                                <img class="align-self-center"
+                                    [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' ,'max-width':'100%'}"
+                                    [src]="recipe.imageFile" alt="recipe image" class="card-img-top">
+                            </div>
+                            <div class="flex justify-content-between mb-3">
+                                <div>
+                                    <span class="text-900 font-medium text-xl">{{ recipe.title }}</span>
+                                    <div class="block text-500 font-medium mb-3">
+                                        {{ recipe.description.slice(0,150) }}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="flex align-items-center justify-content-between flex-wrap">
+                                <p-rating [ngModel]="recipe.totalRating" [readonly]="true" [cancel]="false"
+                                    styleClass="mb-2"></p-rating>
+                                <span class="text-500" style="float: right;"><button (click)="viewdetails(recipe)"
+                                        pButton pRipple>See more</button></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card flex justify-content-center mt-3">
+                <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows"
+                    [totalRecords]="recipes.length"></p-paginator>
+            </div>
+        </p-tabView>
+    </div>
+
+    <div class="col-12 md:col-4 image">
+        <div class="card flex justify-content-center">
+            <p-card header={{profile.name}} subheader="User">
+                <ng-template pTemplate="header">
+                    <img [style]="{ 'height': '225px','width':'225px' ,'object-fit':'cover'}" alt="Profile Image"
+                        [src]="profile.image" />
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+
+</div>
