@@ -32,7 +32,7 @@
 <div class="col-12 md:col-12">
 
     <div class="grid mb-6">
-        <div class="col-12 md:col-6 lg:col-4 mt-3 " [style]="{ 'height': '575px' }" *ngFor="let recipe of recipes | slice:(first):(first+rows)">
+        <div class="col-12 md:col-6 lg:col-4 mt-3 " [style]="{ 'min-height': '575px' }" *ngFor="let recipe of recipes | slice:(first):(first+rows)">
             <div class="card mb-0 ">
                 <div class="flex align-items-center justify-content-center mb-2">
                      <img class="align-self-center" [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' ,'max-width':'100%'}"
@@ -60,10 +60,10 @@
                             class="p-ink"></span></button>
                         </div>
                 </div>
-                <div class="flex align-items-center justify-content-between">
+                <div class="flex align-items-center justify-content-between flex-wrap">
                 <p-rating [ngModel]="recipe.totalRating" [readonly]="true" [cancel]="false"
                     styleClass="mb-2"></p-rating>
-                <span class="text-500" style="float: right;"><button (click)="viewdetails(recipe)" pButton
+                <span class="text-500 mt-2" style="float: right;"><button (click)="viewdetails(recipe)" pButton
                         pRipple>See more</button></span>
                 </div>
             </div>
