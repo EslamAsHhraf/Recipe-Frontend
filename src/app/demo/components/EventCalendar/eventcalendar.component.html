@@ -2,16 +2,20 @@
 <p-toast position="top-right"></p-toast>
 
 <p-dialog header="Select a Recipe" [(visible)]="displayRecipeDialog" [modal]="true" [responsive]="true"
-    [style]="{ 'min-width': '350px', 'width': '500px' , 'height': '600px' }">
+    [style]="{ 'min-width': '300px', 'width': '500px' , 'height': '600px' }">
     <div *ngIf="!userSelectedDate" style="margin-bottom: 50px;" class="mb-2">
-        <div class="mb-2"><label [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}" for="datePicker">Select a date:</label></div>
+        <div class="mb-2"><label
+                [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}"
+                for="datePicker">Select a date:</label></div>
         <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="selectedDate"
             [style]="{ 'width': '100%' }"></p-calendar>
     </div>
 
     <div class="recipe-dropdown">
 
-        <div class="mb-2"><label for="recipeSelect" [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}">Select a recipe:</label></div>
+        <div class="mb-2"><label for="recipeSelect"
+                [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}">Select a
+                recipe:</label></div>
         <p-autoComplete id="recipeAutoComplete" [(ngModel)]="selectedRecipe" [suggestions]="recipes"
             (completeMethod)="filterRecipes($event)" field="title" [dropdown]="true"
             [style]="{ 'width': '100%' }"></p-autoComplete>
@@ -20,9 +24,12 @@
     </div>
     <div class="flex flex-column mt-5 text-lg gap-2 mb-3">
         <strong>Note:</strong>
-        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> You Will added recipe to your meal plan. You can also add ingredients of recipe to shopping
+        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> You Will added recipe to
+            your meal plan. You can also add ingredients of recipe to shopping
             list</p>
-        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Enjoy preparing and savoring this delightful meal! If you have any dietary preferences or allergies, don't forget to make necessary substitutions.</p>
+        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Enjoy preparing and
+            savoring this delightful meal! If you have any dietary preferences or allergies, don't forget to make
+            necessary substitutions.</p>
         <p>Happy cooking!. ❤️</p>
     </div>
     <div [style]="{'height': '70px' }" class="flex justify-content-end align-items-end">
@@ -35,11 +42,15 @@
     [style]="{ 'min-width': '300px', 'width': '475px' , 'height': '525px' }">
     <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="newSelectedDate"
         [style]="{ 'width': '100%' }"></p-calendar>
-    <div class="flex flex-column mt-5 text-lg gap-2 mb-3"  [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}">
+    <div class="flex flex-column mt-5 text-lg gap-2 mb-3"
+        [style]="{ 'letter-spacing':' 0.5px',' font-size': 'medium' ,'font-family':'sans-serif'}">
         <strong>Note:</strong>
-        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Will added recipe to your meal plan. You can also add ingredients of recipe to shopping
+        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Will added recipe to your
+            meal plan. You can also add ingredients of recipe to shopping
             list</p>
-        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Enjoy preparing and savoring this delightful meal! If you have any dietary preferences or allergies, don't forget to make necessary substitutions.</p>
+        <p class="text-900"><span [style]="{ 'color': 'gray','font-size': 'medium'}">● </span> Enjoy preparing and
+            savoring this delightful meal! If you have any dietary preferences or allergies, don't forget to make
+            necessary substitutions.</p>
         <p>Happy cooking!. ❤️</p>
     </div>
     <div [style]="{'height': '100px' }" class="flex justify-content-end align-items-end">
