@@ -3,7 +3,7 @@
 // The list of file replacements can be found in angular.json.
 
 export const environment = {
-    baseUrl: 'https://yummyrecipes.bsite.net/api',
+    baseUrl: 'https://localhost:7196/api',
     production: false,
 };
 

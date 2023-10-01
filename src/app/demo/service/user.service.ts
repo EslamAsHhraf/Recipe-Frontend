@@ -15,5 +15,10 @@ export class UserService {
             withCredentials: true,
         });
     }
+    getRecipesOfUser(id:number){
+        return this.http.get(this.baseUrl + '/recipe/user/' + id, {
+            withCredentials: true,
+        });
+    }
 
 }
