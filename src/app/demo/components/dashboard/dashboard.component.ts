@@ -157,12 +157,10 @@ export class DashboardComponent implements OnInit {
                 });
             },
         });
-        console.log(favourite);
         setTimeout(() => {
             // Reload the current page after the pause
             window.location.reload();
-        }, 3000);
-
+        }, 800);
     }
     async postFavourite(recipe: Recipe) {
         this.favorit.title = '';
@@ -188,11 +186,10 @@ export class DashboardComponent implements OnInit {
                 });
             },
         });
-        console.log(this.favorit);
         setTimeout(() => {
             // Reload the current page after the pause
             window.location.reload();
-        }, 3000);        
+        }, 800);
     }
     searchIngredient() {
         this.recipeService
