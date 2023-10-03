@@ -18,6 +18,7 @@ import { AppLayoutComponent } from "./app.layout.component";
 import { AppFooterComponent } from './app.footer.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuModule } from 'primeng/menu';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { MenuModule } from 'primeng/menu';
         RippleModule,
         RouterModule,
         PanelMenuModule,
-        MenuModule
+        MenuModule,
+        ButtonModule,
     ],
     exports: [AppLayoutComponent]
 })

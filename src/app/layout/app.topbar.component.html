@@ -9,13 +9,28 @@
     </button>
 
     <button *ngIf="login" class="p-link layout-topbar-menu-button layout-topbar-button" (click)="menu.toggle($event)">
-        <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' ,'object-fit':'cover'}" alt="Profile Image" [src]="userImage" />
+        <img [style]="{ 'height': '32px','width':'32px','border-radius':'50%' ,'object-fit':'cover'}"
+            alt="Profile Image" [src]="userImage" />
     </button>
-    <div *ngIf="login" #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button class="p-link flex align-items-center gap-2"  [style]="{ 'box-shadow':'none' }" (click)="menu.toggle($event)">
-            <img [style]="{ 'height': '40px','width':'40px','border-radius':'50%','object-fit':'cover' }" alt="Profile Image" [src]="userImage" />
+    <button *ngIf="!login" class="p-link layout-topbar-menu-button layout-topbar-button" (click)="menu.toggle($event)">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+    <div *ngIf="login" #topbarmenu class="layout-topbar-menu"
+        [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <button class="p-link flex align-items-center gap-2" [style]="{ 'box-shadow':'none' }"
+            (click)="menu.toggle($event)">
+            <img [style]="{ 'height': '40px','width':'40px','border-radius':'50%','object-fit':'cover' }"
+                alt="Profile Image" [src]="userImage" />
         </button>
     </div>
-    <p-menu  #menu [model]="items" [popup]="true"></p-menu>
+    <div *ngIf="!login" #topbarmenu class="layout-topbar-menu"
+        [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+            <button *ngIf="!login"   class="mr-4 text-lg" pButton pRipple   icon="pi pi-sign-in" label="Login"
+            routerLink="auth/login"></button>
+            <button *ngIf="!login" pButton pRipple  class="p-button-success text-lg"   icon="pi pi-user-plus" label="Register"
+            routerLink="auth/register"></button>
+    </div>
+
+    <p-menu #menu [model]="items" [popup]="true"></p-menu>
 
 </div>

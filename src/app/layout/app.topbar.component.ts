@@ -38,29 +38,51 @@ export class AppTopBarComponent {
                 this.profile.name = res?.data?.name;
                 this.userImage = res?.data?.imageFile;
                 this.login = true;
-            },
-        });
-        this.items = [
-            {
-                label: 'Profile',
-                items: [
+                this.items = [
                     {
                         label: 'Profile',
-                        icon: 'pi pi-user',
-                        command: () => {
-                            this.router.navigate(['user/profile']);
-                        },
+                        items: [
+                            {
+                                label: 'Profile',
+                                icon: 'pi pi-user',
+                                command: () => {
+                                    this.router.navigate(['user/profile']);
+                                },
+                            },
+                            {
+                                label: 'Sign out',
+                                icon: 'pi pi-sign-out',
+                                command: () => {
+                                    this.logout();
+                                },
+                            },
+                        ],
                     },
-                    {
-                        label: 'Sign out',
-                        icon: 'pi pi-sign-out',
-                        command: () => {
-                            this.logout();
-                        },
-                    },
-                ],
+                ];
             },
-        ];
+            error: () => {
+                this.items = [
+                    {
+                        items: [
+                            {
+                                label: 'Login',
+                                icon: 'pi pi-sign-in',
+                                command: () => {
+                                    this.router.navigate(['auth/login']);
+                                },
+                            },
+                            {
+                                label: 'Register',
+                                icon: 'pi pi-user-plus',
+                                command: () => {
+                                    this.router.navigate(['auth/register']);
+                                },
+                            },
+                        ],
+                    },
+                ];
+            },
+        });
     }
     searchRecipes(name: string) {
         this.router.navigate(['search', { searchTerm: name }]);
