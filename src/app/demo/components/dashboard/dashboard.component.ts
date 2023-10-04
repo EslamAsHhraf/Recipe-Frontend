@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
         authorId: 0,
         recipeId: 0,
     };
-    num:boolean =true;
+    num: boolean = true;
     first: number = 0;
     rows: number = 6;
 
@@ -87,28 +87,33 @@ export class DashboardComponent implements OnInit {
                                     r.favourited = true;
                                 });
                             },
-                            error:()=>{
-                                this.num=false;
-                            }
+                            error: () => {
+                                this.num = false;
+                            },
                         });
                 } else {
                     this.route.params.subscribe((params) => {
                         if (params['searchTerm']) {
                             this.recipeService
                                 .searchRecipe(params['searchTerm'])
-                                .subscribe((result: Recipe[]) => {
-                                    this.recipes = result['data'];
-                                    this.recipes.forEach((r) => {
-                                        const favourited =
-                                            this.favouritedRecipes.find(
-                                                (fr) => fr.recipeId === r.id
-                                            );
-                                        if (favourited) {
-                                            r.favourited = true;
-                                        } else {
-                                            r.favourited = false;
+                                .subscribe({
+                                    next: (res) => {
+                                        this.recipes = res['data'];
+                                        this.recipes.forEach((r) => {
+                                            const favourited =
+                                                this.favouritedRecipes.find(
+                                                    (fr) => fr.recipeId === r.id
+                                                );
+                                            if (favourited) {
+                                                r.favourited = true;
+                                            } else {
+                                                r.favourited = false;
+                                            }
+                                        });
+                                        if (this.recipes.length == 0) {
+                                            this.num = false;
                                         }
-                                    });
+                                    },
                                 });
                         } else {
                             this.recipeService
@@ -148,21 +153,24 @@ export class DashboardComponent implements OnInit {
                     });
             },
             error: (err) => {
-                    this.route.params.subscribe((params) => {
-                        if (params['searchTerm']) {
-                            this.recipeService
-                                .searchRecipe(params['searchTerm'])
-                                .subscribe((result: Recipe[]) => {
-                                    this.recipes = result['data'];
-                                });
-                        } else {
-                            this.recipeService
-                                .getRecipes()
-                                .subscribe((result: Recipe[]) => {
-                                    this.recipes = result['data'];
-                                });
-                        }
-                    });
+                this.route.params.subscribe((params) => {
+                    if (params['searchTerm']) {
+                        this.recipeService
+                            .searchRecipe(params['searchTerm'])
+                            .subscribe((result: Recipe[]) => {
+                                this.recipes = result['data'];
+                                if (this.recipes.length == 0) {
+                                    this.num = false;
+                                }
+                            });
+                    } else {
+                        this.recipeService
+                            .getRecipes()
+                            .subscribe((result: Recipe[]) => {
+                                this.recipes = result['data'];
+                            });
+                    }
+                });
             },
         });
     }
@@ -260,6 +268,9 @@ export class DashboardComponent implements OnInit {
                                 r.favourited = false;
                             }
                         });
+                        if (this.recipes.length == 0) {
+                            this.num = false;
+                        }
                     });
             }
         } else if (this.searchTerms.length === 0) {
@@ -275,6 +286,9 @@ export class DashboardComponent implements OnInit {
                         r.favourited = false;
                     }
                 });
+                if (this.recipes.length == 0) {
+                    this.num = false;
+                }
             });
         }
     }
@@ -300,6 +314,9 @@ export class DashboardComponent implements OnInit {
                                 r.favourited = false;
                             }
                         });
+                        if (this.recipes.length == 0) {
+                            this.num = false;
+                        }
                     });
             } else {
                 this.recipeService
@@ -316,6 +333,9 @@ export class DashboardComponent implements OnInit {
                                 r.favourited = false;
                             }
                         });
+                        if (this.recipes.length == 0) {
+                            this.num = false;
+                        }
                     });
             }
         }
