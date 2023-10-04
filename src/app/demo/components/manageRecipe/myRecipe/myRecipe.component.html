@@ -1,4 +1,4 @@
-<div >
+<div>
     <div class="col-12">
         <div class="card px-6 py-6">
             <p-toolbar styleClass="mb-4">
@@ -16,15 +16,14 @@
             </p-toolbar>
 
             <div class="col-12 ">
-                <div class="grid">
+                <div *ngIf="(recipes && recipes.length >= 0)" class="grid">
                     <div class="col-12 md:col-6 lg:col-4 mt-3" [style]="{ 'min-height': '575px' }"
                         *ngFor="let recipe of recipes | slice:(first):(first+rows)">
                         <div class="card mb-0 ">
                             <div class="flex align-items-center justify-content-center mb-2">
                                 <img class="align-self-center"
                                     [style]="{ 'height': '300px','width':'300px', 'border-radius':'10px','object-fit':'cover' ,'max-width':'100%'}"
-                                    [src]="recipe.imageFile" alt="recipe image"
-                                    class="card-img-top">
+                                    [src]="recipe.imageFile" alt="recipe image" class="card-img-top">
                             </div>
                             <div class="flex justify-content-between mb-3">
                                 <div>
@@ -38,10 +37,17 @@
                             <div class="flex align-items-center justify-content-between flex-wrap">
                                 <p-rating [ngModel]="recipe.totalRating" [readonly]="true" [cancel]="false"
                                     styleClass="mb-2"></p-rating>
-                                <span class="text-500 mt-2" style="float: right;"><button
-                                        (click)="viewdetails(recipe)" pButton pRipple>See more</button></span>
+                                <span class="text-500 mt-2" style="float: right;"><button (click)="viewdetails(recipe)"
+                                        pButton pRipple>See more</button></span>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div *ngIf="(!recipes || recipes.length === 0)" class="card mb-0">
+                    <div class="block text-700 font-medium mb-3 flex align-items-center gap-2 fav"
+                        (click)="routeRecipes()">No Recipes Found. Create Recipes</div>
+                    <div class="flex align-items-center justify-content-center mb-2"><img
+                            src="assets/Images/no-search-found.png" style="height: 300px; width: 50%;" alt="no content">
                     </div>
                 </div>
 
