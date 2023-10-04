@@ -36,6 +36,12 @@ import { PageEvent } from 'src/app/model/pageEvent';
             li {
                 font-size: 18px;
             }
+            .fav {
+                width: fit-content;
+            }
+            .fav:hover {
+                cursor: pointer;
+            }
         `,
     ],
     providers: [MessageService],
@@ -47,13 +53,14 @@ export class DashboardComponent implements OnInit {
     filteredIngredient: string[] = [];
     value?: string;
     favouritedRecipes: Favourite[];
-    userId: number=-1;
+    userId: number = -1;
     favorit: any = {
         createdOn: new Date(),
         title: '',
         authorId: 0,
         recipeId: 0,
     };
+    num:boolean =true;
     first: number = 0;
     rows: number = 6;
 
@@ -70,6 +77,60 @@ export class DashboardComponent implements OnInit {
         this.profileService.getMe().subscribe({
             next: (res: any) => {
                 this.userId = res?.data?.id;
+                if (this.router.url == '/myFavorite') {
+                    this.favouritrService
+                        .getFavouritesRecipes(this.userId)
+                        .subscribe({
+                            next: (res) => {
+                                this.recipes = res['data'];
+                                this.recipes.forEach((r) => {
+                                    r.favourited = true;
+                                });
+                            },
+                            error:()=>{
+                                this.num=false;
+                            }
+                        });
+                } else {
+                    this.route.params.subscribe((params) => {
+                        if (params['searchTerm']) {
+                            this.recipeService
+                                .searchRecipe(params['searchTerm'])
+                                .subscribe((result: Recipe[]) => {
+                                    this.recipes = result['data'];
+                                    this.recipes.forEach((r) => {
+                                        const favourited =
+                                            this.favouritedRecipes.find(
+                                                (fr) => fr.recipeId === r.id
+                                            );
+                                        if (favourited) {
+                                            r.favourited = true;
+                                        } else {
+                                            r.favourited = false;
+                                        }
+                                    });
+                                });
+                        } else {
+                            this.recipeService
+                                .getRecipes()
+                                .subscribe((result: Recipe[]) => {
+                                    this.recipes = result['data'];
+                                    result['data'].forEach((r) => {
+                                        const favourited =
+                                            this.favouritedRecipes?.find(
+                                                (fr) =>
+                                                    fr.recipeId === r.recipe.id
+                                            );
+                                        if (favourited) {
+                                            r.recipe.favourited = true;
+                                        } else {
+                                            r.recipe.favourited = false;
+                                        }
+                                    });
+                                });
+                        }
+                    });
+                }
                 this.favouritrService
                     .getFavouritesUser(this.userId)
                     .subscribe((result: Favourite[]) => {
@@ -85,54 +146,24 @@ export class DashboardComponent implements OnInit {
                             }
                         });
                     });
-                if (this.router.url == '/myFavorite') {
-                    this.favouritrService
-                        .getFavouritesRecipes(this.userId)
-                        .subscribe((result: Recipe[]) => {
-                            this.recipes = result['data'];
-                            this.recipes.forEach((r) => {
-                                r.favourited = true;
-                            });
-                        });
-                }
             },
-        });
-
-        this.route.params.subscribe((params) => {
-            if (params['searchTerm']) {
-                this.recipeService
-                    .searchRecipe(params['searchTerm'])
-                    .subscribe((result: Recipe[]) => {
-                        this.recipes = result['data'];
-                        this.recipes.forEach((r) => {
-                            const favourited = this.favouritedRecipes.find(
-                                (fr) => fr.recipeId === r.id
-                            );
-                            if (favourited) {
-                                r.favourited = true;
-                            } else {
-                                r.favourited = false;
-                            }
-                        });
+            error: (err) => {
+                    this.route.params.subscribe((params) => {
+                        if (params['searchTerm']) {
+                            this.recipeService
+                                .searchRecipe(params['searchTerm'])
+                                .subscribe((result: Recipe[]) => {
+                                    this.recipes = result['data'];
+                                });
+                        } else {
+                            this.recipeService
+                                .getRecipes()
+                                .subscribe((result: Recipe[]) => {
+                                    this.recipes = result['data'];
+                                });
+                        }
                     });
-            } else {
-                this.recipeService
-                    .getRecipes()
-                    .subscribe((result: Recipe[]) => {
-                        this.recipes = result['data'];
-                        console.log(result['data']);
-                        result['data'].forEach((r) => {
-                            const favourited = this.favouritedRecipes?.find(
-                                (fr) => fr.recipeId === r.recipe.id
-                            );
-                            if (favourited) {
-                                r.recipe.favourited = true;
-                            } else {
-                                r.recipe.favourited = false;
-                            }
-                        });
-                    });
-            }
+            },
         });
     }
     async deleteFavourite(recipe: Recipe) {
@@ -191,6 +222,9 @@ export class DashboardComponent implements OnInit {
             window.location.reload();
         }, 800);
     }
+    isMyFavoriteRoute(): boolean {
+        return this.router.url === '/myFavorite';
+    }
     searchIngredient() {
         this.recipeService
             .getIngredients()
@@ -202,6 +236,9 @@ export class DashboardComponent implements OnInit {
     }
     searchRecipes(name: string) {
         this.router.navigate(['search', { searchTerm: name }]);
+    }
+    routeRecipes() {
+        this.router.navigate(['./']);
     }
 
     addSearchTerm(searchTerm: string) {
