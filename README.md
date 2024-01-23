@@ -21,14 +21,12 @@
 
 - <a href ="#about"> 📙 Overview</a>
 - <a href ="#started"> 💻 Get Started</a>
-- <a href ="#deployment"> 🌎 Build & deployment</a>
 - <a href ="#features"> 🔍 Features</a>
 - <a href ="#video">  📽 GIF Demo</a>
 - <a href ="#contributors"> ✨ Contributors</a>
-- <a href ="#license"> 🔒 License</a>
 <hr style="background-color: #4b4c60"></hr>
 
-## <img align="center"  width =60px  height =70px src="https://media3.giphy.com/media/h46Wk2BSHGch87Mk7w/giphy.gif?cid=ecf05e47uzbe4n6uzosogred6c2meppawdd9nb2avjp6ltdl&rid=giphy.gif&ct=s"> Overview <a id = "about"></a>
+## 📙 Overview <a id = "about"></a>
 
 <ul>
 <li>
@@ -45,6 +43,9 @@ Yummy is interactive platform for recipe management, meal planning, and social i
 </li>
 <li>
 <a href="https://firebase.google.com/">Firebase</a> 
+</li>
+<li>
+<a href="https://eslint.org/">Eslint</a> 
 </li>
 </ol>
 <li>Using Template <a href="https://github.com/primefaces/sakai-ng">sakai-ng</a></li>
@@ -80,7 +81,7 @@ npm run start
 ```
 </li>
 </ol>
-
+<!-- 
 <hr style="background-color: #4b4c60"></hr>
 
 ## <img  align= center width= 70px height =70px src="https://media1.giphy.com/media/NnSFnC428LRHaxUNzj/giphy.gif?cid=ecf05e47r1hlw9wrf1swakc9gxgn508lyzvbyzgp9i1iyvwl&rid=giphy.gif&ct=s"> Features  <a id ="features"></a>
@@ -103,9 +104,6 @@ npm run start
 <ul>
 <li>Login</li>
 <li>Sign-up</li>
-<li>Sign-up with Google and Facebook</li>
-<li>Reset Password</li>
-<li>Forget User Name</li>
 </ul>
 </td>
 </tr>
@@ -248,148 +246,7 @@ npm run start
 </td>
 </tr>
 </tr>
-<tr>
-<td>🔶 Profile</td>
-<td>
-
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214939374-1d31bfd4-6385-437c-9b11-dde2cdc44c48.png" alt="logo">
-</td>
-<td>
-<p>You con view </p>
-<ul>
-<li>🏔 Overview: you can see activity of user</li>
-<li>📫 Posts: you can see posts of user</li>
-<li>🗯 Comments: you can see comments of user</li>
-<li>🗃 History: posts just yo see it</li>
-<li>📋 Saved: posts and comments you saved it</li>
-<li>🙈 Hidden: posts you hide it </li>
-<li>👍 Upvote: posts you upvote it </li>
-<li>👎 Downvote:  posts you downvote it</li>
-</ul>
-</td>
-</tr>
-<td>🔷 Subreddit</td>
-<td>
-
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214939616-d6d37452-5cd0-4171-897a-1dbbaa821580.png" alt="logo">
-</td>
-<td>
-<p>1) 🔰 You con create Subreddit</p>
-<p>2) 👀 View posts of Subreddit</p>
-<p>3) 🤜🏼 join or leave Subreddit</p>
-<p>4) Subreddit types:</p>
-<ul>
-<li>👷🏼‍♂️ Public: Anyone can view, post, and comment to this community</li>
-<li>👁‍🗨 Restricted: Anyone can view this community, but only approved users can post</li>
-<li>🔒 Private: Only approved users can view and submit to this community</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>🔶 Moderation</td>
-<td>
-
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214939838-fa3a4dcc-df2e-495f-8e3d-04057205e492.png" alt="logo">
-</td>
-<td>
-<p>In Moderation  page, you can control:</p>
-<ul>
-<li>🕳 Spam: you can control spam posts</li>
-<li>✒ Edited: you can control edited posts</li>
-<li>💈 Unmoderator: you can control unmoderator posts</li>
-<li>🚫 BANNED: you can ban users</li>
-<li>🔈 MUTED:  you can mute users</li>
-<li>✅ APPROVED: you can add new moderators </li>
-<li>👨🏽‍🤝‍👨🏻 MODERATORS: you can edit access to moderators</li>
-<li>🎨 POST FLAIR: you can edit flair and make new flairs</li>
-<li>🚧 RULES: you can add new rules to subreddit</li>
-<li>👨‍👨‍👦‍👦 COMMUNITY: you can edit (name of subreddit, community topics, community description, region, type of community)</li>
-<li>💭 POSTS AND COMMENTS: you can control type of posts</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>🔷 Messages</td>
-<td>
-
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214940032-6eae117f-b5cb-4f67-84f1-da6920706e79.png" alt="logo">
-</td>
-<td>
-<p>1) 📩 Message Form (Send a private message)</p>
-<p>2) 📮 Sent Messages: message which you sent</p>
-<p>3) 📦 Inbox :</p>
-<ul>
-<li>All: All messages</li>
-<li>Unread: message which you didn't read it</li>
-<li>Messages : message which you receive</li>
-<li>Post replies: replies to your posts</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>🔶 Push Notifications</td>
-<td align="center">
-
-<img align="center" width="50%" src="https://user-images.githubusercontent.com/71986226/214954696-9ec0850c-a802-4a71-b186-1c642ec1df79.png" alt="logo">
-</td>
-<td>
-<p>1) 💌 Notifications and messages </p>
-<p>2) 🔓 You must give permission to push notifications</p>
-<p>3) Push Notifications types:</p>
-<ul>
-<li>Foreground</li>
-<li>Background</li>
-</ul>
-</td>
-</tr>
-</tr>
-<tr>
-<td>🔷 Top Communities</td>
-<td>
-
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214940837-d0a539da-e609-45f4-a010-aaf1949d82a6.png" alt="logo">
-</td>
-<td>
-<p>👨‍👨‍👧‍👧 View top  communities by categories</p>
-</td>
-</tr>
-<tr>
-<td>🔶 Pages</td>
-<td>
-
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214940238-c127ed56-3b07-4e3e-a8b7-6cc3a49595e3.png" alt="logo">
-</td>
-<td>
-<ul>
-<li>
-<p>Home page </p>
-</li>
-<li>
-<p>Popular</p></li>
-<li>
-<p>ALL</p></li>
-<li>
-<p>Explorer</p></li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>🔷 Listing</td>
-<td>
-
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214940399-25af19f6-6d91-4fcf-9422-d1d3159910a2.png" alt="logo">
-</td>
-<td>
-<p>You can sort posts </p>
-<ul>
-<li>Hot</li>
-<li>Top</li>
-<li>New</li>
-<li>Hot</li>
-</ul>
-</td>
-</tr>
-</table>
+</table> -->
 
 <hr style="background-color: #4b4c60"></hr>
 
@@ -434,10 +291,6 @@ npm run start
 </td>
 </tr>
 </table>
-<hr style="background-color: #4b4c60"></hr>
-
-
-
 <hr style="background-color: #4b4c60"></hr>
 
 ## <img  align="center" width= 70px height =55px src="https://media0.giphy.com/media/Xy702eMOiGGPzk4Zkd/giphy.gif?cid=ecf05e475vmf48k83bvzye3w2m2xl03iyem3tkuw2krpkb7k&rid=giphy.gif&ct=s"> Contributors <a id ="contributors"></a>
