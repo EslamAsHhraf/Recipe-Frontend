@@ -81,7 +81,7 @@ npm run start
 ```
 </li>
 </ol>
-<!-- 
+
 <hr style="background-color: #4b4c60"></hr>
 
 ## <img  align= center width= 70px height =70px src="https://media1.giphy.com/media/NnSFnC428LRHaxUNzj/giphy.gif?cid=ecf05e47r1hlw9wrf1swakc9gxgn508lyzvbyzgp9i1iyvwl&rid=giphy.gif&ct=s"> Features  <a id ="features"></a>
@@ -98,7 +98,9 @@ npm run start
 </td>
 <td>
 
-   <img align="center"  src="https://user-images.githubusercontent.com/71986226/214926073-f15e5b52-9752-4b19-b5e8-c174c0c37e9f.png" alt="logo">
+   <img align="center"  src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/3793abb0-0bd8-405a-9588-96692e0c4d58" alt="logo">
+   <p></p>
+      <img align="center"  src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/a8aa0842-f3d7-4dd8-bcc8-766c02efb5a3" alt="logo">
 </td>
 <td>
 <ul>
@@ -108,145 +110,115 @@ npm run start
 </td>
 </tr>
 <tr>
-<td>🔶 Create Post</td>
+<td>🔶 Home Page</td>
 <td>
 
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214927486-0d758927-af11-444d-811b-50b1a95953ec.png" alt="logo">
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/959213f9-c452-446e-bf09-90a49046cff2" alt="logo">
 </td>
 <td>
 
-<p>1) You con create 3 types of post</p>
-<ul>
-<li>📝 Text: you can add text and styling it with fancy text editor</li>
-<li>📷 Image: you can upload photo or video to add to your post</li>
-<li>📎 Link: you can add link to your post</li>
-</ul>
-<p>2) You con add 2 tag to your post</p>
-<ul>
-<li>🔞 NSFW</li>
-<li>💥 spoiler</li>
-</ul>
+<p>1) Browse all available recipes.</p>
+<p>2) Search for Recipes by Name </p>
+<p>2) Filter Recipes by Ingredients </p>
 </td>
 </tr>
 <tr>
 <td>🔷 Search</td>
 <td>
 
-   <img align="center"   src="https://user-images.githubusercontent.com/71986226/214928486-b004a587-072b-4e4d-99c1-82c9b232f248.png" alt="logo">
+   <img align="center"   src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/a8be158a-4605-4ec5-af09-1b96a5ed4905" alt="logo">
 </td>
-<td><p>The search results have 4 types</p> 
-<ul>
-<li>📫 Posts</li>
-<li>💭 Comments</li>
-<li>👨‍👧 Communities</li>
-<li>👨‍👨‍👦‍👦 People</li>
-</ul>
+<td><p> Filter recipes by ingredients, so that you
+can find recipes that match the ingredients you have. </p> 
 </td>
 </tr>
 <tr>
-<td>🔶 User Actions</td>
+<td>🔶 Profile</td>
 <td>
 
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214938211-46ed9004-afc9-4739-988a-946e0a78cc99.png" alt="logo">
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/d1cb7334-9084-4ccf-907e-2f014f43a275" alt="logo">
 </td>
 <td>
-<p>You con do actions on posts like</p>
-<ul>
-<li>⏏ Upvote & Downvote</li>
-<li>⤴ Share</li>
-<li>✒ Edit post</li>
-<li>✅ Approve (if you are moderator)</li>
-<li>🕳 Spam</li>
-<li>🙈 Hidden</li>
-<li>🔱 Save</li>
-<li>🚫 Delete (if you are moderator or creator post)</li>
-<li>🔒 Lock (if you are moderator or creator post)</li>
-</ul>
+<p>1) You can change password</p>
+<p>2) You can change your profile picture</p>
+<p>3) You can create your recipe</p>
+<p>4) You can Logout</p>
 </td>
 </tr>
 </tr>
 <tr>
-<td>🔷 Comments</td>
+<td>🔷 Add/Edit Recipe</td>
 <td>
 
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214938584-6b44cb0c-6476-49db-adb2-60915d16a611.png" alt="logo">
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/09c602fa-8849-4430-ae9e-d096bd3ae18f" alt="logo">
 </td>
 <td>
-<p>1) 🖇 Multilevel Comments</p>
-<p>3) Actions on posts:</p>
+<p>1) You can edit or add new recipe</p>
+<p>2) Recipe should have 
 <ul>
-<li>⏏ Upvote & Downvote</li>
-<li>✅ Approve (if you are moderator)</li>
-<li>🕳 Spam</li>
-<li>🔱 Save</li>
-<li>🗯 Replay</li>
-</ul>
+<li>Recipe Name </li>
+<li>Ingredients  </li>
+<li>Steps</li>
+<li>Image</li>
+</ul></p>
 </td>
 </tr>
 <tr>
-<td>🔶 Settings</td>
+<td>🔶 My Recipe</td>
 <td>
 
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214939016-54daf788-41aa-463e-8c9d-0109e76183bb.png" alt="logo">
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/61bbb1e3-cd83-46a1-b2a3-c2a4762ebe17" alt="logo">
 </td>
 <td>
-<ul>
-<li>
-<p>🚹 Account</p>
-<ul>
-<li><p>You can change (Email, Password, Gender, Country)</li>
-<li>
-<p> Delete Account</p></li>
-<li>
-<p>Connect with google </p></li>
-</ul>
-</li>
-<li>
-<p>👤 Profile</p>
-<ul>
-<li><p>You can Edit (name , about, Profile picture, Background Picture) </p></li>
-<li>
-<p>You can on/off (NSFW, allow people to follow you)</p></li>
-<li>
-<p>You can add  social links to other website </p></li>
-</ul>
-</li>
-</li>
-<li>
-<p>🚨 Safety and privacy</p>
-<ul>
-<li><p>🔈 You can block and unblock user  </p></li>
-<li>
-<p>You can see block list</p></li>
-</ul>
-</li>
-</li>
-<li>
-<p>⚡ Feed Settings</p>
-<ul>
-<li><p>You can on/off (Adult content, autoplay media)</p></li>
-</ul>
-</li>
-</ul>
+<p>1) you can view your recipe</p>
+<p>2) Add new recipe</p>
 </td>
 </tr>
 <tr>
-<td>🔷 Notifications</td>
+<td>🔷 Shopping List</td>
 <td>
 
-<img align="center" src="https://user-images.githubusercontent.com/71986226/214939180-a2379ced-8a3e-4009-ba31-7711c6a0104f.png" alt="logo">
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/803dc996-35e2-4c83-9112-be03a1fc788f" alt="logo">
+<p></p>
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/931b51c6-bf99-4c5b-8680-e6ca8fd4b29a" alt="logo">
 </td>
 <td>
-<p>1) 🙈 You con hide notification </p>
-<p>2) Types Notification:</p>
-<ul>
-<li>New Followers</li>
-<li>Replies</li>
-</ul>
+<p>1) You can add items to our shopping list</p>
+<p>2) You can mark items as purchased on your shopping list</p>
+<p>3) You can view a categorized shopping list (e.g., dairy, 
+produce)</p>
 </td>
 </tr>
+<tr>
+<td>🔶 View Recipe Details</td>
+<td>
+
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/919752b2-2745-41ad-8def-40001c4f9660" alt="logo">
+<p></p>
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/d6c88f5f-e21a-455a-a518-aae635490cd4" alt="logo">
+</td>
+<td>
+<p>1) You can view more details about recipe </p>
+<p>2) You can Edit or Delete your own recipe</p>
+<p>3) You can give ratting for other recipe</p>
+<p>4) You can share recipe with your friends in Linkedin, Facebook and Whatsapp</p>
+<p>5) You can add recipe to your calender</p>
+</td>
 </tr>
-</table> -->
+<tr>
+<td>🔷 Calender</td>
+<td>
+
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/cf62815f-48c3-4583-9913-572e42d3138b" alt="logo">
+<p></p>
+<img align="center" src="https://github.com/EslamAsHhraf/Recipe-Frontend/assets/71986226/17b79680-4c03-4cb1-807c-957b970e62aa" alt="logo">
+</td>
+<td>
+<p>1) You can view your meal plans on a calendar </p>
+<p>2) You can Edit or Delete your meal plans</p>
+</td>
+</tr>
+</table>
 
 <hr style="background-color: #4b4c60"></hr>
 
@@ -256,22 +228,11 @@ npm run start
 <table align="left;">
 <tr>
 <th>Video</th>
-<th>Content</th>
 </tr>
 <tr>
 <td  width="83.5%">
 <video src="https://github.com/EslamAsHhraf/NonLegit/assets/71986226/f5c7f186-86d9-43ed-b95d-46f892872025"   >
 </video> 
-</td>
-<td >
-<ul>
-<li>Authentication</li>
-<li>Comments</li>
-<li>Notification</li>
-<li>Messages</li>
-<li>Settings</li>
-</ul>
-</td>
 </tr>
 </table>
 <hr style="background-color: #4b4c60"></hr>
@@ -280,14 +241,6 @@ npm run start
 <td width="80.5%">
 <video src="https://github.com/EslamAsHhraf/NonLegit/assets/71986226/bdbd854f-6445-449b-8fea-b9e09a1708fe"   >
 </video> 
-</td>
-<td >
-<ul>
-<li>Home page</li>
-<li>Posts</li>
-<li>Create Post</li>
-</ul>
-</td>
 </td>
 </tr>
 </table>
